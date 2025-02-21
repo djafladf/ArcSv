@@ -368,6 +368,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Standings_12
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 1594
+        width: 319
+        height: 477
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f38d0e7e0823c74ebe4af7f8dec7d0d
+      internalID: -1953853971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

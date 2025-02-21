@@ -25,7 +25,7 @@ public class Manticore : PlayerSetting
                 StartCoroutine(UpLocker());
             
             if (Hide == null) Hide = StartCoroutine(HideTime());
-            else { StopCoroutine(Hide); Hide = StartCoroutine(HideTime()); }
+            else { HideReinforce = 10; StopCoroutine(Hide); Hide = StartCoroutine(HideTime()); }
         }
     }
 
@@ -33,7 +33,7 @@ public class Manticore : PlayerSetting
     {
         Vector3 z = (TargetPos.position - transform.position).normalized * 2;
 
-        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * 10);
+        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * HideReinforce);
         for (int i = 1; i < 6; i++)
         {
             GameManager.instance.BM.MakeMeele(NormalInfo, 0.5f, transform.position + z * i, Vector3.zero, 0, false, Bullets[0]);
@@ -44,13 +44,14 @@ public class Manticore : PlayerSetting
     BulletInfo SpecInfo;
     IEnumerator UpLocker()
     {
-        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * 10);
+        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * HideReinforce);
         GameManager.instance.BM.MakeMeele(NormalInfo, 0.5f, transform.position, Vector3.zero, 0, false, Bullets[2]);
         yield return new WaitForSeconds(0.2f);
         SpecInfo.Damage = NormalInfo.Damage * 2;
         GameManager.instance.BM.MakeMeele(SpecInfo, 0.5f, transform.position, Vector3.zero, 0, false, Bullets[1]);
     }
 
+    float HideReinforce = 10;
     IEnumerator HideTime()
     {
         HideObj.SetActive(false);
@@ -58,7 +59,7 @@ public class Manticore : PlayerSetting
         yield return new WaitForSeconds(3);
         tag = "Player_Hide";
         HideObj.SetActive(true);
-        Hide = null;
+        Hide = null; HideReinforce = 13f;
     }
 
 
@@ -66,7 +67,7 @@ public class Manticore : PlayerSetting
     {
         base.EndBatch(); HideObj.SetActive(true); tag = "Player_Hide";
 
-    }
+    }                  
 
     protected override void OnEnable()
     {

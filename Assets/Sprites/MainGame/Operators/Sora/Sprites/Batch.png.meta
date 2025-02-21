@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -129,12 +141,12 @@ TextureImporter:
       name: Batch_1
       rect:
         serializedVersion: 2
-        x: 412
+        x: 379
         y: 110
-        width: 426
-        height: 509
+        width: 493
+        height: 525
       alignment: 9
-      pivot: {x: 0.48, y: 0.37}
+      pivot: {x: 0.48, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -150,12 +162,12 @@ TextureImporter:
       name: Batch_2
       rect:
         serializedVersion: 2
-        x: 900
+        x: 872
         y: 107
-        width: 426
-        height: 513
+        width: 492
+        height: 526
       alignment: 9
-      pivot: {x: 0.48, y: 0.368}
+      pivot: {x: 0.472, y: 0.362}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -171,12 +183,12 @@ TextureImporter:
       name: Batch_3
       rect:
         serializedVersion: 2
-        x: 1456
+        x: 1364
         y: 113
-        width: 287
-        height: 428
+        width: 461
+        height: 527
       alignment: 9
-      pivot: {x: 0.425, y: 0.44}
+      pivot: {x: 0.463, y: 0.361}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Batch_0: 516314533
+      Batch_1: 1090555060
+      Batch_2: -1452353926
       Batch_3: -195603703
       Batch_4: 2002287300
-      Batch_1: 1090555060
-      Batch_0: 516314533
-      Batch_2: -1452353926
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

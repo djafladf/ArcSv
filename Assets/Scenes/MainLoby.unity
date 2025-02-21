@@ -1902,8 +1902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 410, y: 500}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 410, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83349219
 MonoBehaviour:
@@ -11378,6 +11378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurVersion: 0.23
   IsTest: 1
+  _TimeValue: 1
   Data: {fileID: 0}
   Shop: {fileID: 0}
   player: {fileID: 0}
@@ -11408,6 +11409,7 @@ MonoBehaviour:
   - Gum
   - Matoimaru
   - Red
+  - Highmore
   PlayerStatus:
     attack: 0
     attackspeed: 0
@@ -11423,6 +11425,7 @@ MonoBehaviour:
     dragons: 0
     special: 0
     hp: 0
+    vamp: 0
   EnemyStatus:
     attack: 0
     speed: 0
@@ -11473,6 +11476,7 @@ MonoBehaviour:
   - {fileID: 1539120915725065947, guid: c484427c499e4de4b946b6ec2a1aa67c, type: 3}
   - {fileID: 1539120915725065947, guid: ae9e941a86c990e45b9258665d95df14, type: 3}
   - {fileID: 1539120915725065947, guid: 21f7f99ebce0ec2418bba65f22dd35ee, type: 3}
+  - {fileID: 1539120915725065947, guid: 3741b82bbe5f9c34f8c2925d89e16ccb, type: 3}
   Prefs: []
   CurPlayerID: 
   PlayerInd: 0
@@ -15570,8 +15574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 410, y: 500}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 410, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718901763
 MonoBehaviour:
@@ -16926,12 +16930,12 @@ GameObject:
   - component: {fileID: 785415674}
   - component: {fileID: 785415675}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: DebugUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &785415674
 Transform:
   m_ObjectHideFlags: 0
@@ -25912,8 +25916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 410, y: 500}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 410, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015446064
 MonoBehaviour:
@@ -45146,8 +45150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 410, y: 500}
+  m_AnchoredPosition: {x: 0, y: -50}
+  m_SizeDelta: {x: 410, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1958754197
 MonoBehaviour:
@@ -45772,7 +45776,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984954325}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45782,7 +45786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 292.5}
+  m_AnchoredPosition: {x: 0, y: 275}
   m_SizeDelta: {x: 470, y: 285}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1984954327
@@ -49438,7 +49442,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.8
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -49551,6 +49555,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49566,6 +49571,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB124\uC78E\uD074\uB85C\uBC84 \uD654\uC11D"
     operatorid: 0
     lv: 1
@@ -49591,6 +49597,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49606,6 +49613,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC758\uB8CC \uD658\uACBD \uBD84\uC11D \uC7A5\uCE58"
     operatorid: 0
     lv: 1
@@ -49633,6 +49641,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49648,6 +49657,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC7AC\uD310\uAD00\uC758 \uB4F1\uBD88"
     operatorid: 0
     lv: 1
@@ -49673,6 +49683,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49688,6 +49699,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uD589\uC6B4\uC758 \uD1A0\uB07C(?) \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -49714,6 +49726,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49729,6 +49742,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB4DC\uB798\uACE4 \uBC84\uBE14 \uC778\uD615(\uC2DC)"
     operatorid: 0
     lv: 1
@@ -49755,6 +49769,7 @@ MonoBehaviour:
       dragons: 1
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49770,6 +49785,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB4DC\uB798\uACE4 \uBC84\uBE14 \uC778\uD615(\uB2C8\uC5D4)"
     operatorid: 0
     lv: 1
@@ -49796,6 +49812,7 @@ MonoBehaviour:
       dragons: 2
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49811,6 +49828,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB4DC\uB798\uACE4 \uBC84\uBE14 \uC778\uD615(\uB9C1)"
     operatorid: 0
     lv: 1
@@ -49837,6 +49855,7 @@ MonoBehaviour:
       dragons: 3
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49852,6 +49871,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB4DC\uB798\uACE4 \uBC84\uBE14 \uC778\uD615(\uCD1D\uC6E8)"
     operatorid: 0
     lv: 1
@@ -49877,6 +49897,7 @@ MonoBehaviour:
       dragons: 4
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49892,6 +49913,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB4DC\uB798\uACE4 \uBC84\uBE14 \uC778\uD615(\uC288)"
     operatorid: 0
     lv: 1
@@ -49918,6 +49940,7 @@ MonoBehaviour:
       dragons: 5
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49933,6 +49956,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB204\uAD70\uAC00\uC758 \uC218\uCCA9"
     operatorid: 0
     lv: 1
@@ -49959,6 +49983,7 @@ MonoBehaviour:
       dragons: 0
       special: 1
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -49974,6 +49999,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAE30\uC0AC\uACC4\uC728-\uC2E0\uD310"
     operatorid: 0
     lv: 1
@@ -49999,6 +50025,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50014,6 +50041,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBAA8\uB974\uB294 \uAC74\uAC00?"
     operatorid: 0
     lv: 1
@@ -50038,6 +50066,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50053,6 +50082,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB2E8-\uC8C4"
     operatorid: 0
     lv: 1
@@ -50077,6 +50107,7 @@ MonoBehaviour:
       dragons: 0
       special: 2
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50092,6 +50123,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCD5C\uC2E0\uC2DD \uC11C\uBC84 \uC7A5\uBE44 MK.1"
     operatorid: 0
     lv: 1
@@ -50118,6 +50150,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50133,6 +50166,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCD5C\uC2E0\uC2DD \uC11C\uBC84 \uC7A5\uBE44 MK.2"
     operatorid: 0
     lv: 1
@@ -50159,6 +50193,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50174,6 +50209,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCD1B\uBD88"
     operatorid: 0
     lv: 1
@@ -50200,6 +50236,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50215,6 +50252,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC6D0\uC554 \uD050\uBE0C"
     operatorid: 0
     lv: 1
@@ -50240,6 +50278,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50255,6 +50294,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uD2B9\uC81C \uD30C\uB974\uD398"
     operatorid: 0
     lv: 1
@@ -50281,6 +50321,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0.1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50296,6 +50337,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB3CC\uACE0\uB798 \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -50320,6 +50362,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50335,6 +50378,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCE7C\uCDA4"
     operatorid: 0
     lv: 1
@@ -50360,6 +50404,7 @@ MonoBehaviour:
       dragons: 0
       special: 3
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50375,6 +50420,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBD80\uD45C"
     operatorid: 0
     lv: 1
@@ -50400,6 +50446,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50415,6 +50462,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9AC\uD504"
     operatorid: 0
     lv: 1
@@ -50440,6 +50488,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50455,6 +50504,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC2DC\uC81C\uD488 \uCD08\uCF5C\uB9BF"
     operatorid: 0
     lv: 1
@@ -50480,6 +50530,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0.1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50495,6 +50546,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB0B4\uAC00 \uB9CC\uB4E0 \uCE7C!"
     operatorid: 0
     lv: 1
@@ -50521,6 +50573,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50536,6 +50589,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBE45\uD1A0\uB9AC\uC544\uC758 \uAE43\uBC1C"
     operatorid: 0
     lv: 1
@@ -50561,6 +50615,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50576,6 +50631,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAE34\uAE09 \uD1B5\uC2E0\uAE30"
     operatorid: 0
     lv: 1
@@ -50601,6 +50657,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50616,6 +50673,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB2EB\uD78C \uD76C\uB9DD"
     operatorid: 0
     lv: 1
@@ -50641,6 +50699,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50656,6 +50715,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC804\uAE30 \uC8FC\uC804\uC790"
     operatorid: 0
     lv: 1
@@ -50680,6 +50740,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0.1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50695,6 +50756,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC624\uB798\uB41C \uC9C0\uB3C4"
     operatorid: 0
     lv: 1
@@ -50719,6 +50781,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50734,6 +50797,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCC9C\uAD6C"
     operatorid: 0
     lv: 1
@@ -50758,6 +50822,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50773,6 +50838,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uD638\uC2E0 \uBD80\uC801"
     operatorid: 0
     lv: 1
@@ -50797,6 +50863,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50812,6 +50879,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBCF4\uBB3C \uBC18\uC9C0"
     operatorid: 0
     lv: 1
@@ -50837,6 +50905,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50852,6 +50921,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAE08\uBF08 \uC8FC\uC0AC\uC704"
     operatorid: 0
     lv: 1
@@ -50877,6 +50947,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50892,6 +50963,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: -0.1
+      vamp: 0
   - name: "\uAC80\uC740 \uC790\uBB3C\uC1E0\uC640 \uD770 \uC5F4\uC1E0"
     operatorid: 0
     lv: 1
@@ -50917,6 +50989,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50932,6 +51005,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB85C\uC988\uBAAC\uD2F0\uC2A4\uC758 \uD3EC\uC639"
     operatorid: 0
     lv: 1
@@ -50957,6 +51031,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -50972,6 +51047,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB300\uBAA8\uC758 \uC99D\uD45C"
     operatorid: 0
     lv: 1
@@ -50997,6 +51073,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: -0.1
       attackspeed: 0
@@ -51012,6 +51089,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC0C1\uC5B4 \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -51037,6 +51115,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51052,6 +51131,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC911\uB825 \uAD50\uC815 \uBAA8\uB4C8"
     operatorid: 0
     lv: 1
@@ -51077,6 +51157,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51092,6 +51173,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB3C4\uC11C\uAD00"
     operatorid: 0
     lv: 1
@@ -51117,6 +51199,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51132,6 +51215,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBB38\uBA85\uC758 \uC874\uC18D"
     operatorid: 0
     lv: 1
@@ -51158,6 +51242,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51173,6 +51258,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAE30\uACC4 \uC7A5\uCE58"
     operatorid: 0
     lv: 1
@@ -51197,6 +51283,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51212,6 +51299,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBC8C\uAFC0 \uCFE0\uD0A4"
     operatorid: 0
     lv: 1
@@ -51237,6 +51325,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0.1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51252,6 +51341,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB204\uAD70\uAC00\uC758 \uC120\uAE00\uB77C\uC2A4"
     operatorid: 0
     lv: 1
@@ -51276,6 +51366,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51291,6 +51382,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC0AC\uB839\uC220\uC0AC\uC758 \uC9C0\uD321\uC774"
     operatorid: 0
     lv: 1
@@ -51315,6 +51407,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51330,6 +51423,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAC15\uC544\uC9C0 \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -51355,6 +51449,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51370,6 +51465,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uACE0\uC591\uC774 \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -51395,6 +51491,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51410,6 +51507,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uD3ED\uB0E5\uC774"
     operatorid: 0
     lv: 1
@@ -51434,6 +51532,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51449,6 +51548,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBA3C\uC2AC\uB9AC \uCE74\uB4DC"
     operatorid: 0
     lv: 1
@@ -51474,6 +51574,7 @@ MonoBehaviour:
       dragons: 0
       special: 4
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51489,6 +51590,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC6B0\uB9AC\uC758 \uBE5B"
     operatorid: 0
     lv: 1
@@ -51514,6 +51616,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51529,6 +51632,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uACF0\uB3CC\uC774 \uC778\uD615"
     operatorid: 0
     lv: 1
@@ -51553,6 +51657,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51568,6 +51673,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9E4\uC6B4 \uC0AC\uD0D5"
     operatorid: 0
     lv: 1
@@ -51593,6 +51699,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51608,6 +51715,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9AC\uBCFC\uBC84 \uD0C4\uCC3D"
     operatorid: 0
     lv: 1
@@ -51633,6 +51741,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51648,6 +51757,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC655\uC758 \uBCF4\uC625"
     operatorid: 0
     lv: 1
@@ -51673,6 +51783,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51688,6 +51799,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC9C0\uC6D0-\uD06C\uB808\uC778"
     operatorid: 0
     lv: 1
@@ -51713,6 +51825,7 @@ MonoBehaviour:
       dragons: 0
       special: 5
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51728,6 +51841,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   BossItems:
   - name: "\uACF0\uB3CC\uC774 \uC778\uD615"
     operatorid: 0
@@ -51753,6 +51867,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51768,6 +51883,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9E4\uC6B4 \uC0AC\uD0D5"
     operatorid: 0
     lv: 1
@@ -51793,6 +51909,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51808,6 +51925,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   WeaponSub:
   - name: "\uC544\uBBF8\uC57C\uC758 \uAD6C\uC18D\uAD6C"
     operatorid: 0
@@ -51840,6 +51958,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51855,6 +51974,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC544\uC2A4\uD14C\uC2DC\uC544\uC758 \uAC80"
     operatorid: 0
     lv: 1
@@ -51884,6 +52004,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51899,6 +52020,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC624\uB85C\uB77C\uC758 \uBC29\uD328"
     operatorid: 0
     lv: 1
@@ -51928,6 +52050,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51943,6 +52066,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCEE4\uD130\uC758 \uB3C4\uAC80"
     operatorid: 0
     lv: 1
@@ -51973,6 +52097,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -51988,6 +52113,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC5D0\uD504\uC774\uD130\uC758 \uAC74\uD2C0\uB9BF"
     operatorid: 0
     lv: 1
@@ -52018,6 +52144,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52033,6 +52160,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9E8\uD2F0\uCF54\uC5B4\uC758 \uAF2C\uB9AC"
     operatorid: 0
     lv: 1
@@ -52062,6 +52190,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52077,6 +52206,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCE74\uC81C\uB9C8\uB8E8\uC758 \uB3C4\uAC80"
     operatorid: 0
     lv: 1
@@ -52106,6 +52236,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52121,6 +52252,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uD50C\uB798\uD2F0\uB118\uC758 \uD65C"
     operatorid: 0
     lv: 1
@@ -52152,6 +52284,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52167,6 +52300,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB85C\uC988\uBAAC\uD2F0\uC2A4\uC758 \uC544\uCE20 \uC6D0\uACA9 \uC870\uC791\uD615
       \uC7A5\uCE58"
     operatorid: 0
@@ -52198,6 +52332,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52213,6 +52348,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC640\uD30C\uB9B0\uC758 \uC544\uCE20 \uC2A4\uD0DC\uD504"
     operatorid: 0
     lv: 1
@@ -52243,6 +52379,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52258,6 +52395,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC18C\uB77C \uC544\uCE20 \uC2A4\uD0DC\uD504"
     operatorid: 0
     lv: 1
@@ -52287,6 +52425,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52302,6 +52441,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uAD7C\uC758 \uC694\uB9AC \uB3C4\uAD6C"
     operatorid: 0
     lv: 1
@@ -52332,6 +52472,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52347,6 +52488,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB9C8\uD1A0\uC774\uB9C8\uB8E8\uC758 \uCCB4\uB3C4"
     operatorid: 0
     lv: 1
@@ -52376,6 +52518,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52391,6 +52534,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uB808\uB4DC\uC758 \uB2E8\uAC80"
     operatorid: 0
     lv: 1
@@ -52403,8 +52547,8 @@ MonoBehaviour:
     - "\uC7AC\uBC30\uCE58 \uB300\uAE30 \uC2DC\uAC04 \uAC10\uC18C"
     - "\uB370\uBBF8\uC9C0 100% \uC99D\uAC00"
     - "\uC0AC\uB0E5, \uC2DC\uC791"
-    extra: "\uC624\uB298\uB3C4, \uB291\uB300, \uC8FD\uC778\uB2E4\n"
-    sprite: {fileID: 630700962, guid: cb87e0f4884fbd24d8d2360be61eafdd, type: 3}
+    extra: Test
+    sprite: {fileID: -1590178924, guid: cb87e0f4884fbd24d8d2360be61eafdd, type: 3}
     attributes:
       attack: 0
       attackspeed: 0
@@ -52420,6 +52564,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 1
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -52435,6 +52580,53 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
+  - name: "\uD558\uC774\uBAA8\uC5B4\uC758 \uB0AB"
+    operatorid: 0
+    lv: 1
+    rarity: 0
+    Islocked: 0
+    description:
+    - "\uB370\uBBF8\uC9C0 50% \uC99D\uAC00"
+    - "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
+    - "\uB370\uBBF8\uC9C0 100% \uC99D\uAC00"
+    - "\uC7AC\uBC30\uCE58 \uB300\uAE30 \uC2DC\uAC04 \uAC10\uC18C"
+    - "\uB370\uBBF8\uC9C0 100% \uC99D\uAC00"
+    - "\uC0AC\uB0E5, \uC2DC\uC791"
+    extra: Test
+    sprite: {fileID: 885304877, guid: cb87e0f4884fbd24d8d2360be61eafdd, type: 3}
+    attributes:
+      attack: 0
+      attackspeed: 0
+      defense: 0
+      speed: 0
+      power: 0
+      cost: 0
+      pickup: 0
+      selection: 0
+      exp: 0
+      heal: 0
+      GoodsEarn: 0
+      dragons: 0
+      special: 0
+      hp: 1
+      vamp: 0
+    attribute_Enem:
+      attack: 0
+      attackspeed: 0
+      defense: 0
+      speed: 0
+      power: 0
+      cost: 0
+      pickup: 0
+      selection: 0
+      exp: 0
+      heal: 0
+      GoodsEarn: 0
+      dragons: 0
+      special: 0
+      hp: 0
+      vamp: 0
   Infos:
   - name: "\uC544\uBBF8\uC57C"
     name_e: Amiya
@@ -52625,9 +52817,9 @@ MonoBehaviour:
     Standing2: {fileID: 134435340, guid: 6f26af5e459faee4ba780c338335ad37, type: 3}
   - name: "\uB808\uB4DC"
     name_e: Red
-    Inst_Weapon: "\uD45C\uC2DD\uC5D0\uAC8C \uAC15\uD654 \uACF5\uACA9 \uBC1C\uB3D9.
-      \uD574\uB2F9 \uACF5\uACA9\uC73C\uB85C \uD45C\uC2DD\uC774 \uC0AC\uB9DD \uC2DC
-      \uC7AC\uBC1C\uB3D9."
+    Inst_Weapon: "<size=80%>\uD45C\uC2DD\uC744 \uC0C8\uAE38 \uB54C \uD574\uB2F9 \uC801\uC5D0\uAC8C
+      \uAC15\uD654 \uACF5\uACA9 \uBC1C\uB3D9. \uC77C\uC815 \uC218\uC758 \uC801\uC744
+      \uCC98\uCE58 \uC2DC [\uCC98\uD615\uBAA8\uB4DC] \uC9C4\uC785 </size>"
     Inst_Prop: "<size=85%>\uD2B9\uC815 \uC801\uC5D0\uAC8C \uD45C\uC2DD\uC744 \uC0C8\uAE30\uBA70,
       \uB300\uC0C1\uC744 \uC6B0\uC120 \uACF5\uACA9. \uB300\uC0C1\uC5D0\uAC8C \uC774\uB3D9
       \uC911 \uC740\uC2E0.</size>"
@@ -52638,8 +52830,22 @@ MonoBehaviour:
     IsPriorityAttack: 1
     player: {fileID: 11400000, guid: 5095becf503867e41ac9f69cb573f174, type: 2}
     Head: {fileID: 1157879171, guid: 8f431041ae472024aae12403bffc4645, type: 3}
-    Standing: {fileID: -1694128483, guid: 8a4af33dae19ec1439922b1eef7c825e, type: 3}
-    Standing2: {fileID: 134435340, guid: 6f26af5e459faee4ba780c338335ad37, type: 3}
+    Standing: {fileID: 626782780, guid: 5ec3cf43f3f22dc4781d780a74235c9d, type: 3}
+    Standing2: {fileID: 626782780, guid: 5ec3cf43f3f22dc4781d780a74235c9d, type: 3}
+  - name: "\uD558\uC774\uBAA8\uC5B4"
+    name_e: Highmore
+    Inst_Weapon: Test
+    Inst_Prop: "\uC544\uAD70\uC5D0\uAC8C \uD68C\uBCF5\uBC1B\uC744 \uC218 \uC5C6\uC73C\uBA70,
+      \uACF5\uACA9 \uC2DC \uC77C\uC815\uB7C9 \uD68C\uBCF5"
+    id: 13
+    CurAwaken: 0
+    AwakenInfo: []
+    IsLD: 0
+    IsPriorityAttack: 1
+    player: {fileID: 11400000, guid: 1a20fc0c0d8f5034daec3d68104e72cb, type: 2}
+    Head: {fileID: -985706157, guid: 8f431041ae472024aae12403bffc4645, type: 3}
+    Standing: {fileID: -1172327869, guid: 16d9312e3580d1f468a16d83e3783b3f, type: 3}
+    Standing2: {fileID: -1953853971, guid: 6f26af5e459faee4ba780c338335ad37, type: 3}
   Title: {fileID: 1268481289}
 --- !u!1 &4680751101627770853
 GameObject:

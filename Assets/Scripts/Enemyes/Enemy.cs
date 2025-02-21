@@ -46,6 +46,11 @@ public class Enemy : MonoBehaviour
         coll = GetComponent<CapsuleCollider2D>();
     }
 
+    protected virtual void Start()
+    {
+        EnemyInd[0] = name[0] - 1; EnemyInd[1] = name[1] - 1;
+    }
+
     protected virtual void FixedUpdate()
     {
         if (!IsLive || OnIce || OnStun) return;
@@ -118,7 +123,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual IEnumerator DeadLater()
     {
-       
         yield return GameManager.DotOneSec;
         tag = "Untagged";
         StopAllCoroutines();
@@ -132,17 +136,33 @@ public class Enemy : MonoBehaviour
             BulletInfo Info = GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name));
             int GetDamage = Info.ReturnDamage(Defense * (1 + GameManager.instance.EnemyStatus.defense - DeBuffVar[2] + BuffVar[2]));
             if (GetDamage < 0) GetDamage = 0;
-            GameManager.instance.DM.MakeDamage(GetDamage, transform);
-            GameManager.instance.UM.DamageUp(0,Info.DealFrom, GetDamage);
             HP -= GetDamage;
+
+            if (MaxHP * Info.ExecuteRatio >= HP)
+            {
+                HP = 0;
+                GameManager.instance.DM.MakeDamage(GetDamage, transform);
+                GameManager.instance.UM.DamageUp(0, Info.DealFrom, HP + GetDamage);
+            }
+            else
+            {
+                GameManager.instance.DM.MakeDamage(GetDamage, transform);
+                GameManager.instance.UM.DamageUp(0, Info.DealFrom, GetDamage);
+            }
             if (Info.Vamp > 0) GameManager.instance.BM.Vamp[Info.DealFrom]((int)(GetDamage * Info.Vamp));
+
             HPChange();     // For Boss
             if (HP <= 0)
             {
                 anim.SetTrigger("Dead");
                 StartCoroutine(DeadLater());
+                if (Info.DeadTrigger != null) Info.DeadTrigger(transform, 0);
                 spriteRenderer.sortingOrder = 1; anim.enabled = true;
                 IsLive = false; CanHit = false; rigid.simulated = false; coll.enabled = false;
+                for (int i = 0; i < 5; i++) if (GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i])
+                    {
+                        GameManager.instance.ES.TargetChangeAct[i](EnemyInd[0], EnemyInd[1]); GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i] = false;
+                    }
             }
             else if (Info.DeBuffs != null)
             {
@@ -341,7 +361,6 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
         GameManager.instance.UM.KillCountUp(1);
         GameManager.instance.IM.MakeItem(transform.position);
-        
     }
     protected bool IsInit = true;
     protected virtual void OnEnable()

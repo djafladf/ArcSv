@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 200000
-  speed: 2
+  speed: 0
   Damage: 5
   Defense: 100
   Weight: 0
@@ -117,6 +117,7 @@ MonoBehaviour:
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0

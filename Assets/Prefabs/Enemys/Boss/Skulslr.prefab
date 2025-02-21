@@ -258,9 +258,12 @@ MonoBehaviour:
   MakeLine: 0
   BI:
     Damage: 0
+    DealFrom: 0
+    LayerOrder: 0
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0
@@ -271,6 +274,7 @@ MonoBehaviour:
       Defense: 0
       Ice: 0
       Fragility: 0
+      Stun: 0
     Buffs:
       Last: 0
       Speed: 0

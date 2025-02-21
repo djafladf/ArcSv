@@ -21,6 +21,31 @@ public class GameManager : MonoBehaviour
     public static WaitForSeconds TwoSec = new WaitForSeconds(2);
     public static WaitForSeconds DotOneSec = new WaitForSeconds(0.1f);
     public static WaitForSeconds DotFiveSec = new WaitForSeconds(0.5f);
+
+    [SerializeField]
+    private float _TimeValue = 1;
+    private float cnt = 1;
+
+    private void OnValidate()
+    {
+        TimeValue = _TimeValue;
+    }
+
+    public float TimeValue
+    {
+        get { return cnt; }
+        set
+        {
+            if(cnt != value)
+            {
+                SetTime(cnt, true);
+                SetTime(value, false);
+                cnt = value;
+            }
+        }
+    }
+
+
     public static int StringToInt(string Var)
     {
         int outValue = 0;

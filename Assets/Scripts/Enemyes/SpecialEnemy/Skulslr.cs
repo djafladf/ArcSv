@@ -24,8 +24,9 @@ public class Skulslr : Enemy
         BLine = BPart.GetComponent<TrailRenderer>();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GameManager.instance.ES.ExternalSpawnCall(3, -1, 5f);
         GameManager.instance.ES.ExternalSpawnCall(4, -1, 5f);
         GameManager.instance.ES.ExternalSpawnCall(5, -1, 5f);

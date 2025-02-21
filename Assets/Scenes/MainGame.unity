@@ -16944,7 +16944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &494795789
 Transform:
   m_ObjectHideFlags: 0
@@ -34650,6 +34650,7 @@ MonoBehaviour:
       dragons: 0
       special: -1
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -34665,6 +34666,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uBC29\uC5B4\uB825 \uC99D\uAC00"
     operatorid: 0
     lv: 1
@@ -34689,6 +34691,7 @@ MonoBehaviour:
       dragons: 0
       special: -1
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -34704,6 +34707,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uCCB4\uB825 \uC99D\uAC00"
     operatorid: 0
     lv: 1
@@ -34728,6 +34732,7 @@ MonoBehaviour:
       dragons: 0
       special: -1
       hp: 0.01
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -34743,6 +34748,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
     operatorid: 0
     lv: 1
@@ -34767,6 +34773,7 @@ MonoBehaviour:
       dragons: 0
       special: -1
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -34782,6 +34789,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   - name: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
     operatorid: 0
     lv: 1
@@ -34806,6 +34814,7 @@ MonoBehaviour:
       dragons: 0
       special: -1
       hp: 0
+      vamp: 0
     attribute_Enem:
       attack: 0
       attackspeed: 0
@@ -34821,6 +34830,7 @@ MonoBehaviour:
       dragons: 0
       special: 0
       hp: 0
+      vamp: 0
   AttackStat: {fileID: 20471348}
   HealthStat: {fileID: 1356746248}
   DefenseStat: {fileID: 641901509}
@@ -35176,7 +35186,7 @@ MonoBehaviour:
   - {fileID: 1788775384281307603, guid: ba2eccd61a261d042b9f6756c841a6b6, type: 3}
   - {fileID: 1788775384281307603, guid: d6fc4551295665d40a93a4ea50304d5d, type: 3}
   BossSet: {fileID: 981838648}
-  PoolSize: 140000001400000014000000140000000a0000000a0000000a0000000a000000010000000a00000005000000050000001400000005000000050000000a0000000a0000000a000000010000000100000014000000140000001400000014000000140000000500000001000000
+  PoolSize: 280000001e00000014000000140000000a0000000a0000000a0000000a000000010000000a00000005000000050000001400000005000000050000000a0000000a0000000a000000010000000100000014000000140000001400000014000000140000000500000001000000
   IsTest: 0
   CurActive: 0
   Stages:

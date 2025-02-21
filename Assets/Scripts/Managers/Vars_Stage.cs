@@ -76,6 +76,7 @@ public class BulletInfo
     public float IgnoreDefense;
     public float ScaleFactor;
     public float SpeedFactor;
+    public float ExecuteRatio;
 
     public Action<Transform, int> DeadTrigger;
 
@@ -86,14 +87,14 @@ public class BulletInfo
     public BulletInfo(int damage = 0, bool isEffect = false, float knockBack = 0, float scalefactor = 1,
         float speedfactor = 1, bool isFix = false, float ignoreDefense = 0,
         DeBuff debuffs = null, Buff buffs = null, int dealFrom = -1, int layerOrder = 4, float vamp = 0,
-        Action<Transform, int> DT = null)
+        Action<Transform, int> DT = null, float executeRatio = 0)
     {
         Damage = damage; DealFrom = dealFrom;
         IsEffect = isEffect; IsFix = isFix; ScaleFactor = scalefactor; SpeedFactor = speedfactor;
         KnockBack = knockBack; IgnoreDefense = ignoreDefense;
         DeBuffs = debuffs;
         Buffs = buffs;
-        LayerOrder = layerOrder;
+        LayerOrder = layerOrder; ExecuteRatio = executeRatio;
         if(GameManager.instance != null) Vamp = vamp + GameManager.instance.PlayerStatus.vamp;
     }
 
@@ -111,6 +112,7 @@ public class BulletInfo
     public void Copy(BulletInfo From)
     {
         Damage = From.Damage; DealFrom = From.DealFrom; IsEffect = From.IsEffect; IsFix = From.IsFix; KnockBack = From.KnockBack; IgnoreDefense = From.IgnoreDefense; ScaleFactor = From.ScaleFactor; SpeedFactor = From.SpeedFactor; DeBuffs = From.DeBuffs; Buffs = From.Buffs; LayerOrder = From.LayerOrder;
+        Vamp = From.Vamp; ExecuteRatio = From.ExecuteRatio; DeadTrigger = From.DeadTrigger;
     }
 }
 

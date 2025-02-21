@@ -9,7 +9,7 @@ public class PlayerSetting : MonoBehaviour
     [SerializeField] public Player player;
     /*[SerializeField] protected Sprite WeaponIm;
     [SerializeField] protected Sprite HeadIm;*/
-    
+
     [SerializeField] bool IsPlayer;
     public bool IsSummon = false;
     public bool HasWeapon;
@@ -18,6 +18,15 @@ public class PlayerSetting : MonoBehaviour
     protected bool OnIce;
 
     [NonSerialized] public bool CanMove = true;
+
+    protected bool TargetChangeCall = true;
+
+    public void TargetChangeCallAct(int type, int ind)
+    {
+        if (CurFollow[0] != type || CurFollow[1] != ind) { print($"{type},{ind} : {CurFollow[0]},{CurFollow[1]}"); return; }
+        TargetChangeCall = true;
+    }
+
     protected virtual void Awake()
     {
         player.SubEffects.Clear();
@@ -25,12 +34,14 @@ public class PlayerSetting : MonoBehaviour
         player.rigid = GetComponent<Rigidbody2D>();
         player.anim = GetComponent<Animator>();
         player.sprite = GetComponent<SpriteRenderer>();
-        player.WeaponLevel = 1; 
-        player.AttackRatio = 0; player.DefenseRatio = 0; player.HPRatio = 0; player.SpeedRatio = 0; 
+        player.WeaponLevel = 1;
+        player.AttackRatio = 0; player.DefenseRatio = 0; player.HPRatio = 0; player.SpeedRatio = 0;
         CanMove = IsPlayer;
         player.CurHP = player.InitHP; player.MaxHP = player.InitHP;
 
         player.ChangeOccur = true; player.AllowFollow = true; player.AllowMove = true;
+
+        GameManager.instance.ES.TargetChangeAct[player.Id] = TargetChangeCallAct;
         //player.MaxSp = player.CurSP = player.InitSP;
         if (!IsSummon)
         {
@@ -56,6 +67,8 @@ public class PlayerSetting : MonoBehaviour
     }
 
 
+    protected int[] CurFollow = { -1, -1 };
+
     protected virtual void FixedUpdate()
     {
         if (player.ChangeOccur && !IsSummon)
@@ -74,50 +87,72 @@ public class PlayerSetting : MonoBehaviour
         }
 
         player.rigid.velocity = Vector2.zero;
-        if (CanMove && !OnIce)
+
+        if (!CanMove || OnIce) return;
+
+        if (!IsPlayer)
         {
-            if (!IsPlayer)
+            if (player.AllowMove)
             {
-                if (player.AllowMove)
+                if (player.IsFollow && player.AllowFollow)
                 {
-                    if (player.IsFollow && player.AllowFollow)
-                    {
-                        TargetPos = GameManager.instance.Git.transform;
-                        player.Dir = (TargetPos.position - transform.position).normalized;
-                        if (Vector3.Distance(transform.position, TargetPos.position) <= 2f) player.IsFollow = false;
-                    }
-                    else
-                        FindTarget();
+                    if (CurFollow[0] != -1) { GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false; CurFollow[0] = -1; }
+                    TargetChangeCall = true;
+                    TargetPos = GameManager.instance.Git.transform;
+                    player.Dir = (TargetPos.position - transform.position).normalized;
+                    if (Vector3.Distance(transform.position, TargetPos.position) <= 1.5f) player.IsFollow = false;
                 }
                 else
                 {
-                    player.Dir = Vector2.zero;
-                    TargetPos = GetNearest(scanRange);
-                    if (TargetPos != null) if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack();
+                    if (TargetChangeCall) FindTarget();
+                    else
+                    {
+                        if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack();
+                        player.Dir = (TargetPos.position - transform.position).normalized;
+                    }
                 }
-            }
-            Vector2 nextVec = player.Dir * player.speed * (1 + player.SpeedRatio + GameManager.instance.PlayerStatus.speed + player.ReinforceAmount[2] - player.DeBuffAmount[0]) *  Time.fixedDeltaTime;
-            if (nextVec.Equals(Vector2.zero))
-            {
-                player.anim.SetBool("IsWalk", false);
             }
             else
             {
-                if (player.Dir.x > 0 && !player.sprite.flipX)
-                {
-                    player.sprite.flipX = true;
-                    foreach (var k in player.SubEffects) k.flipX = true;
-                }
-                else if (player.Dir.x < 0 && player.sprite.flipX)
-                {
-                    player.sprite.flipX = false;
-                    foreach (var k in player.SubEffects) k.flipX = false;
-                }
-                player.anim.SetBool("IsWalk", true);
-                player.rigid.MovePosition(player.rigid.position + nextVec);
+                player.Dir = Vector2.zero;
+                TargetPos = GetNearest(AttackRange);
+                if (TargetPos != null) { CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false; Attack(); }
             }
-            WeaponAnim();
-        } 
+        }
+        Vector2 nextVec = player.Dir * player.speed * (1 + player.SpeedRatio + GameManager.instance.PlayerStatus.speed + player.ReinforceAmount[2] - player.DeBuffAmount[0]) * Time.fixedDeltaTime;
+        if (nextVec.Equals(Vector2.zero))
+        {
+            player.anim.SetBool("IsWalk", false);
+        }
+        else
+        {
+            FlipAnim();
+            player.anim.SetBool("IsWalk", true);
+            player.rigid.MovePosition(player.rigid.position + nextVec);
+        }
+    }
+
+    protected virtual void FlipAnim()
+    {
+        if (player.Dir.x > 0 && !player.sprite.flipX)
+        {
+            player.sprite.flipX = true;
+            foreach (var k in player.SubEffects) k.flipX = true;
+        }
+        else if (player.Dir.x < 0 && player.sprite.flipX)
+        {
+            player.sprite.flipX = false;
+            foreach (var k in player.SubEffects) k.flipX = false;
+        }
+    }
+
+    protected virtual void StopMoving()
+    {
+
+    }
+    protected virtual void StartMoving()
+    {
+
     }
 
     protected virtual void FindTarget()
@@ -127,8 +162,14 @@ public class PlayerSetting : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack();
             player.Dir = (TargetPos.position - transform.position).normalized;
+            CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false;
+            GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = true;
         }
-        else player.Dir = Vector2.zero;
+        else
+        {
+            player.Dir = Vector2.zero;
+            CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true;
+        }
     }
 
     protected virtual void WeaponAnim()
@@ -152,10 +193,10 @@ public class PlayerSetting : MonoBehaviour
         RaycastHit2D[] targets = Physics2D.CircleCastAll(transform.position, Range, Vector2.zero, 0, targetLayer);
         float diffs = scanRange + 10;
         Transform res = null;
-        foreach(RaycastHit2D target in targets)
+        foreach (RaycastHit2D target in targets)
         {
             float curDiff = Vector3.Distance(transform.position, target.transform.position);
-            if(curDiff < diffs)
+            if (curDiff < diffs)
             {
                 diffs = curDiff; res = target.transform;
             }
@@ -176,33 +217,28 @@ public class PlayerSetting : MonoBehaviour
 
     protected virtual void AttackEnd()
     {
-        TargetPos = GetNearest(scanRange);
+        if (TargetChangeCall)   // 떄리던 놈 사망
+        {
+            if(CurFollow[0] != -1)GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+        }
+        
+        // 떄리던 놈 근처에 있음
+        if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) return;
+        
+        // 때리던 놈도 없음
+        TargetPos = GetNearest(AttackRange);
         if (TargetPos != null && !player.IsFollow)
         {
-            if (Vector3.Distance(transform.position, TargetPos.position) > AttackRange)
-            {
-                player.anim.SetBool("IsAttack", false);
-                CanMove = true;
-            }
-            else
-            {
-                player.Dir = (TargetPos.position - transform.position).normalized;
-                if (player.Dir.x > 0 && !player.sprite.flipX)
-                {
-                    player.sprite.flipX = true;
-                    foreach (var k in player.SubEffects) k.flipX = true;
-                }
-                else if (player.Dir.x < 0 && player.sprite.flipX)
-                {
-                    player.sprite.flipX = false;
-                    foreach (var k in player.SubEffects) k.flipX = false;
-                }
-            }
+            player.Dir = (TargetPos.position - transform.position).normalized;
+            FlipAnim();
+            CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false;
+            GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = true;
         }
         else
         {
-            player.anim.SetBool("IsAttack", false);
-            CanMove = true;
+            player.anim.SetBool("IsAttack", false); if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
+            CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true;
         }
     }
 
@@ -220,10 +256,10 @@ public class PlayerSetting : MonoBehaviour
 
     [SerializeField] protected Image HPBar;
 
-    
+
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAttack") && CanHit) GetDamage(GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)),collision.transform);
+        if (collision.CompareTag("EnemyAttack") && CanHit) GetDamage(GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)), collision.transform);
         else if (collision.CompareTag("PlayerBuff"))
         {
             Buff Info = GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)).Buffs;
@@ -267,12 +303,12 @@ public class PlayerSetting : MonoBehaviour
         }
     }
 
-    string[] BFTest = { "공","방","속","공속"};
+    string[] BFTest = { "공", "방", "속", "공속" };
     IEnumerator BuffCheck()
     {
         int i;
         for (i = 0; i < 4; i++) { player.ReinforceAmount[i] = 0; player.ReinForceLast[i] = 0; }
-        for(i = 0; i < 5; i++) { player.DeBuffAmount[i] = 0; player.DeBuffLast[i] = 0; if (DeBuffObj[i] != null) { DeBuffObj[i].SetActive(false); Debug.Log(GameManager.instance.BFM); DeBuffObj[i].transform.parent = GameManager.instance.BFM.transform; DeBuffObj[i] = null; } }
+        for (i = 0; i < 5; i++) { player.DeBuffAmount[i] = 0; player.DeBuffLast[i] = 0; if (DeBuffObj[i] != null) { DeBuffObj[i].SetActive(false); Debug.Log(GameManager.instance.BFM); DeBuffObj[i].transform.parent = GameManager.instance.BFM.transform; DeBuffObj[i] = null; } }
         OnIce = false;
 
         while (true)
@@ -288,7 +324,8 @@ public class PlayerSetting : MonoBehaviour
             // DeBuff Check
 
             // About Ice
-            if (player.DeBuffLast[4] > 0) {
+            if (player.DeBuffLast[4] > 0)
+            {
                 player.DeBuffLast[4] -= 0.1f;
                 if (player.DeBuffLast[4] <= 0)
                 {
@@ -298,8 +335,8 @@ public class PlayerSetting : MonoBehaviour
                 }
             }
             // About Chill
-            if (player.DeBuffAmount[4] > 0) 
-            { 
+            if (player.DeBuffAmount[4] > 0)
+            {
                 player.DeBuffAmount[4] -= 0.05f;
                 if (player.DeBuffAmount[4] <= 0)
                 {
@@ -323,7 +360,7 @@ public class PlayerSetting : MonoBehaviour
 
 
     protected GameObject[] DeBuffObj = new GameObject[5];
-    protected virtual void GetDamage(BulletInfo Info,Transform DamageFrom)
+    protected virtual void GetDamage(BulletInfo Info, Transform DamageFrom)
     {
         if (player.Unbeat) return;
         int GetDamage = Info.ReturnDamage(player.InitDefense * (1 + player.DefenseRatio + GameManager.instance.PlayerStatus.defense + player.ReinforceAmount[1]));
@@ -407,9 +444,11 @@ public class PlayerSetting : MonoBehaviour
         CanMove = false; player.Unbeat = false;
         NormalInfo.DealFrom = player.Id;
 
+        if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
+        CurFollow[0] = -1; TargetChangeCall = true;
+
         if (!IsPlayer)
         {
-            
             player.anim.SetBool("IsAttack", false);
             if (!IsSummon)
             {
@@ -417,6 +456,6 @@ public class PlayerSetting : MonoBehaviour
             }
         }
         else player.Dir = Vector2.zero;
-        if(GameManager.instance.BFM != null) StartCoroutine(BuffCheck());
+        if (GameManager.instance.BFM != null) StartCoroutine(BuffCheck());
     }
 }

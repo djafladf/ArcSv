@@ -398,7 +398,7 @@ TextureImporter:
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -406,6 +406,27 @@ TextureImporter:
       bones: []
       spriteID: 195f468219011af48b692b9a79a0755c
       internalID: 1157879171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heads_14
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 609
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bb790733dad0504286020921263aeee
+      internalID: -985706157
       vertices: []
       indices: 
       edges: []
@@ -427,6 +448,7 @@ TextureImporter:
       Heads_11: 68194539
       Heads_12: -87692548
       Heads_13: 1157879171
+      Heads_14: -985706157
       Heads_2: -1076361438
       Heads_3: 1414688245
       Heads_4: 1371356227

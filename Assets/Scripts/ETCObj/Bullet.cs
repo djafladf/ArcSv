@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
         this.HitImage = HitImage;
         rigid.simulated = true; rigid.velocity = Dir; this.Penetrate = Penetrate; sprite.sprite = Image; this.IsMeele = IsMeele; this.IsEnem = IsEnemy; IsBoom = false;
 
-        if (delay != 0) StartCoroutine(AttackDelay(delay));
+        if (delay != 0 && gameObject.activeSelf) StartCoroutine(AttackDelay(delay));
         else coll.enabled = true;
 
         if (ScaleFactor == 0) ScaleFactor = 1;
@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
 
         if (coll.size.y > coll.size.x) coll.direction = CapsuleDirection2D.Vertical; else coll.direction = CapsuleDirection2D.Horizontal;
         
-        if (IsMeele) StartCoroutine(AfterImage(AfterTime,delay == 0));
+        if (IsMeele && gameObject.activeSelf) StartCoroutine(AfterImage(AfterTime,delay == 0));
         
         tag = IsEnemy ? "EnemyAttack" : "PlayerAttack";
 
@@ -86,7 +86,7 @@ public class Bullet : MonoBehaviour
 
         this.HitImage = HitImage; this.AfterBull = After;
         rigid.simulated = true; rigid.velocity = Dir; this.Penetrate = 0; sprite.sprite = Image; this.IsMeele = false; this.IsEnem = IsEnemy; IsBoom = true;
-        StartCoroutine(AttackDelay(delay));
+        if(delay!=0 && gameObject.activeSelf) StartCoroutine(AttackDelay(delay));
         
 
         if (Image != null) coll.size = sprite.bounds.size * 0.9f;
@@ -114,7 +114,7 @@ public class Bullet : MonoBehaviour
         if (BL == null) Line.enabled = false;
 
         sprite.color -= new Color(0, 0, 0, 1 - GameManager.instance.gameStatus.AttackAlpha);
-        StartCoroutine(AfterImage(AfterTime,AlphaChange));
+        if(gameObject.activeSelf) StartCoroutine(AfterImage(AfterTime,AlphaChange));
     }
 
     public void Init_Buff(float ScaleFactor, Sprite Im,  bool IsEnemy,bool IsField)
@@ -129,7 +129,7 @@ public class Bullet : MonoBehaviour
 
         IsMeele = true;
         sprite.color -= new Color(0, 0, 0, 1 - GameManager.instance.gameStatus.AttackAlpha);
-        StartCoroutine(AfterImage(0.3f,true));
+        if (gameObject.activeSelf) StartCoroutine(AfterImage(0.3f,true));
         tag = IsEnemy ? "EnemyBuff" : "PlayerBuff";
     }
 
@@ -150,7 +150,7 @@ public class Bullet : MonoBehaviour
                 if (IsBoom) GameManager.instance.BM.MakeMeele(AfterBull, 0.3f, transform.position, Vector3.zero,0, IsEnem, HitImage);
                 else GameManager.instance.BM.MakeEffect(0.3f, transform.position, Vector3.zero,0, HitImage);
             }
-            if (Penetrate-- <= 0) { if (Line.enabled) StartCoroutine(ForLine());  else gameObject.SetActive(false);  }
+            if (Penetrate-- <= 0) { if (Line.enabled && gameObject.activeSelf) StartCoroutine(ForLine());  else gameObject.SetActive(false);  }
         }
         else if((collision.CompareTag("Player")||collision.CompareTag("Player_Hide")) && IsEnem)
         {
@@ -160,7 +160,7 @@ public class Bullet : MonoBehaviour
                 if (IsBoom) GameManager.instance.BM.MakeMeele(AfterBull, 0.3f, transform.position, Vector3.zero, 0,IsEnem, HitImage);
                 else GameManager.instance.BM.MakeEffect(0.3f, transform.position, Vector3.zero, 0,HitImage);
             }
-            if (Penetrate-- <= 0) { if (Line.enabled) StartCoroutine(ForLine()); else gameObject.SetActive(false); }
+            if (Penetrate-- <= 0) { if (Line.enabled && gameObject.activeSelf) StartCoroutine(ForLine()); else gameObject.SetActive(false); }
         }
 
     }
@@ -189,6 +189,6 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Area") && !IsMeele) { if (Line.enabled) StartCoroutine(ForLine()); else gameObject.SetActive(false); }
+        if (collision.CompareTag("Area") && !IsMeele) { if (Line.enabled && gameObject.activeSelf) StartCoroutine(ForLine()); else gameObject.SetActive(false); }
     }
 }

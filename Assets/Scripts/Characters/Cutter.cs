@@ -21,7 +21,7 @@ public class Cutter : PlayerSetting
             PM.StartRotations[i] = Quaternion.Euler(0, 0, -i * 60);
         }
         NormalInfo.IgnoreDefense = 0.2f;
-        KnifeInfo = new BulletInfo(0,false,0,ignoreDefense:0.2f,dealFrom:NormalInfo.DealFrom);
+        KnifeInfo = new BulletInfo(0, false, 0, ignoreDefense: 0.2f, dealFrom: NormalInfo.DealFrom);
     }
 
     BulletInfo KnifeInfo;
@@ -31,12 +31,9 @@ public class Cutter : PlayerSetting
         {
             float DamageSub = (1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]);
             NormalInfo.Damage = (int)(DamageSub * DamageRatio * 10);
-            if (Vector3.Distance(TargetPos.position, transform.position) <= 2.5f)
-            {
-                GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f, transform.position, -player.Dir, 0, false, NormalAttack);
+            GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f, transform.position, -player.Dir, 0, false, NormalAttack);
 
-                if (player.WeaponLevel >= 7) MakeSpec = true;
-            }
+            if (player.WeaponLevel >= 7) MakeSpec = true;
             if (ProjNum != 0)
             {
                 KnifeInfo.Damage = (int)(DamageSub * SpecialRatio * 10);
@@ -51,7 +48,7 @@ public class Cutter : PlayerSetting
                     15, false, Bullet);
                 }
             }
-            
+
         }
     }
 

@@ -2,8 +2,8 @@ Shader "Custom/Blur"{
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlurRadius("Blur Radius", Range(0.0, 5.0)) = 1.0
-        _AlphaWeight("Alpha Weight",Range(0.0,1.0)) = 1.0
+        _BlurRadius("BlurRadius", Float) = 1.0
+        _AlphaWeight("AlphaWeight",Float) = 1.0
         _Power("Power",Int) = 1
         _ApplyTime("ApplyTime",Range(0,1)) = 1
     }
