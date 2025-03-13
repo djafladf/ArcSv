@@ -36,7 +36,7 @@ public class Red : PlayerSetting
     {
         base.Start();
         SpecInfo.DealFrom = NormalInfo.DealFrom;
-        SpecInfo.ExecuteRatio = 0.2f;
+        SpecInfo.ExecuteRatio = 0.1f;
         SpecInfo.DeadTrigger = Execute;
         NormalInfo.DeadTrigger = Execute;
     }
@@ -52,7 +52,7 @@ public class Red : PlayerSetting
     {
         if (OnReinforce) {
             base.FindTarget();
-            if (player.WeaponLevel >= 0 && TargetPos != null) { transform.position = TargetPos.position + Vector3.up * 0.1f; player.anim.SetTrigger("Spec"); Attack(); }
+            if (player.WeaponLevel >= 7 && TargetPos != null) { transform.position = TargetPos.position + Vector3.up * 0.1f; player.anim.SetTrigger("Spec"); Attack(); }
             return; 
         }
         RaycastHit2D[] targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
@@ -169,7 +169,7 @@ public class Red : PlayerSetting
         if (OnReinforce) return;
         KillCount += 1;
         Gage.fillAmount = KillCount * 0.02f;
-        if (KillCount >= 10) { KillCount = 0; if (gameObject.activeSelf) StartCoroutine(ExecuteMod()); }
+        if (KillCount >= 50) { KillCount = 0; if (gameObject.activeSelf) StartCoroutine(ExecuteMod()); }
     }
 
     Color C1 = new Color(1, 0.5f, 0);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    // 0 : 경치, 1 : 돈, 2 : 원석, 3 : 돌, 4 : 자석
+    // 0 : 경치, 1 : 돈, 2 : 원석, 3 : 돌, 4 : 자석, 5: 증원
     int type;
     int amount;
     int target;
@@ -20,10 +20,15 @@ public class Item : MonoBehaviour
 
     public void Init(int type, int amount, int Target = 0,int AreaCount = -1)
     {
-        this.type = type; this.amount = amount; IsMoving = false; speed = 10; target = Target; if (AreaCount != -1) AreaTag = $"ExternalArea{AreaCount}";
+        this.type = type; this.amount = amount; IsMoving = (GameManager.instance.IM.MagTime!=0 && type != -1); speed = 10; target = Target; if (AreaCount != -1) AreaTag = $"ExternalArea{AreaCount}";
     }
 
-    float speed; 
+    float speed;
+
+    public void ApplyMag()
+    {
+        IsMoving = true;
+    }
 
     public void FixedUpdate()
     {
@@ -31,9 +36,8 @@ public class Item : MonoBehaviour
         {
             Vector2 Dir = (GameManager.instance.Players[target].Self.position - transform.position).normalized;
             rigid.MovePosition(rigid.position + Dir * speed * Time.fixedDeltaTime);
-            speed *= 1.05f; if (speed > 30) speed = 30;
+            if(speed < 30) speed *= 1.05f;
         }
-        else if (GameManager.instance.IM.MagTime != 0 && type != -1) IsMoving = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +54,7 @@ public class Item : MonoBehaviour
                 {
                     case 0: GameManager.instance.UM.ExpUp(amount); break;
                     case 4: GameManager.instance.IM.MagStart(); break;
+                    case 5: GameManager.instance.IM.MakeFlare(amount); break;
                     default: GameManager.instance.UM.GoodsUp(type - 1, amount); break;
                 }
             }
@@ -58,10 +63,5 @@ public class Item : MonoBehaviour
         {
             if (collision.CompareTag(AreaTag) && !IsMoving) IsMoving = true;
         }
-    }
-
-    private void OnEnable()
-    {
-        IsMoving = false;
     }
 }
