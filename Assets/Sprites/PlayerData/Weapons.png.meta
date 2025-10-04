@@ -183,10 +183,10 @@ TextureImporter:
       name: Weapons_3
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 986
-        width: 244
-        height: 164
+        x: 1097
+        y: 881
+        width: 286
+        height: 306
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -398,7 +398,7 @@ TextureImporter:
         width: 103
         height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -419,7 +419,7 @@ TextureImporter:
         width: 363
         height: 418
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

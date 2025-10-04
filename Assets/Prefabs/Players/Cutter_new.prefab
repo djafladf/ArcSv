@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 1539120915725065936}
   - component: {fileID: -6395732278607642837}
   m_Layer: 7
-  m_Name: Cutter
+  m_Name: Cutter_new
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -1361775641, guid: 9e7b26860f0a55d4788c7db094e818d2, type: 3}
+  m_Sprite: {fileID: 139296922, guid: 744695f863970e14c892a6f520fa3d83, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -222,7 +222,7 @@ Animator:
   m_GameObject: {fileID: 1539120915725065947}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c14f8bb68e7730c4296a5361fb1d44e2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5fb43c2bf17749b46871fb9885455e24, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -252,12 +252,15 @@ MonoBehaviour:
   NormalInfo:
     Damage: 0
     DealFrom: -1
+    LayerOrder: 4
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 1
     SpeedFactor: 1
+    ExecuteRatio: 0
     DeBuffs:
       Last: 0
       Speed: 0
@@ -265,6 +268,7 @@ MonoBehaviour:
       Defense: 0
       Ice: 0
       Fragility: 0
+      Stun: 0
     Buffs:
       Last: 0
       Speed: 0
@@ -276,11 +280,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   scanRange: 10
-  AttackRange: 3
+  AttackRange: 5
   HPBar: {fileID: 6591888774103275800}
   NormalAttack: {fileID: 468443768, guid: 42f362e404a800d4d871fcc4e02fb575, type: 3}
+  EmtyAttack: {fileID: -97400410, guid: 42f362e404a800d4d871fcc4e02fb575, type: 3}
   Bullet: {fileID: -932836298, guid: 42f362e404a800d4d871fcc4e02fb575, type: 3}
-  pt: {fileID: 0}
   PM: {fileID: 3311437125361914158}
 --- !u!1 &4654947515689188312
 GameObject:

@@ -5343,6 +5343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2835e68f145ead546abce6acd217c24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OriginPlayer: {fileID: 11400000, guid: 7ea27ab6edfe0064a8e9fe4225b4b160, type: 2}
   player: {fileID: 11400000, guid: 7ea27ab6edfe0064a8e9fe4225b4b160, type: 2}
   IsPlayer: 1
   IsSummon: 0
@@ -5358,6 +5359,7 @@ MonoBehaviour:
     IgnoreDefense: 0
     ScaleFactor: 1
     SpeedFactor: 1
+    ExecuteRatio: 0
     DeBuffs:
       Last: 0
       Speed: 0

@@ -100,7 +100,7 @@ public class Wafarin :PlayerSetting
     [HideInInspector] public float DamageRatio = 5f;
     int SummonNum = 1;
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         if (player.WeaponLevel <= 6)
         {

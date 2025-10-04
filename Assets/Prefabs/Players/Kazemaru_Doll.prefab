@@ -224,10 +224,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a12fb571e0e7c34281acf8d9d8684ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OriginPlayer: {fileID: 11400000, guid: 1d3e71db5267599438b198d32f042009, type: 2}
   player: {fileID: 11400000, guid: 1d3e71db5267599438b198d32f042009, type: 2}
   IsPlayer: 0
   IsSummon: 1
   HasWeapon: 0
+  NormalInfo:
+    Damage: 0
+    DealFrom: -1
+    LayerOrder: 4
+    IsEffect: 0
+    IsFix: 0
+    KnockBack: 0
+    Vamp: 0
+    IgnoreDefense: 0
+    ScaleFactor: 1
+    SpeedFactor: 1
+    ExecuteRatio: 0
+    DeBuffs:
+      Last: 0
+      Speed: 0
+      Attack: 0
+      Defense: 0
+      Ice: 0
+      Fragility: 0
+      Stun: 0
+    Buffs:
+      Last: 0
+      Speed: 0
+      Attack: 0
+      Defense: 0
+      AttackSpeed: 0
+      Heal: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -240,7 +268,7 @@ MonoBehaviour:
   Smoke: {fileID: 3636849289561418000}
 --- !u!95 &5322870061941895902
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -257,7 +285,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2161045954062880568
 GameObject:
   m_ObjectHideFlags: 0

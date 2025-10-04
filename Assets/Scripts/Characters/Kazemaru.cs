@@ -198,7 +198,7 @@ public class Kazemaru : PlayerSetting
     float DamageRatio;
     float SpecialRatio;
     int ProjNum;
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

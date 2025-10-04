@@ -63,7 +63,7 @@ public class FEater : PlayerSetting
         if(player.WeaponLevel>6) MakeIm();
     }
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

@@ -10,7 +10,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine.InputSystem;
 using UnityEditor;
-
+[DefaultExecutionOrder(-5000)]
 public class GameManager : MonoBehaviour
 {
     public float CurVersion;
@@ -84,6 +84,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public BuffManager BFM;
     [HideInInspector] public GameObject Git;
     [HideInInspector] public AudioManager AudioM;
+
+    // On Base
+    [HideInInspector] public BaseManager _base;
+
 
     public SettingManager SettingM;
 
@@ -170,7 +174,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 3; i++) PlayerInput.FindAction($"Unit{i+1}").ApplyBindingOverride(0, gameStatus.UnitKey[i]);
     }
 
-    [HideInInspector] public Player[] Players;
+    //[HideInInspector] 
+    public Player[] Players;
     public GameObject[] Prefabs;
     [HideInInspector] public GameObject[] Prefs;
     public List<int> CurPlayerID;
@@ -269,11 +274,9 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < LL; i++) 
         {
             var CurId = CurPlayerID[i];
-            Players[i] = Data.Infos[CurId].player; Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f);
+            Players[i] = ScriptableObject.Instantiate(Data.Infos[CurId].player); Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f);
             Prefs[i] = Instantiate(Prefabs[CurPlayerID[i]],DM.transform.parent);
         }
-        Players[PlayerInd].IsPlayer = true;
-        player = Players[PlayerInd];
         /*await AddressablesLoader.InitAssets(BatchName, "Operator_Pref", Prefs, DM.transform.parent);*/
         PlayerObj = Prefs[0];
 
@@ -306,12 +309,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    int i = 0;
+    public Player GetMyScriptable()
+    {
+        return Players[i++];
+    }
+
     // ���۷����� ����
-    public void RequestOfWeapon(Func<int> func, int id)
+    public void RequestOfWeapon(Func<bool, int> func, int id)
     {
         if (UM.WeaponLevelUps == null)
         {
-            UM.WeaponLevelUps = new Func<int>[CurPlayerID.Count];
+            UM.WeaponLevelUps = new Func<bool,int>[CurPlayerID.Count];
         }
         UM.WeaponLevelUps[id] = func;
     }

@@ -5,6 +5,8 @@ Shader "Custom/Projector"{
         _Color("Color",Color) = (1,1,1,1)
         _Power("Power",Range(0, 1)) = 0.5
         _ShakeFreq("Freq",Range(0,1)) = 0.5
+        _UnscaledTime("Time",Float) = 0
+        _TimeScale("Time",Range(0,10.0)) = 1 
     }
     SubShader
     {
@@ -36,7 +38,8 @@ Shader "Custom/Projector"{
             float4 _Color;
             float _Power;
             float _ShakeFreq;
-
+            float _UnscaledTime;
+            float _TimeScale;
 
             v2f vert(appdata v)
             {
@@ -48,8 +51,12 @@ Shader "Custom/Projector"{
             
             float4 frag(v2f i) : SV_Target
             {
-                float Rand = sin(i.uv.y * _Time.w + frac(_Time.x));
-                if (_SinTime.w > _ShakeFreq) i.uv.x += Rand * step(Rand, 0.1) * 0.05;
+                float _wTime = _UnscaledTime * UNITY_PI * _TimeScale;
+                float Rand = sin(i.uv.y * _wTime + frac(_UnscaledTime * 0.05));
+                if (sin(_wTime * 2) > _ShakeFreq) i.uv.x += Rand * step(Rand, 0.1) * 0.05;
+
+                /*float Rand = sin(i.uv.y * _Time.w + frac(_Time.x));
+                if (_SinTime.w > _ShakeFreq) i.uv.x += Rand * step(Rand, 0.1) * 0.05;*/
                 float4 color = tex2D(_MainTex, i.uv);
 
                 if (color.a == 0) 
@@ -60,7 +67,7 @@ Shader "Custom/Projector"{
                 else
                     color = color * 0.8 + 0.2 *_Color * ((1 - i.uv.y) * _Power + 1.0 - _Power);
 
-                float scanline = abs(sin((i.uv.y - 0.5 + frac(_Time.x * 2)) * 150));
+                float scanline = abs(sin((i.uv.y - 0.5 + frac(_UnscaledTime * 0.1f)) * 150));
                 color.rgb *= lerp(0.65,1,scanline);
                 
                 return color;

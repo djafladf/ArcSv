@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f887822567dfb64409461b4e89c875ac
+guid: 7ef0ca53f76393545b858124034dd4bd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,12 +44,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 65
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -90,7 +90,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -108,19 +108,19 @@ TextureImporter:
       name: Batch_0
       rect:
         serializedVersion: 2
-        x: 388
-        y: 3
-        width: 249
-        height: 939
+        x: 47
+        y: 823
+        width: 480
+        height: 443
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.728, y: 0.347}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d914bace39daaa846bcb5b2f8ed4c679
-      internalID: -1953576788
+      spriteID: 9092e5dc900763b4bbd429592f8c288c
+      internalID: -962832007
       vertices: []
       indices: 
       edges: []
@@ -129,19 +129,19 @@ TextureImporter:
       name: Batch_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 250
-        height: 1154
+        x: 654
+        y: 823
+        width: 475
+        height: 391
       alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+      pivot: {x: 0.7821, y: 0.3932}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65f92490ded1b3a4cac0430f79e6b23d
-      internalID: -835517464
+      spriteID: b8a6a9909400ac74a9fe8a0e2cc8ed13
+      internalID: -552207290
       vertices: []
       indices: 
       edges: []
@@ -150,19 +150,19 @@ TextureImporter:
       name: Batch_2
       rect:
         serializedVersion: 2
-        x: 2246
-        y: 23
-        width: 266
-        height: 313
+        x: 1427
+        y: 823
+        width: 393
+        height: 567
       alignment: 9
-      pivot: {x: 0.65, y: 0.407}
+      pivot: {x: 0.65, y: 0.172}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8cbf1026f2c6d04a8fa3f6b3622433e
-      internalID: -1016610517
+      spriteID: c7d901cf404c61d478a645284d8c8a3c
+      internalID: -880719305
       vertices: []
       indices: 
       edges: []
@@ -171,19 +171,19 @@ TextureImporter:
       name: Batch_3
       rect:
         serializedVersion: 2
-        x: 699
-        y: 0
-        width: 370
-        height: 621
+        x: 205
+        y: 158
+        width: 384
+        height: 566
       alignment: 9
-      pivot: {x: 0.8, y: 0.4}
+      pivot: {x: 0.335, y: -0.1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d639d2863e6f9114fa8cb1a6bd6844e6
-      internalID: -1405488718
+      spriteID: 559a828e893eca84b9da373c84df8af0
+      internalID: -530678882
       vertices: []
       indices: 
       edges: []
@@ -192,40 +192,19 @@ TextureImporter:
       name: Batch_4
       rect:
         serializedVersion: 2
-        x: 1222
-        y: 0
-        width: 372
-        height: 345
+        x: 783
+        y: 157
+        width: 454
+        height: 471
       alignment: 9
-      pivot: {x: 0.8, y: 0.4}
+      pivot: {x: 0.27, y: -0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 071659af12cbe7d40860845f03f39a72
-      internalID: 38864649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Batch_5
-      rect:
-        serializedVersion: 2
-        x: 1806
-        y: 23
-        width: 267
-        height: 306
-      alignment: 9
-      pivot: {x: 0.65, y: 0.45}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 712ba248565e4084583af41c70b5c8e0
-      internalID: 15415248
+      spriteID: 0d67d110282da4248bfc3684814b4c1e
+      internalID: 621409586
       vertices: []
       indices: 
       edges: []
@@ -241,12 +220,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Batch_5: 15415248
-      Batch_3: -1405488718
-      Batch_4: 38864649
-      Batch_1: -835517464
-      Batch_0: -1953576788
-      Batch_2: -1016610517
+      Batch_0: -962832007
+      Batch_1: -552207290
+      Batch_2: -880719305
+      Batch_3: -530678882
+      Batch_4: 621409586
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

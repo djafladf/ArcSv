@@ -5073,6 +5073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405ef2481f5693d499525a489c7a8aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OriginPlayer: {fileID: 11400000, guid: b5bb6895ee05e7047ac949916d78228b, type: 2}
   player: {fileID: 11400000, guid: b5bb6895ee05e7047ac949916d78228b, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -5084,9 +5085,11 @@ MonoBehaviour:
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 1
     SpeedFactor: 1
+    ExecuteRatio: 0
     DeBuffs:
       Last: 0
       Speed: 0

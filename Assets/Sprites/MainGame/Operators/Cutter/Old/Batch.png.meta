@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 42f362e404a800d4d871fcc4e02fb575
+guid: f887822567dfb64409461b4e89c875ac
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 65
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,64 +105,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Weapons_0
+      name: Batch_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 74
-        width: 172
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 388
+        y: 3
+        width: 249
+        height: 939
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d018d3e6f25adea46a3011400bfe6a0f
-      internalID: 468443768
+      spriteID: d914bace39daaa846bcb5b2f8ed4c679
+      internalID: -1953576788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons_1
+      name: Batch_1
       rect:
         serializedVersion: 2
-        x: 260
-        y: 171
-        width: 8
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 250
+        height: 1154
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb40741f7cb45f64bb63ef948e0c79a1
-      internalID: -932836298
+      spriteID: 65f92490ded1b3a4cac0430f79e6b23d
+      internalID: -835517464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Weapons_2
+      name: Batch_2
       rect:
         serializedVersion: 2
-        x: 315
-        y: 48
-        width: 172
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2246
+        y: 23
+        width: 266
+        height: 313
+      alignment: 9
+      pivot: {x: 0.65, y: 0.407}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05a313b9a1a18f846b0c252b93399ebe
-      internalID: -1591020387
+      spriteID: c8cbf1026f2c6d04a8fa3f6b3622433e
+      internalID: -1016610517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batch_3
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 0
+        width: 370
+        height: 621
+      alignment: 9
+      pivot: {x: 0.8, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d639d2863e6f9114fa8cb1a6bd6844e6
+      internalID: -1405488718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batch_4
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 0
+        width: 372
+        height: 345
+      alignment: 9
+      pivot: {x: 0.8, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 071659af12cbe7d40860845f03f39a72
+      internalID: 38864649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Batch_5
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 23
+        width: 267
+        height: 306
+      alignment: 9
+      pivot: {x: 0.65, y: 0.45}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712ba248565e4084583af41c70b5c8e0
+      internalID: 15415248
       vertices: []
       indices: 
       edges: []
@@ -178,9 +241,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Weapons_0: 468443768
-      Weapons_1: -932836298
-      Weapons_2: -1591020387
+      Batch_5: 15415248
+      Batch_3: -1405488718
+      Batch_4: 38864649
+      Batch_1: -835517464
+      Batch_0: -1953576788
+      Batch_2: -1016610517
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

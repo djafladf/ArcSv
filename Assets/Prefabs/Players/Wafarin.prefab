@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1685abb01cb423145b487aff60f8451f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OriginPlayer: {fileID: 11400000, guid: 0fad72ddab4b9c84382513dae0336576, type: 2}
   player: {fileID: 11400000, guid: 0fad72ddab4b9c84382513dae0336576, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -285,9 +286,11 @@ MonoBehaviour:
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 1
     SpeedFactor: 1
+    ExecuteRatio: 0
     DeBuffs:
       Last: 0
       Speed: 0
@@ -1058,7 +1061,6 @@ MonoBehaviour:
     m_Bits: 128
   - serializedVersion: 2
     m_Bits: 64
-  Particle: {fileID: 0}
   Wafarin: {fileID: 2554380099437483031}
 --- !u!1 &6889465084682482587
 GameObject:
@@ -1234,5 +1236,4 @@ MonoBehaviour:
     m_Bits: 128
   - serializedVersion: 2
     m_Bits: 64
-  Particle: {fileID: 0}
   Wafarin: {fileID: 2554380099437483031}

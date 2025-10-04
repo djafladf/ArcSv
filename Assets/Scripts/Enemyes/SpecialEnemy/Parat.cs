@@ -7,8 +7,10 @@ public class Parat : Enemy
 
     [SerializeField] ParticleSystem Ps1;
     [SerializeField] ParticleSystem Ps2;
+    bool FirstOn = true;
     protected override void OnEnable()
     {
+        if (FirstOn) { FirstOn = false; return; }
         base.OnEnable();
         int z = Random.Range(0, 4);
         if (z <= 1)

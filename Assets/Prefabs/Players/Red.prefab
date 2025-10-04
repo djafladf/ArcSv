@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de719e6c0afbde345a85698e30cacbac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _OriginPlayer: {fileID: 11400000, guid: 394e87bae147e6745b45b65061851e3e, type: 2}
   player: {fileID: 11400000, guid: 5095becf503867e41ac9f69cb573f174, type: 2}
   IsPlayer: 0
   IsSummon: 0

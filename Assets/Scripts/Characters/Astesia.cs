@@ -63,7 +63,7 @@ public class Astesia : PlayerSetting
         Weapon.SetActive(false);
     }
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

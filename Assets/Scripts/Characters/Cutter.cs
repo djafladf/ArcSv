@@ -3,8 +3,9 @@ using UnityEngine;
 public class Cutter : PlayerSetting
 {
     [SerializeField] Sprite NormalAttack;
+    [SerializeField] Sprite EmtyAttack;
     [SerializeField] Sprite Bullet;
-    [SerializeField] ParticleSystem pt;
+    
     [SerializeField] ParticleMy PM;
 
     protected override void Awake()
@@ -32,24 +33,34 @@ public class Cutter : PlayerSetting
             float DamageSub = (1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]);
             NormalInfo.Damage = (int)(DamageSub * DamageRatio * 10);
             GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f, transform.position, -player.Dir, 0, false, NormalAttack);
-
+            GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f, transform.position, Vector3.zero, 0, false, EmtyAttack, delay: 0.15f);
             if (player.WeaponLevel >= 7) MakeSpec = true;
-            if (ProjNum != 0)
-            {
-                KnifeInfo.Damage = (int)(DamageSub * SpecialRatio * 10);
-                Vector2 Sub = (TargetPos.position - transform.position).normalized;
-                float rad = Vector2.Angle(Vector2.right, Sub) * Mathf.Deg2Rad;
-                if (Sub.y < 0) rad = Mathf.PI * 2 - rad;
-                for (int i = -ProjNum; i <= ProjNum; i++)
-                {
-                    GameManager.instance.BM.MakeBullet(
-                        KnifeInfo, 0,
-                    transform.position, new Vector3(Mathf.Cos(rad + 0.1f * i), Mathf.Sin(rad + 0.1f * i), 0),
-                    15, false, Bullet);
-                }
-            }
-
         }
+    }
+
+    void RangeAttack()
+    {
+        float DamageSub = (1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]);
+        KnifeInfo.Damage = (int)(DamageSub * SpecialRatio * 10);
+        Vector2 Sub = (TargetPos.position - transform.position).normalized;
+        float rad = Vector2.Angle(Vector2.right, Sub) * Mathf.Deg2Rad;
+        if (Sub.y < 0) rad = Mathf.PI * 2 - rad;
+        for (int i = -ProjNum; i <= ProjNum; i+=2)
+        {
+            GameManager.instance.BM.MakeBullet(
+                KnifeInfo, 0,
+            transform.position, new Vector3(Mathf.Cos(rad + 0.1f * i), Mathf.Sin(rad + 0.1f * i), 0),
+            15, false, Bullet);
+        }
+    }
+
+    protected override void Attack()
+    {
+        if (Vector3.Distance(transform.position, TargetPos.position) > 3)
+        {
+            player.anim.SetTrigger("Range"); CanMove = false;
+        }
+        else base.Attack();
     }
 
 
@@ -66,16 +77,16 @@ public class Cutter : PlayerSetting
 
     float DamageRatio = 1f;
     float SpecialRatio = 2f;
-    int ProjNum = 0;
+    int ProjNum = 1;
 
     bool MakeSpec = false;
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {
             case 1: DamageRatio += 0.5f; break;
             case 2: DamageRatio += 0.75f; break;
-            case 3: ProjNum++; AttackRange = 5; break;
+            case 3: ProjNum++;  break;
             case 4: DamageRatio += 0.5f; break;
             case 5: DamageRatio += 0.75f; break;
             case 6: SpecialRatio = 3f; ProjNum++; MakeSpec = true; break;
@@ -86,26 +97,15 @@ public class Cutter : PlayerSetting
     protected override void AttackEnd()
     {
         if (MakeSpec) player.anim.SetTrigger("Spec");
-        else base.AttackEnd();
-    }
-
-    /*IEnumerator Special()
-    {
-        CanMove = false;
-        player.anim.SetBool("IsWalk", true);
-        player.anim.SetBool("IsAttack", false);
-        for (int i = 0; i < 1000; i++)
+        else
         {
-            transform.Rotate(Vector3.up * 7.2f);
-            float rad = Random.Range(-3.14f, 3.14f);
-            GameManager.instance.BM.MakeBullet((int)(GameManager.instance.PlayerStatus.attack * DamageRatio), 0, 1,
-                transform.position, new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0),
-                15, Bullet, false, false);
-            yield return new WaitForSeconds(0.01f);
+            base.AttackEnd();
+            if (!CanMove)
+            {
+                float dist = Vector3.Distance(transform.position, TargetPos.position);
+                if(dist > 3) player.anim.SetTrigger("Range");
+            }
         }
-        CanMove = true;
-        yield return new WaitForSeconds(7);
-        StartCoroutine(Special());
-    }*/
+    }
 }
 

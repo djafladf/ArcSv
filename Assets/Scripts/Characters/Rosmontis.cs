@@ -78,7 +78,7 @@ public class Rosmontis : PlayerSetting
 
     int ProjNum = 1;
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

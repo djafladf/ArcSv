@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public abstract class Buttons: MonoBehaviour
+public class Buttons: MonoBehaviour
 {
 
     protected EventTrigger ET;

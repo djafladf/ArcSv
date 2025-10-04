@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -44,7 +43,7 @@ public class UIManager : MonoBehaviour
 
     public Transform BossShaft;
     Transform GetArea;
-    int[] GoodsCount = new int[3];
+    public int[] GoodsCount = new int[3];
 
     private void Awake()
     {
@@ -65,7 +64,11 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Time.timeScale == 0) return;
+        if (Time.timeScale == 0)
+        {
+            if (NPCset.activeSelf) Head_NPC.material.SetFloat("_UnscaledTime", Time.unscaledTime);
+            return;
+        }
         if (Input.GetMouseButtonDown(1))
         {
             GameManager.instance.Git.SetActive(true);
@@ -209,7 +212,7 @@ public class UIManager : MonoBehaviour
     LevelUpSelection[] Selections;
 
     //[NonSerialized]
-    public Func<int>[] WeaponLevelUps;
+    public Func<bool,int>[] WeaponLevelUps;
 
 
     List<ItemSub> NonSelected;
@@ -233,7 +236,7 @@ public class UIManager : MonoBehaviour
         LevelUpEvent();
     }
 
-    int[] RarityPickVar = { 90, 99 };
+    int[] RarityPickVar = { 85, 95 };
     public void LevelUpEvent()
     {
         StickStatChange(false);
@@ -274,15 +277,21 @@ public class UIManager : MonoBehaviour
                 while (cnt == null)
                 {
                     int RarityPick = UnityEngine.Random.Range(0, 100);
-                    if (RarityPick < RarityPickVar[0] && pickedElements_Normal.Count != 0)
+                    if (RarityPick < RarityPickVar[0])
                     {
-                        Ind = pickedElements_Normal[0]; pickedElements_Normal.RemoveAt(0);
-                        cnt = NormalItem[Ind % NormalItem.Count];
+                        if (pickedElements_Normal.Count != 0)
+                        {
+                            Ind = pickedElements_Normal[0]; pickedElements_Normal.RemoveAt(0);
+                            cnt = NormalItem[Ind % NormalItem.Count];
+                        }
                     }
-                    else if (RarityPick < RarityPickVar[1] && pickedElements_Rare.Count != 0)
+                    else if (RarityPick < RarityPickVar[1])
                     {
-                        Ind = pickedElements_Rare[0]; pickedElements_Rare.RemoveAt(0);
-                        cnt = RareItem[Ind % RareItem.Count];
+                        if (pickedElements_Rare.Count != 0)
+                        {
+                            Ind = pickedElements_Rare[0]; pickedElements_Rare.RemoveAt(0);
+                            cnt = RareItem[Ind % RareItem.Count];
+                        }
                     }
                     else if(pickedElements_Legend.Count != 0)
                     {
@@ -491,7 +500,7 @@ public class UIManager : MonoBehaviour
         else
         {
             ItemSub cnt = WeaponSelection[ind];
-            WeaponLevelUps[cnt.operatorid]();
+            WeaponLevelUps[cnt.operatorid](true);
             cnt.lv++; if (cnt.lv == 7) WeaponSelection.RemoveAt(ind);
         }
 
@@ -627,7 +636,7 @@ public class UIManager : MonoBehaviour
         }
 
 
-        Selected = new List<ItemSub>(); WeaponSelection = new List<ItemSub>();
+        Selected = new List<ItemSub>(); WeaponSelection = new List<ItemSub>(); WeaponsIndex = new List<ItemSub>();
         //NonSelected.AddRange(GameManager.instance.Data.Items);
         Vector3 StartPos = new Vector3(100, 840, 0); Vector3 Cnt = new Vector3(0, 280, 0);
         int batchl = 0;
@@ -645,6 +654,7 @@ public class UIManager : MonoBehaviour
             ItemSub j = Weapons[i];
             j.operatorid = i;
             WeaponSelection.Add(j);
+            WeaponsIndex.Add(j);
             IsPriorityAttack.Add(Opers[i].IsPriorityAttack);
 
             var tmp = NameSet.GetChild(i); tmp.gameObject.SetActive(true);
@@ -726,5 +736,214 @@ public class UIManager : MonoBehaviour
     public void ShowSetting()
     {
         GameManager.instance.SettingM.gameObject.SetActive(true);
+    }
+
+    // NPCSetting
+
+    [SerializeField] GameObject NPCset;
+    // Name, Explain, Cost, Success, Fail
+    [SerializeField] List<TMP_Text> Texts_NPC;
+    [SerializeField] List<Sprite> Heads_Une;
+    [SerializeField] List<Sprite> Heads_Swa;
+    [SerializeField] Image Head_NPC;
+    [SerializeField] Transform Selector_NPC;
+
+    List<ItemSub> WeaponsIndex;
+    List<Transform> Boxes = new List<Transform>();
+    List<Tuple<ItemSub,int>> SelectedItems = new List<Tuple<ItemSub,int>>();
+    int CurActiveNPC = 0;
+    int CurSelect = -1;
+    int[] ItemRandom = { 3, 6 };
+
+    public void ActiveNPCSet(int type)
+    {
+        CurActiveNPC = 0; CurActiveNPC = type; CurSelect = -1;
+        var cnt = NPCset.transform.GetChild(0); cnt.gameObject.SetActive(true); cnt = cnt.GetChild(0);
+        int ActiveCount = 0;
+        Selector_NPC.gameObject.SetActive(false);
+        SelectedItems.Clear();
+        Texts_NPC[2].transform.parent.gameObject.SetActive(false);
+        if (type == 0)
+        {
+            Texts_NPC[0].text = "유넥티스"; Texts_NPC[1].text = "내가 도와주러 왔다고, 박사"; Head_NPC.sprite = Heads_Une[0];
+            ActiveCount = WeaponsIndex.Count;
+            for (int i = 0; i < ActiveCount; i++)
+            {
+                var tmp = cnt.GetChild(i); tmp.gameObject.SetActive(true);
+                Boxes.Add(tmp); var img = tmp.GetChild(0).GetComponent<Image>(); img.sprite = WeaponsIndex[i].sprite; img.raycastTarget = true;
+                SelectedItems.Add(new Tuple<ItemSub, int>(WeaponsIndex[i], i));
+            }
+        }
+        else if (type == 1)
+        {
+            Texts_NPC[0].text = "스와이어"; Texts_NPC[1].text = "내 귀한 시간을 쪼개서 도와주러 왔으니 고맙게 여기라고, 박사?"; Head_NPC.sprite = Heads_Swa[0];
+
+            if (NormalItem.Count + RareItem.Count + LegendItem.Count < GameManager.instance.PlayerStatus.selection) NormalItem.AddRange(StatItem);
+            ActiveCount = UnityEngine.Random.Range(ItemRandom[0], Math.Min(NormalItem.Count + RareItem.Count + LegendItem.Count, ItemRandom[1]));
+
+            List<int> RandomPicked = new List<int>();
+            int[] CountSub = { 0, 0, 0 };
+            int[] array = new int[NormalItem.Count]; for (int i = 0; i < array.Length; i++) array[i] = i;
+            array = array.OrderBy(x => Guid.NewGuid()).ToArray();
+            RandomPicked.AddRange(array.Take(ActiveCount));
+            CountSub[0] = ActiveCount;
+
+            array = new int[RareItem.Count]; for (int i = 0; i < array.Length; i++) array[i] = i;
+            array = array.OrderBy(x => Guid.NewGuid()).ToArray();
+            RandomPicked.AddRange(array.Take(Math.Min(RareItem.Count,ActiveCount)));
+            CountSub[1] = RandomPicked.Count - CountSub[0];
+
+            array = new int[LegendItem.Count]; for (int i = 0; i < array.Length; i++) array[i] = i;
+            array = array.OrderBy(x => Guid.NewGuid()).ToArray();
+            RandomPicked.AddRange(array.Take(Math.Min(LegendItem.Count, ActiveCount)));
+            CountSub[2] = RandomPicked.Count - CountSub[1] - CountSub[0];
+
+            int ind = 0;
+            for (int i = 0; i < ActiveCount; i++)
+            {
+                var tmp = cnt.GetChild(i); tmp.gameObject.SetActive(true);
+                ItemSub Selected = null;
+                
+                while (Selected == null)
+                {
+                    int RarityPick = UnityEngine.Random.Range(0, 100);
+                    if (RarityPick < RarityPickVar[0] || (RandomPicked[1] == 0 && RandomPicked[2] == 0) && RandomPicked[0] != 0)
+                    {
+                        ind = CountSub[0] % ActiveCount;
+                        Selected = NormalItem[RandomPicked[ind]]; RandomPicked.RemoveAt(ind); RandomPicked[0]--;
+                    }
+                    else if (RarityPick < RarityPickVar[1] || RandomPicked[2] == 0)
+                    {
+                        ind = CountSub[1] % ActiveCount + CountSub[0];
+                        Selected = RareItem[RandomPicked[ind]]; RandomPicked.RemoveAt(ind); RandomPicked[1]--;
+                        ind -= CountSub[0];
+                    }
+                    else
+                    {
+                        ind = CountSub[1] % ActiveCount + CountSub[0] + CountSub[1];
+                        Selected = RareItem[RandomPicked[ind]]; RandomPicked.RemoveAt(ind); RandomPicked[2]--;
+                        ind -= CountSub[0] + CountSub[1];
+                    }
+                }
+
+                SelectedItems.Add(new Tuple<ItemSub, int>(Selected,RandomPicked[ind]));
+                Boxes.Add(tmp); tmp.GetChild(0).GetComponent<Image>().sprite = Selected.sprite;
+            }
+        }
+        for (int i = ActiveCount; i < 8; i++) cnt.GetChild(i).gameObject.SetActive(false);
+
+        NPCset.SetActive(true); NPCset.transform.GetChild(0).gameObject.SetActive(true); NPCset.transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(cnt.GetComponent<RectTransform>());
+        GameManager.instance.SetTime(0, false);
+    }
+
+    public void Toggle_NPCSet(int ind)
+    {
+        Selector_NPC.gameObject.SetActive(true); Selector_NPC.position = Boxes[ind].position;
+        
+        var CurSelected = SelectedItems[ind].Item1; CurSelect = ind;
+
+        Texts_NPC[2].transform.parent.gameObject.SetActive(true);
+        Texts_NPC[3].gameObject.SetActive(false);
+        Texts_NPC[4].gameObject.SetActive(false);
+        if (CurActiveNPC == 0)
+        {
+            Texts_NPC[0].text = $"{CurSelected.name} Lv{CurSelected.lv}->{CurSelected.lv+1}";
+            Texts_NPC[1].text = CurSelected.description[Mathf.Min(CurSelected.lv-1,6)];
+            Texts_NPC[2].text = $"{CurSelected.lv * 100}";
+            if (CurSelected.lv >= 7)
+            {
+                Texts_NPC[3].gameObject.SetActive(true); Texts_NPC[3].text = $"성공 {100 - Mathf.Max(CurSelected.lv - 6,0) * 10}%";
+                Texts_NPC[4].gameObject.SetActive(true); Texts_NPC[4].text = $"실패 {Mathf.Max(CurSelected.lv - 6, 0) * 10}%";
+            }
+        }
+        else
+        {
+            Texts_NPC[0].text = $"{CurSelected.name}";
+            Texts_NPC[1].text = CurSelected.description[0];
+            Texts_NPC[2].text = $"{CurSelected.rarity * 300 + 300}";
+        }
+    }
+
+    public void AcceptNPC()
+    {
+        int cost;
+        ItemSub CurSelected; 
+        switch (CurActiveNPC)
+        {
+            case 0: // Weapon
+                Texts_NPC[0].text = "유넥티스";
+                if (CurSelect == -1)
+                {
+                    Head_NPC.sprite = Heads_Une[3];
+                    Texts_NPC[1].text = "물건이 없는데, 박사?";
+                    break;
+                }
+                CurSelected = SelectedItems[CurSelect].Item1;
+                cost = CurSelected.lv * 100;
+                
+                if (GoodsCount[0] >= cost)
+                {
+                    GoodsCount[0] -= cost;
+                    if (UnityEngine.Random.Range(0, 100) > Mathf.Max(CurSelected.lv - 6, 0) * 10)
+                    {
+                        WeaponLevelUps[CurSelected.operatorid](true);
+                        CurSelected.lv++;
+                        Head_NPC.sprite = Heads_Une[1];
+                        Texts_NPC[1].text = "성공이네, 박사!";
+                    }
+                    else
+                    {
+                        WeaponLevelUps[CurSelected.operatorid](false);
+                        CurSelected.lv--;
+                        Head_NPC.sprite = Heads_Une[2];
+                        Texts_NPC[1].text = "날 고른 독타의 잘못이니깐..!";
+                    }
+                }
+                else
+                {
+                    Head_NPC.sprite = Heads_Une[3];
+                    Texts_NPC[1].text = "돈이 부족한데, 박사?";
+                }
+                break;
+            case 1: // Shop
+                if (CurSelect == -1)
+                {
+                    Head_NPC.sprite = Heads_Swa[2];
+                    Texts_NPC[1].text = "<size=80%>* 용문 욕설 * 지금 나랑 장난하자는거야, 박사?</size>";
+                    break;
+                }
+                CurSelected = SelectedItems[CurSelect].Item1;
+                cost = CurSelected.rarity * 300 + 300;
+                Texts_NPC[0].text = "스와이어";
+                if (GoodsCount[0] >= cost)
+                {
+                    GameManager.instance.SetTime(0, false);
+                    GoodsCount[0] -= cost;
+                    ApplySelection(SelectedItems[CurSelect].Item2, false, CurSelected.rarity);
+                    Head_NPC.sprite = Heads_Swa[1];
+                    Texts_NPC[1].text = "좋은 거래 고마워, 박사~";
+                    Boxes[CurSelect].gameObject.SetActive(false);
+                    LayoutRebuilder.ForceRebuildLayoutImmediate(NPCset.transform.GetChild(0).GetChild(0).GetComponent<RectTransform>());
+                }
+                else
+                {
+                    Head_NPC.sprite = Heads_Swa[2];
+                    Texts_NPC[1].text = "* 용문 욕설 *, 당장 * 매우 심한 용문 욕설 *!";
+                }
+                break;
+            default:
+                break;
+        }
+        Texts_NPC[2].transform.parent.gameObject.SetActive(false);
+        Selector_NPC.gameObject.SetActive(false);
+        CurSelect= -1;
+    }
+
+    public void ExitNPC()
+    {
+        Boxes.Clear();
+        NPCset.SetActive(false);
+        GameManager.instance.SetTime(0, true);
     }
 }

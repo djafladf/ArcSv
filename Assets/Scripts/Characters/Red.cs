@@ -123,11 +123,15 @@ public class Red : PlayerSetting
     {
         if (OnReinforce) { base.AttackEnd(); return; }
 
-        if (TargetChangeCall)
+        if (player.IsFollow)
+        {
+            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+        }
+        else if (TargetChangeCall)
         {
             if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
             player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = - 1; CurFollow[1] = - 1;
-            
         }
         else
         {
@@ -220,5 +224,10 @@ public class Red : PlayerSetting
     private void OnDisable()
     {
         TargetSprite.gameObject.SetActive(false);
+    }
+
+    protected override int WeaponLevelUp(bool IsUp = true)
+    {
+        return base.WeaponLevelUp(IsUp);
     }
 }

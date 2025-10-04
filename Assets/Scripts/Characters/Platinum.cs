@@ -118,9 +118,9 @@ public class Platinum :PlayerSetting
     int Penetrate = 0;
     int ProjNum = 1;
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
-        switch (player.WeaponLevel++)
+        switch (player.WeaponLevel)
         {
             case 1: DamageRatio++; break;
             case 2: Penetrate++; break;

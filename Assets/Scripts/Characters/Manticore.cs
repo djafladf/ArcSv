@@ -75,7 +75,7 @@ public class Manticore : PlayerSetting
     }
 
     float DamageRatio = 1.5f;
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

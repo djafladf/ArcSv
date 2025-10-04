@@ -46,7 +46,7 @@ public class ItemManager : MonoBehaviour
         GameManager.instance.StartLoading();
     }
 
-    float MaxProb = 0.99f;
+    float MaxProb = 0.586f;
 
     int Lastuse = 0;
     public void MakeItem(Vector3 pos, bool MustMake = false)
@@ -92,7 +92,7 @@ public class ItemManager : MonoBehaviour
             ItemsSprite[First].sprite = BlackHole;
             ItemsScript[First].Init(4, 0);
         }
-        if (Ran < MaxProb)
+        else if (Ran < MaxProb)
         {
             if (Ran < 0.582f && !FlareOn[0]) { ItemsSprite[First].sprite = Flares[0]; ItemsScript[First].Init(5, 0); FlareOn[0] = true; }
             else if (Ran < 0.584f && !FlareOn[1]) { ItemsSprite[First].sprite = Flares[1]; ItemsScript[First].Init(5, 1); FlareOn[1] = true; }
@@ -185,6 +185,7 @@ public class ItemManager : MonoBehaviour
         yield return GameManager.TwoSec;
         Flare[ind].gameObject.SetActive(false);
 
+        if (ind != 2) GameManager.instance.UM.ActiveNPCSet(ind);
         FlareOn[ind] = false ;
     }
 }

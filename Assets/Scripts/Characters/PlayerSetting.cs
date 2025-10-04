@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PlayerSetting : MonoBehaviour
 {
-    [SerializeField] public Player player;
+     public Player player;
     /*[SerializeField] protected Sprite WeaponIm;
     [SerializeField] protected Sprite HeadIm;*/
 
@@ -29,6 +31,7 @@ public class PlayerSetting : MonoBehaviour
 
     protected virtual void Awake()
     {
+        player = GameManager.instance.GetMyScriptable();
         player.SubEffects.Clear();
         player.Self = transform;
         player.rigid = GetComponent<Rigidbody2D>();
@@ -53,6 +56,7 @@ public class PlayerSetting : MonoBehaviour
         {
 #if UNITY_STANDALONE
             GetComponent<PlayerInput>().defaultControlScheme = "Keyboard&Mouse";
+            GameManager.instance.player = player;
 #endif
 #if UNITY_ANDROID || UNITY_IOS
             GetComponent<PlayerInput>().defaultControlScheme = "Gamepad";
@@ -176,7 +180,7 @@ public class PlayerSetting : MonoBehaviour
     {
 
     }
-    protected virtual int WeaponLevelUp()
+    protected virtual int WeaponLevelUp(bool IsUp = true)
     {
         return -1;
     }
@@ -217,6 +221,12 @@ public class PlayerSetting : MonoBehaviour
 
     protected virtual void AttackEnd()
     {
+        if (player.IsFollow)
+        {
+            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+        }
+
         if (TargetChangeCall)   // ‹š¸®´ø ³ð »ç¸Á
         {
             if(CurFollow[0] != -1)GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;

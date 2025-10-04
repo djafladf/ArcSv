@@ -42,7 +42,7 @@ public class Aurora : PlayerSetting
             NormalInfo, 0.2f, TargetPos.position, Vector3.zero, 0, false,null);
     }
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {

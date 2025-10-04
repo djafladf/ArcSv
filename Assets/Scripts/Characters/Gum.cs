@@ -139,7 +139,7 @@ public class Gum : PlayerSetting
         }
     }
 
-    protected override int WeaponLevelUp()
+    protected override int WeaponLevelUp(bool IsUp = true)
     {
         switch (player.WeaponLevel++)
         {
