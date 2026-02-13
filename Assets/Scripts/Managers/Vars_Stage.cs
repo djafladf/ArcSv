@@ -78,6 +78,8 @@ public class BulletInfo
     public float SpeedFactor;
     public float ExecuteRatio;
 
+    public Vector3 AttackPos;
+
     public Action<Transform, int> DeadTrigger;
 
     public DeBuff DeBuffs;

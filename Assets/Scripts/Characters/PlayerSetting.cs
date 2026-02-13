@@ -192,6 +192,7 @@ public class PlayerSetting : MonoBehaviour
     [SerializeField] protected float scanRange;
     protected Transform TargetPos = null;
 
+    
     protected Transform GetNearest(float Range)
     {
         RaycastHit2D[] targets = Physics2D.CircleCastAll(transform.position, Range, Vector2.zero, 0, targetLayer);

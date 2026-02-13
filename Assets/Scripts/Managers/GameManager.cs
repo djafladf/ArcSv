@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static WaitForSeconds OneSec = new WaitForSeconds(1);
     public static WaitForSeconds TwoSec = new WaitForSeconds(2);
     public static WaitForSeconds DotOneSec = new WaitForSeconds(0.1f);
+    public static WaitForSeconds FrameWFS = new WaitForSeconds(0.01f);
     public static WaitForSeconds DotFiveSec = new WaitForSeconds(0.5f);
 
     [SerializeField]

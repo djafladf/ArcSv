@@ -106,13 +106,7 @@ public class Enemy : MonoBehaviour
     }
 
     bool CanHit = true;
-    // 속, 공, 방, 피증, 빙, 스턴
-    protected float[] LeftTime = { 0,0,0,0,0,0};
-    protected float[] DeBuffVar = { 0, 0, 0, 0, 0 };
-
-    // 속, 공, 방, 피증
-    protected float[] LeftTimeBuff = { 0, 0, 0, 0};
-    protected float[] BuffVar = { 0, 0, 0, 0};
+    
 
     protected GameObject[] DeBuffObj = new GameObject[5];
 
@@ -126,6 +120,87 @@ public class Enemy : MonoBehaviour
         yield return GameManager.DotOneSec;
         tag = "Untagged";
         StopAllCoroutines();
+    }
+
+    public virtual void OnDamage(BulletInfo Info)
+    {
+        int GetDamage = Info.ReturnDamage(Defense * (1 + GameManager.instance.EnemyStatus.defense - DeBuffVar[2] + BuffVar[2]));
+        if (GetDamage < 0) GetDamage = 0;
+        HP -= GetDamage;
+
+        if (MaxHP * Info.ExecuteRatio >= HP)
+        {
+            HP = 0;
+            GameManager.instance.DM.MakeDamage(GetDamage, transform);
+            GameManager.instance.UM.DamageUp(0, Info.DealFrom, HP + GetDamage);
+        }
+        else
+        {
+            GameManager.instance.DM.MakeDamage(GetDamage, transform);
+            GameManager.instance.UM.DamageUp(0, Info.DealFrom, GetDamage);
+        }
+        if (Info.Vamp > 0) GameManager.instance.BM.Vamp[Info.DealFrom]((int)(GetDamage * Info.Vamp));
+
+        HPChange();     // For Boss
+        if (HP <= 0)
+        {
+            anim.SetTrigger("Dead");
+            StartCoroutine(DeadLater());    // Dead Animation 종료 후 Item 생성용
+            if (Info.DeadTrigger != null) Info.DeadTrigger(transform, 0);
+            spriteRenderer.sortingOrder = 1; anim.enabled = true;
+            IsLive = false; CanHit = false; rigid.simulated = false; coll.enabled = false;
+            for (int i = 0; i < 5; i++) if (GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i])
+                {
+                    GameManager.instance.ES.TargetChangeAct[i](EnemyInd[0], EnemyInd[1]); GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i] = false;
+                }
+        }
+        else if (Info.DeBuffs != null)
+        {
+            if (Info.DeBuffs.Speed != 0)
+            {
+                if (DeBuffVar[0] == Info.DeBuffs.Speed) LeftTime[0] = Mathf.Max(LeftTime[0], Info.DeBuffs.Last);
+                else if (DeBuffVar[0] < Info.DeBuffs.Speed) { LeftTime[0] = Info.DeBuffs.Last; DeBuffVar[0] = Info.DeBuffs.Speed; }
+            }
+            if (Info.DeBuffs.Attack != 0)
+            {
+
+            }
+            if (Info.DeBuffs.Defense != 0 && DeBuffVar[2] <= Info.DeBuffs.Defense)
+            {
+                if (DeBuffVar[2] == Info.DeBuffs.Defense) LeftTime[2] = Mathf.Max(LeftTime[2], Info.DeBuffs.Last);
+                else if (DeBuffVar[2] < Info.DeBuffs.Defense) { LeftTime[2] = Info.DeBuffs.Last; DeBuffVar[2] = Info.DeBuffs.Defense; }
+            }
+            if (Info.DeBuffs.Ice != 0 && !OnIce && IceRatio > 0)
+            {
+                Cheeled += Info.DeBuffs.Ice * IceRatio;
+                if (DeBuffObj[4] == null)
+                {
+                    DeBuffObj[4] = GameManager.instance.BFM.RequestForDebuff(0);
+                    DeBuffObj[4].transform.parent = transform;
+                    DeBuffObj[4].transform.localPosition = new Vector3(0, spriteRenderer.sprite.bounds.size.y * 0.6f, 0);
+                    DeBuffObj[4].gameObject.SetActive(true);
+                    DeBuffVar[0] += 0.3f;
+                }
+                if (Cheeled >= 10)
+                {
+                    DeBuffObj[4].SetActive(false); DeBuffObj[4].transform.parent = GameManager.instance.BFM.transform;
+                    DeBuffObj[4] = null; LeftTime[4] = 1;
+                    DeBuffObj[4] = GameManager.instance.BFM.RequestForDebuff(1, spriteRenderer.sprite.bounds.size.x, spriteRenderer.bounds.size.y);
+                    DeBuffObj[4].transform.parent = transform;
+                    DeBuffObj[4].transform.localPosition = Vector3.zero;
+                    DeBuffObj[4].gameObject.SetActive(true); DeBuffVar[0] -= 0.3f; Cheeled = 0; anim.speed = 0; OnIce = true;
+                }
+            }
+            if (Info.DeBuffs.Fragility != 0)
+            {
+
+            }
+            if (Info.DeBuffs.Stun && !StunImmun)
+            {
+                LeftTime[5] = Mathf.Max(Info.DeBuffs.Last, LeftTime[5]); OnStun = true; anim.speed = 0;
+            }
+        }
+        if (GetDamage > 0) StartCoroutine(NockBack_Enemy(Info.KnockBack, transform.position - Info.AttackPos));
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -243,13 +318,21 @@ public class Enemy : MonoBehaviour
     {
         HP += (int)amount; HP = Mathf.Min(MaxHP, HP);
     }
-    
+
+    // 속, 공, 방, 피증, 빙, 스턴
+    protected float[] LeftTime = { 0, 0, 0, 0, 0, 0 };
+    protected float[] DeBuffVar = { 0, 0, 0, 0, 0,0 };
+
+    // 속, 공, 방, 피증
+    protected float[] LeftTimeBuff = { 0, 0, 0, 0 };
+    protected float[] BuffVar = { 0, 0, 0, 0 };
 
     IEnumerator BuffCheck()
     {
         int i;
 
-        for (i = 0; i < 4; i++) { DeBuffVar[i] = 0; BuffVar[i] = 0; LeftTimeBuff[i] = 0; LeftTime[i] = 0; }
+        for (i = 0; i < 6; i++) { DeBuffVar[i] = 0;  LeftTime[i] = 0; }
+        for (i = 0; i < 4; i++) { BuffVar[i] = 0; LeftTimeBuff[i] = 0; }
 
         for (i = 0; i < DeBuffObj.Length; i++) if (DeBuffObj[i] != null)
             {
@@ -305,18 +388,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator DefenseChange()
-    {
-        while (LeftTime[2] > 0)
-        {
-            yield return GameManager.OneSec;
-            LeftTime[2]--;
-        }
-        Defense = MaxDefense;
-        DeBuffObj[2].SetActive(false); DeBuffObj[2].transform.parent = GameManager.instance.BFM.transform;
-        DeBuffObj[2] = null;
-    }
-
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         if (!IsLive) return;
@@ -339,7 +410,7 @@ public class Enemy : MonoBehaviour
             rigid.AddForce(Dir.normalized * (Power), ForceMode2D.Impulse);
             if (Fric == null) Fric = StartCoroutine(Friction());
         }
-        yield return new WaitForSeconds(0.1f);
+        yield return GameManager.DotOneSec;
         spriteRenderer.color = Color.white;
         CanHit = true;
     }
@@ -349,7 +420,7 @@ public class Enemy : MonoBehaviour
         while (rigid.velocity.magnitude >= 0.2f)
         {
             rigid.velocity = Vector2.Lerp(rigid.velocity, Vector2.zero, 0.5f);
-            yield return new WaitForSeconds(0.1f);
+            yield return GameManager.DotOneSec;
         }
         rigid.velocity = Vector2.zero;
         Fric = null; OnHit = false;

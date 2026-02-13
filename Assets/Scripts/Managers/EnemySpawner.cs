@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     public bool IsTest;
 
     List<List<GameObject>> Pool = new List<List<GameObject>>();
+    List<List<Enemy>> ScriptPool = new List<List<Enemy>>();
 
     [HideInInspector] public int CurActive = 0;
 
@@ -100,10 +101,13 @@ public class EnemySpawner : MonoBehaviour
         for (int i = st; i <= ed; i++)
         {
             Pool.Add(new List<GameObject>());
+            ScriptPool.Add(new List<Enemy>());
             if (EnemyTypes[i] == null) continue;
             for (int y = 0; y < PoolSize[i]; y++)
             {
                 Pool[i].Add(Instantiate(EnemyTypes[i], transform));
+                ScriptPool[i].Add(Pool[i][y].GetComponent<Enemy>());
+                if (ScriptPool[i][y] == null) print("!");
                 Pool[i][y].name = $"{(char)(i+1)}{(char)(y+1)}";
                 Pool[i][y].SetActive(false);
             }

@@ -51,7 +51,7 @@ Material:
     - _ShakeFreq: 0.97
     - _Sint: 1
     - _TimeScale: 0.25
-    - _UnscaledTime: 29.531494
+    - _UnscaledTime: 180.5724
     m_Colors:
     - _Color: {r: 0.23487006, g: 0.3597899, b: 0.5471698, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
