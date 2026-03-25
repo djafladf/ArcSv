@@ -54,7 +54,7 @@ public class Rosmontis : PlayerSetting
 
     IEnumerator LateDamage(float Time,Vector3 pos)
     {
-        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * 10);
+        NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio);
         yield return new WaitForSeconds(Time);
         GameManager.instance.BM.MakeMeele( NormalInfo, 0.4f, pos, Vector3.zero, 0, false, Sprites[2]);
     }
@@ -74,7 +74,7 @@ public class Rosmontis : PlayerSetting
         //GameManager.instance.SetTime(5f,false);
     }
 
-    float DamageRatio = 3f;
+    float DamageRatio = 30f;
 
     int ProjNum = 1;
 
@@ -83,10 +83,10 @@ public class Rosmontis : PlayerSetting
         switch (player.WeaponLevel++)
         {
             case 1: ProjNum++; AttackSounds.Add(Instantiate(AttackSound,transform).GetComponent<AudioSource>()); break;
-            case 2: DamageRatio += 0.75f; break;
+            case 2: DamageRatio += 7.5f; break;
             case 3: NormalInfo.DeBuffs.Defense += 0.2f; break;
             case 4: ProjNum++; AttackSounds.Add(Instantiate(AttackSound, transform).GetComponent<AudioSource>()); break;
-            case 5: DamageRatio += 1.25f; break;
+            case 5: DamageRatio += 12.5f; break;
             case 6: FloatWeapon.SetActive(true); break;
         }
         return player.WeaponLevel;

@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 200000
-  speed: 0
+  speed: 0.2
   Damage: 5
   Defense: 100
   Weight: 0
@@ -121,6 +121,8 @@ MonoBehaviour:
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0
+    ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -136,6 +138,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   Bull: {fileID: 0}
   BL:
     Color:

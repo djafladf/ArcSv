@@ -23,15 +23,15 @@ public class PlayerSetting : MonoBehaviour
 
     protected bool TargetChangeCall = true;
 
-    public void TargetChangeCallAct(int type, int ind)
+    public void TargetChangeCallAct(GameObject fol)
     {
-        if (CurFollow[0] != type || CurFollow[1] != ind) { print($"{type},{ind} : {CurFollow[0]},{CurFollow[1]}"); return; }
+        if (CurFollow != fol) { return; }
         TargetChangeCall = true;
     }
 
-    protected virtual void Awake()
+    public virtual void ExternInit()
     {
-        player = GameManager.instance.GetMyScriptable();
+        player.Scripts = this;
         player.SubEffects.Clear();
         player.Self = transform;
         player.rigid = GetComponent<Rigidbody2D>();
@@ -39,6 +39,7 @@ public class PlayerSetting : MonoBehaviour
         player.sprite = GetComponent<SpriteRenderer>();
         player.WeaponLevel = 1;
         player.AttackRatio = 0; player.DefenseRatio = 0; player.HPRatio = 0; player.SpeedRatio = 0;
+        player.IsPlayer = IsPlayer;
         CanMove = IsPlayer;
         player.CurHP = player.InitHP; player.MaxHP = player.InitHP;
 
@@ -49,7 +50,7 @@ public class PlayerSetting : MonoBehaviour
         if (!IsSummon)
         {
             GameManager.instance.RequestOfWeapon(WeaponLevelUp, player.Id);
-            
+
         }
 
         if (IsPlayer)
@@ -65,31 +66,34 @@ public class PlayerSetting : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
-
+        
     }
 
+    protected virtual void Start()
+    {
+        GameManager.instance.UM.StatChange += StatChange;
+    }
 
-    protected int[] CurFollow = { -1, -1 };
+    protected virtual void StatChange()
+    {
+        int cnt = player.MaxHP;
+        player.MaxHP = Mathf.FloorToInt(player.InitHP * (1 + player.HPRatio + GameManager.instance.PlayerStatus.hp));
+        if (cnt - player.MaxHP != 0)
+        {
+            player.CurHP += player.MaxHP - cnt;
+            HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
+            if (!IsPlayer) player.MyBatch.HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
+            else GameManager.instance.UM.HpChange();
+        }
+        player.anim.SetFloat("AttackSpeed", player.AttackSpeed + GameManager.instance.PlayerStatus.attackspeed + player.ReinforceAmount[3]);
+    }
+
+    protected GameObject CurFollow;
 
     protected virtual void FixedUpdate()
     {
-        if (player.ChangeOccur && !IsSummon)
-        {
-            player.ChangeOccur = false;
-            int cnt = player.MaxHP;
-            player.MaxHP = Mathf.FloorToInt(player.InitHP * (1 + player.HPRatio + GameManager.instance.PlayerStatus.hp));
-            if (cnt - player.MaxHP != 0)
-            {
-                player.CurHP += player.MaxHP - cnt;
-                HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
-                if (!IsPlayer) player.MyBatch.HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
-                else GameManager.instance.UM.HpChange();
-            }
-            player.anim.SetFloat("AttackSpeed", player.AttackSpeed + GameManager.instance.PlayerStatus.attackspeed + player.ReinforceAmount[3]);
-        }
-
         player.rigid.velocity = Vector2.zero;
 
         if (!CanMove || OnIce) return;
@@ -100,7 +104,7 @@ public class PlayerSetting : MonoBehaviour
             {
                 if (player.IsFollow && player.AllowFollow)
                 {
-                    if (CurFollow[0] != -1) { GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false; CurFollow[0] = -1; }
+                    if (CurFollow != null) { GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false; CurFollow = null; }
                     TargetChangeCall = true;
                     TargetPos = GameManager.instance.Git.transform;
                     player.Dir = (TargetPos.position - transform.position).normalized;
@@ -120,7 +124,7 @@ public class PlayerSetting : MonoBehaviour
             {
                 player.Dir = Vector2.zero;
                 TargetPos = GetNearest(AttackRange);
-                if (TargetPos != null) { CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false; Attack(); }
+                if (TargetPos != null) { CurFollow = TargetPos.gameObject; TargetChangeCall = false; Attack(); }
             }
         }
         Vector2 nextVec = player.Dir * player.speed * (1 + player.SpeedRatio + GameManager.instance.PlayerStatus.speed + player.ReinforceAmount[2] - player.DeBuffAmount[0]) * Time.fixedDeltaTime;
@@ -136,18 +140,26 @@ public class PlayerSetting : MonoBehaviour
         }
     }
 
-    protected virtual void FlipAnim()
+    protected  void FlipAnim()
     {
         if (player.Dir.x > 0 && !player.sprite.flipX)
         {
-            player.sprite.flipX = true;
-            foreach (var k in player.SubEffects) k.flipX = true;
+            Flip_X();
         }
         else if (player.Dir.x < 0 && player.sprite.flipX)
         {
-            player.sprite.flipX = false;
-            foreach (var k in player.SubEffects) k.flipX = false;
+            Flip_Y();
         }
+    }
+    protected virtual void Flip_X()
+    {
+        player.sprite.flipX = true;
+        foreach (var k in player.SubEffects) k.flipX = true;
+    }
+    protected virtual void Flip_Y()
+    {
+        player.sprite.flipX = false;
+        foreach (var k in player.SubEffects) k.flipX = false;
     }
 
     protected virtual void StopMoving()
@@ -166,14 +178,20 @@ public class PlayerSetting : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack();
             player.Dir = (TargetPos.position - transform.position).normalized;
-            CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false;
-            GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = true;
+            CurFollow = TargetPos.gameObject; TargetChangeCall = false;
+            GameManager.instance.ES.TargetChange[CurFollow][player.Id] = true;
         }
         else
         {
             player.Dir = Vector2.zero;
-            CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true;
+            if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            CurFollow = null; TargetChangeCall = true;
         }
+    }
+
+    public virtual void LevelUpTest()
+    {
+        WeaponLevelUp();
     }
 
     protected virtual void WeaponAnim()
@@ -192,22 +210,21 @@ public class PlayerSetting : MonoBehaviour
     [SerializeField] protected float scanRange;
     protected Transform TargetPos = null;
 
-    
+    Collider2D[] targets = new Collider2D[75];
     protected Transform GetNearest(float Range)
     {
-        RaycastHit2D[] targets = Physics2D.CircleCastAll(transform.position, Range, Vector2.zero, 0, targetLayer);
-        float diffs = scanRange + 10;
-        Transform res = null;
-        foreach (RaycastHit2D target in targets)
+        int res = Physics2D.OverlapCircleNonAlloc(transform.position, Range, targets, targetLayer)-1;
+        float diffs = float.MaxValue;
+        Transform resTrans = null;
+        for(;res >= 0; res--)
         {
-            float curDiff = Vector3.Distance(transform.position, target.transform.position);
+            float curDiff = Vector3.SqrMagnitude(transform.position - targets[res].transform.position);
             if (curDiff < diffs)
             {
-                diffs = curDiff; res = target.transform;
+                diffs = curDiff; resTrans = targets[res].transform;
             }
         }
-
-        return res;
+        return resTrans;
     }
 
     protected AttackType AttackInf;
@@ -220,18 +237,19 @@ public class PlayerSetting : MonoBehaviour
         CanMove = false;
     }
 
+    // Change : Himo
     protected virtual void AttackEnd()
     {
         if (player.IsFollow)
         {
-            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+            if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow = null; TargetChangeCall = true; return;
         }
 
         if (TargetChangeCall)   // 떄리던 놈 사망
         {
-            if(CurFollow[0] != -1)GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+            if(CurFollow != null)GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow = null; TargetChangeCall = true; return;
         }
         
         // 떄리던 놈 근처에 있음
@@ -243,13 +261,13 @@ public class PlayerSetting : MonoBehaviour
         {
             player.Dir = (TargetPos.position - transform.position).normalized;
             FlipAnim();
-            CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false;
-            GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = true;
+            CurFollow = TargetPos.gameObject; TargetChangeCall = false;
+            GameManager.instance.ES.TargetChange[CurFollow][player.Id] = true;
         }
         else
         {
-            player.anim.SetBool("IsAttack", false); if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true;
+            player.anim.SetBool("IsAttack", false); if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            CanMove = true; CurFollow = null; TargetChangeCall = true;
         }
     }
 
@@ -270,48 +288,7 @@ public class PlayerSetting : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyAttack") && CanHit) GetDamage(GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)), collision.transform);
-        else if (collision.CompareTag("PlayerBuff"))
-        {
-            Buff Info = GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)).Buffs;
-            int Amount;
-            if (Info.Heal != 0)
-            {
-                Amount = (int)(Info.Heal * (1 + GameManager.instance.PlayerStatus.heal));
-                Amount = Math.Min(player.MaxHP - player.CurHP, Amount);
-                if (Amount > 0 && player.CurHP < player.MaxHP)
-                {
-                    Heal(Amount);
-                    GameManager.instance.UM.DamageUp(1, GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)).DealFrom, Amount);
-                }
-            }
-            if (player.ReinforceAmount[0] <= Info.Attack && Info.Attack != 0)
-            {
-                if (player.ReinforceAmount[0] == Info.Attack) player.ReinForceLast[0] = Mathf.Max(player.ReinforceAmount[0], Info.Last);
-                else player.ReinForceLast[0] = Info.Last;
-                player.ReinforceAmount[0] = Mathf.Max(Info.Attack, player.ReinforceAmount[0]);
-            }
-            if (player.ReinforceAmount[1] <= Info.Defense && Info.Defense != 0)
-            {
-                if (player.ReinforceAmount[1] == Info.Defense) player.ReinForceLast[1] = Mathf.Max(player.ReinforceAmount[1], Info.Last);
-                else player.ReinForceLast[1] = Info.Last;
-                player.ReinforceAmount[1] = Info.Defense;
-            }
-            if (player.ReinforceAmount[2] <= Info.Speed && Info.Speed != 0)
-            {
-                if (player.ReinforceAmount[2] == Info.Speed) player.ReinForceLast[2] = Mathf.Max(player.ReinforceAmount[2], Info.Last);
-                else player.ReinForceLast[2] = Info.Last;
-                player.ReinforceAmount[2] = Info.Speed;
-            }
-            if (player.ReinforceAmount[3] <= Info.AttackSpeed && Info.AttackSpeed != 0)
-            {
-                if (player.ReinforceAmount[3] == Info.AttackSpeed) player.ReinForceLast[3] = Mathf.Max(player.ReinforceAmount[3], Info.Last);
-                else player.ReinForceLast[3] = Info.Last;
-                player.ReinforceAmount[3] = Info.AttackSpeed;
-                player.ChangeOccur = true;
-            }
-
-        }
+        //if (collision.CompareTag("EnemyAttack") && CanHit) GetDamage(GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)), collision.transform);
     }
 
     string[] BFTest = { "공", "방", "속", "공속" };
@@ -369,11 +346,52 @@ public class PlayerSetting : MonoBehaviour
         else if (!IsSummon) { player.MyBatch.HPBar.fillAmount = player.CurHP / (float)player.MaxHP; }
     }
 
+    public virtual void SetBuff(BulletInfo info)
+    {
+        var Info = info.Buffs;
+        int Amount;
+        if (Info.Heal != 0)
+        {
+            Amount = (int)(Info.Heal * (1 + GameManager.instance.PlayerStatus.heal));
+            Amount = Math.Min(player.MaxHP - player.CurHP, Amount);
+            if (Amount > 0 && player.CurHP < player.MaxHP)
+            {
+                Heal(Amount);
+                GameManager.instance.UM.DamageUp(1, info.DealFrom, Amount);
+            }
+        }
+        if (player.ReinforceAmount[0] <= Info.Attack && Info.Attack != 0)
+        {
+            if (player.ReinforceAmount[0] == Info.Attack) player.ReinForceLast[0] = Mathf.Max(player.ReinforceAmount[0], Info.Last);
+            else player.ReinForceLast[0] = Info.Last;
+            player.ReinforceAmount[0] = Mathf.Max(Info.Attack, player.ReinforceAmount[0]);
+        }
+        if (player.ReinforceAmount[1] <= Info.Defense && Info.Defense != 0)
+        {
+            if (player.ReinforceAmount[1] == Info.Defense) player.ReinForceLast[1] = Mathf.Max(player.ReinforceAmount[1], Info.Last);
+            else player.ReinForceLast[1] = Info.Last;
+            player.ReinforceAmount[1] = Info.Defense;
+        }
+        if (player.ReinforceAmount[2] <= Info.Speed && Info.Speed != 0)
+        {
+            if (player.ReinforceAmount[2] == Info.Speed) player.ReinForceLast[2] = Mathf.Max(player.ReinforceAmount[2], Info.Last);
+            else player.ReinForceLast[2] = Info.Last;
+            player.ReinforceAmount[2] = Info.Speed;
+        }
+        if (player.ReinforceAmount[3] <= Info.AttackSpeed && Info.AttackSpeed != 0)
+        {
+            if (player.ReinforceAmount[3] == Info.AttackSpeed) player.ReinForceLast[3] = Mathf.Max(player.ReinforceAmount[3], Info.Last);
+            else player.ReinForceLast[3] = Info.Last;
+            player.ReinforceAmount[3] = Info.AttackSpeed;
+            player.ChangeOccur = true;
+        }
+    }
 
     protected GameObject[] DeBuffObj = new GameObject[5];
-    protected virtual void GetDamage(BulletInfo Info, Transform DamageFrom)
+    public virtual void GetDamage(BulletInfo Info, Vector3 DamageFrom = default, bool MustHit = false)
     {
-        if (player.Unbeat) return;
+        if (player.Unbeat) return;  // 아마도 패턴 무적용인가?
+        if (!CanHit && !MustHit) return;
         int GetDamage = Info.ReturnDamage(player.InitDefense * (1 + player.DefenseRatio + GameManager.instance.PlayerStatus.defense + player.ReinforceAmount[1]));
         GameManager.instance.UM.DamageUp(2, NormalInfo.DealFrom, GetDamage);
         player.CurHP -= GetDamage;
@@ -444,8 +462,10 @@ public class PlayerSetting : MonoBehaviour
         }
     }
 
+    bool SkipOnFirst = true;
     protected virtual void OnEnable()
     {
+        if (SkipOnFirst) { SkipOnFirst = false; return; }
         player.CurHP = player.MaxHP;
         HPBar.fillAmount = 1;
         player.AttackSpeed = player.MaxAttackSpeed;
@@ -455,8 +475,8 @@ public class PlayerSetting : MonoBehaviour
         CanMove = false; player.Unbeat = false;
         NormalInfo.DealFrom = player.Id;
 
-        if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-        CurFollow[0] = -1; TargetChangeCall = true;
+        if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+        CurFollow = null; TargetChangeCall = true;
 
         if (!IsPlayer)
         {

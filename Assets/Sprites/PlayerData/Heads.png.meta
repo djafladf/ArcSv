@@ -431,6 +431,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Heads_15
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 609
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5910aba03fb04b341bb60c842e806336
+      internalID: -589355987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -449,6 +470,7 @@ TextureImporter:
       Heads_12: -87692548
       Heads_13: 1157879171
       Heads_14: -985706157
+      Heads_15: -589355987
       Heads_2: -1076361438
       Heads_3: 1414688245
       Heads_4: 1371356227

@@ -17,12 +17,15 @@ public class IceGround : MonoBehaviour
         nova = Nova;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
+
     protected void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Area"))
-        {
-            transform.position = 2 * GameManager.instance.player.Self.position - transform.position;
-        }
+
     }
 
     protected void BatchAf()

@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int Defense;
     [SerializeField] protected int Weight;
     [SerializeField] protected int EnemyType;
+    [SerializeField] public bool IsBoss;
     protected int MaxDefense;
     protected int MaxDamage;
     protected float MaxSpeed;
@@ -23,8 +24,8 @@ public class Enemy : MonoBehaviour
     [NonSerialized] public Transform Target = null;
 
     protected int MaxHP;
-    protected int[] EnemyInd = { -1, -1 };
-    protected bool IsLive = true;
+    [NonSerialized] public int EnemyInd;
+    [NonSerialized] public bool IsLive = true;
     protected bool OnIce = false;
     protected bool OnStun = false;
     protected bool OnHit = false;
@@ -33,22 +34,18 @@ public class Enemy : MonoBehaviour
     protected bool StunImmun = false;
     protected float Cheeled = 0;
 
-    protected Animator anim;
-    protected SpriteRenderer spriteRenderer;
+    [HideInInspector] public Animator anim;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
     protected CapsuleCollider2D coll;
 
     protected virtual void Awake()
     {
         MaxHP = HP; MaxDamage = Damage; MaxDefense = Defense; MaxSpeed = speed;
+        EnemyInd = gameObject.GetInstanceID();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();
-    }
-
-    protected virtual void Start()
-    {
-        EnemyInd[0] = name[0] - 1; EnemyInd[1] = name[1] - 1;
     }
 
     protected virtual void FixedUpdate()
@@ -61,9 +58,12 @@ public class Enemy : MonoBehaviour
             else if (Dir.x < 0 && spriteRenderer.flipX) spriteRenderer.flipX = false;
 
             if (!OnHit) rigid.MovePosition(rigid.position + Dir * speed * Time.fixedDeltaTime * (1 + GameManager.instance.EnemyStatus.speed - DeBuffVar[0]));
+
+            
         }
         if (BeginAttack && !anim.GetBool("IsAttack"))
         {
+            TargetSub = Target.gameObject;
             AttackPos = Target.position;
             MoveAble = false;
             anim.SetBool("IsAttack", true);
@@ -74,6 +74,7 @@ public class Enemy : MonoBehaviour
     {
         if (!BeginAttack)
         {
+            TargetSub = null;
             anim.SetBool("IsAttack", false);
             MoveAble = true;
         }
@@ -90,9 +91,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected Sprite Bull;
     [SerializeField] protected BulletLine BL;
 
+    protected GameObject TargetSub;
+
     protected virtual void AttackMethod()
     {
-
         if (IsRange)
         {
             BI.Damage = Mathf.FloorToInt(Damage * (1 + GameManager.instance.EnemyStatus.attack - DeBuffVar[1]));
@@ -100,8 +102,12 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            int CurDm = Mathf.FloorToInt(Damage * (1 + GameManager.instance.EnemyStatus.attack - DeBuffVar[1]));
-            GameManager.instance.BM.MakeMeele(new BulletInfo(CurDm, false, 0), 0.2f, AttackPos, Vector2.zero, 0, true,im:Bull);
+            BI.Damage = Mathf.FloorToInt(Damage * (1 + GameManager.instance.EnemyStatus.attack - DeBuffVar[1]));
+            if (Bull != null) GameManager.instance.BM.MakeMeele(BI, 0.2f, AttackPos, Vector2.zero, 0, true, im: Bull);
+            else
+            {
+                if ((AttackPos - TargetSub.transform.position).sqrMagnitude <= 1) GameManager.instance.GetScript(TargetSub).GetDamage(BI, transform.position);
+            }
         }
     }
 
@@ -122,8 +128,22 @@ public class Enemy : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public virtual void OnDamage(BulletInfo Info)
+    public virtual void OnBuff(Buff Info)
     {
+        if (!IsLive) return;
+        if (Info.Heal != 0) Heal(Info.Heal);
+        if (Info.Defense != 0)
+        {
+            if (BuffVar[2] == Info.Defense) LeftTimeBuff[2] = Mathf.Max(LeftTimeBuff[2], Info.Last);
+            else LeftTimeBuff[2] = Info.Last;
+            BuffVar[2] = Mathf.Max(BuffVar[2], Info.Defense);
+        }
+    }
+
+    public virtual void OnDamage(int InfoInd = -1, BulletInfo inf = null)
+    {
+        if (!IsLive) return;
+        var Info = InfoInd == -1 ? inf : GameManager.instance.BM.GetBulletInfo(InfoInd);
         int GetDamage = Info.ReturnDamage(Defense * (1 + GameManager.instance.EnemyStatus.defense - DeBuffVar[2] + BuffVar[2]));
         if (GetDamage < 0) GetDamage = 0;
         HP -= GetDamage;
@@ -149,9 +169,9 @@ public class Enemy : MonoBehaviour
             if (Info.DeadTrigger != null) Info.DeadTrigger(transform, 0);
             spriteRenderer.sortingOrder = 1; anim.enabled = true;
             IsLive = false; CanHit = false; rigid.simulated = false; coll.enabled = false;
-            for (int i = 0; i < 5; i++) if (GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i])
+            for (int i = 0; i < 5; i++) if (GameManager.instance.ES.TargetChange[gameObject][i])
                 {
-                    GameManager.instance.ES.TargetChangeAct[i](EnemyInd[0], EnemyInd[1]); GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i] = false;
+                    GameManager.instance.ES.TargetChangeAct[i](gameObject); GameManager.instance.ES.TargetChange[gameObject][i] = false;
                 }
         }
         else if (Info.DeBuffs != null)
@@ -205,113 +225,6 @@ public class Enemy : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!IsLive) return;
-        if (collision.CompareTag("PlayerAttack") && CanHit)
-        {
-            BulletInfo Info = GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name));
-            int GetDamage = Info.ReturnDamage(Defense * (1 + GameManager.instance.EnemyStatus.defense - DeBuffVar[2] + BuffVar[2]));
-            if (GetDamage < 0) GetDamage = 0;
-            HP -= GetDamage;
-
-            if (MaxHP * Info.ExecuteRatio >= HP)
-            {
-                HP = 0;
-                GameManager.instance.DM.MakeDamage(GetDamage, transform);
-                GameManager.instance.UM.DamageUp(0, Info.DealFrom, HP + GetDamage);
-            }
-            else
-            {
-                GameManager.instance.DM.MakeDamage(GetDamage, transform);
-                GameManager.instance.UM.DamageUp(0, Info.DealFrom, GetDamage);
-            }
-            if (Info.Vamp > 0) GameManager.instance.BM.Vamp[Info.DealFrom]((int)(GetDamage * Info.Vamp));
-
-            HPChange();     // For Boss
-            if (HP <= 0)
-            {
-                anim.SetTrigger("Dead");
-                StartCoroutine(DeadLater());
-                if (Info.DeadTrigger != null) Info.DeadTrigger(transform, 0);
-                spriteRenderer.sortingOrder = 1; anim.enabled = true;
-                IsLive = false; CanHit = false; rigid.simulated = false; coll.enabled = false;
-                for (int i = 0; i < 5; i++) if (GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i])
-                    {
-                        GameManager.instance.ES.TargetChangeAct[i](EnemyInd[0], EnemyInd[1]); GameManager.instance.ES.TargetChange[EnemyInd[0]][EnemyInd[1]][i] = false;
-                    }
-            }
-            else if (Info.DeBuffs != null)
-            {
-                if (Info.DeBuffs.Speed != 0)
-                {
-                    /*if (DeBuffVar[0] == 0)
-                    {
-                        DeBuffObj[2] = GameManager.instance.BFM.RequestForDebuff(3);
-                        DeBuffObj[2].transform.parent = transform;
-                        DeBuffObj[2].transform.localPosition = spriteRenderer.sprite.bounds.size * 0.5f;
-                        DeBuffObj[2].gameObject.SetActive(true);
-                    }*/
-                    if (DeBuffVar[0] == Info.DeBuffs.Speed) LeftTime[0] = Mathf.Max(LeftTime[0], Info.DeBuffs.Last);
-                    else if (DeBuffVar[0] < Info.DeBuffs.Speed) { LeftTime[0] = Info.DeBuffs.Last; DeBuffVar[0] = Info.DeBuffs.Speed; }
-                }
-                if (Info.DeBuffs.Attack != 0)
-                {
-
-                }
-                if (Info.DeBuffs.Defense != 0 && DeBuffVar[2] <= Info.DeBuffs.Defense)
-                {
-                    /*if (DeBuffVar[2] == 0)
-                    {
-                        DeBuffObj[2] = GameManager.instance.BFM.RequestForDebuff(3);
-                        DeBuffObj[2].transform.parent = transform;
-                        DeBuffObj[2].transform.localPosition = spriteRenderer.sprite.bounds.size * 0.5f;
-                        DeBuffObj[2].gameObject.SetActive(true);
-                    }*/
-                    if (DeBuffVar[2] == Info.DeBuffs.Defense) LeftTime[2] = Mathf.Max(LeftTime[2], Info.DeBuffs.Last);
-                    else if (DeBuffVar[2] < Info.DeBuffs.Defense) { LeftTime[2] = Info.DeBuffs.Last; DeBuffVar[2] = Info.DeBuffs.Defense; }
-                }
-                if (Info.DeBuffs.Ice != 0 && !OnIce && IceRatio > 0)
-                {
-                    Cheeled += Info.DeBuffs.Ice * IceRatio;
-                    if (DeBuffObj[4] == null)
-                    {
-                        DeBuffObj[4] = GameManager.instance.BFM.RequestForDebuff(0);
-                        DeBuffObj[4].transform.parent = transform;
-                        DeBuffObj[4].transform.localPosition = new Vector3(0, spriteRenderer.sprite.bounds.size.y * 0.6f, 0);
-                        DeBuffObj[4].gameObject.SetActive(true);
-                        DeBuffVar[0] += 0.3f;
-                    }
-                    if (Cheeled >= 10)
-                    {
-                        DeBuffObj[4].SetActive(false); DeBuffObj[4].transform.parent = GameManager.instance.BFM.transform;
-                        DeBuffObj[4] = null; LeftTime[4] = 1;
-                        DeBuffObj[4] = GameManager.instance.BFM.RequestForDebuff(1,spriteRenderer.sprite.bounds.size.x,spriteRenderer.bounds.size.y);
-                        DeBuffObj[4].transform.parent = transform;
-                        DeBuffObj[4].transform.localPosition = Vector3.zero;
-                        DeBuffObj[4].gameObject.SetActive(true); DeBuffVar[0] -= 0.3f; Cheeled = 0; anim.speed = 0; OnIce = true;
-                    }
-                }
-                if (Info.DeBuffs.Fragility != 0)
-                {
-
-                }
-                if (Info.DeBuffs.Stun && !StunImmun)
-                {
-                    LeftTime[5] = Mathf.Max(Info.DeBuffs.Last, LeftTime[5]); OnStun = true; anim.speed = 0;
-                }
-            }
-            if(GetDamage > 0) StartCoroutine(NockBack_Enemy(Info.KnockBack,transform.position - collision.transform.position));
-        }
-        else if (collision.CompareTag("EnemyBuff"))
-        {
-            Buff Info = GameManager.instance.BM.GetBulletInfo(GameManager.StringToInt(collision.name)).Buffs;
-            if (Info.Heal != 0) Heal(Info.Heal);
-            if (Info.Defense != 0)
-            {
-                if (BuffVar[2] == Info.Defense) LeftTimeBuff[2] = Mathf.Max(LeftTimeBuff[2], Info.Last);
-                else LeftTimeBuff[2] = Info.Last;
-                BuffVar[2] = Mathf.Max(BuffVar[2],Info.Defense);
-            }
-        }
     }
 
     protected virtual void Heal(float amount)

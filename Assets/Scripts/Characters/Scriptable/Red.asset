@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: 
   name_k: "\uB808\uB4DC"
-  speed: 6
+  speed: 5
   InitHP: 200
   InitSP: 0
   InitDefense: 15

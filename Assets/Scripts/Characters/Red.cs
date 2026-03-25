@@ -76,19 +76,19 @@ public class Red : PlayerSetting
             TargetSprite.transform.localPosition = new Vector2(0, TargetPos.GetComponent<SpriteRenderer>().sprite.bounds.size.y * 0.2f + 1);
             TargetSprite.localScale = Vector2.one;
 
-            CurFollow[0] = TargetPos.name[0] - 1; CurFollow[1] = TargetPos.name[1] - 1; TargetChangeCall = false;
-            GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = true;
+            CurFollow = TargetPos.gameObject; TargetChangeCall = false;
+            GameManager.instance.ES.TargetChange[CurFollow][player.Id] = true;
             player.Dir = (TargetPos.position - transform.position).normalized;
             
-            if (player.WeaponLevel < 0) { if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack(); }
+            if (player.WeaponLevel < 7) { if (Vector3.Distance(transform.position, TargetPos.position) <= AttackRange) Attack(); }
             else { transform.position = TargetPos.position + Vector3.up * 0.1f; player.anim.SetTrigger("Spec"); Attack(); }
         }
         else
         {
             TargetSprite.gameObject.SetActive(false); TargetSprite.transform.parent = transform;
             player.Dir = Vector2.zero; TargetPos = null;
-            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true;
+            if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            CurFollow = null; TargetChangeCall = true;
         }
     }
 
@@ -125,13 +125,13 @@ public class Red : PlayerSetting
 
         if (player.IsFollow)
         {
-            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = -1; CurFollow[1] = -1; TargetChangeCall = true; return;
+            if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow = null; TargetChangeCall = true; return;
         }
         else if (TargetChangeCall)
         {
-            if (CurFollow[0] != -1) GameManager.instance.ES.TargetChange[CurFollow[0]][CurFollow[1]][player.Id] = false;
-            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow[0] = - 1; CurFollow[1] = - 1;
+            if (CurFollow != null) GameManager.instance.ES.TargetChange[CurFollow][player.Id] = false;
+            player.anim.SetBool("IsAttack", false); CanMove = true; CurFollow = null;
         }
         else
         {
@@ -211,10 +211,12 @@ public class Red : PlayerSetting
         Trail.localPosition = new Vector2(x, y);
     }
 
+    bool IsF = false;
     protected override void OnEnable()
     {
         base.OnEnable();
-        player.sprite.material = Mat_Normal; gameObject.layer = 7; tag = "Player";
+        if (IsF) player.sprite.material = Mat_Normal; else IsF = true;
+        gameObject.layer = 7; tag = "Player";
         OnReinforce = false;
         Gage.fillAmount = 0; KillCount = 0; Gage.color = C1; NormalInfo.ExecuteRatio = 0;
         
@@ -228,6 +230,8 @@ public class Red : PlayerSetting
 
     protected override int WeaponLevelUp(bool IsUp = true)
     {
+
+
         return base.WeaponLevelUp(IsUp);
     }
 }

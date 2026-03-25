@@ -34,7 +34,7 @@ public class Astesia : PlayerSetting
         if (TargetPos != null && gameObject.activeSelf)
         {
             NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0] + GameManager.instance.PlayerStatus.defense + player.DefenseRatio + player.ReinforceAmount[1]) * DamageRatio * 10);
-            GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f,transform.position, -player.Dir, 0, false, im: AttackIm);
+            GameManager.instance.BM.MakeMeele(NormalInfo, 0.3f,transform.position, -player.Dir, 0, false,im: AttackIm);
             if (player.WeaponLevel == 7)
             {
                 StartCoroutine(LateDamage(0.25f));

@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static WaitForSeconds OneSec = new WaitForSeconds(1);
     public static WaitForSeconds TwoSec = new WaitForSeconds(2);
+    public static WaitForSeconds DotHalf = new WaitForSeconds(0.05f);
     public static WaitForSeconds DotOneSec = new WaitForSeconds(0.1f);
+    public static WaitForSeconds DotQuarter = new WaitForSeconds(0.25f);
     public static WaitForSeconds FrameWFS = new WaitForSeconds(0.01f);
     public static WaitForSeconds DotFiveSec = new WaitForSeconds(0.5f);
 
@@ -56,19 +58,37 @@ public class GameManager : MonoBehaviour
 
     public static List<Transform> GetNearest(float scanRange, int count, Vector3 Position, LayerMask targetLayer)
     {
-        RaycastHit2D[] targets = Physics2D.CircleCastAll(Position, scanRange, Vector2.zero, 0, targetLayer);
-        Dictionary<Transform, float> Set = new Dictionary<Transform, float>();
-        foreach (RaycastHit2D target in targets)
+        Collider2D[] targets = new Collider2D[75];
+        int res = Physics2D.OverlapCircleNonAlloc(Position, scanRange, targets, targetLayer);
+        List<(Transform target, float dist)> Set = new(Mathf.Min(count,res));
+        for(res = res -1; res >= 0; res--)
         {
-            float curDiff = Vector3.Distance(Position, target.transform.position);
-            Set.Add(target.transform,curDiff);
-            if (Set.Count > count)
+            float curDiff = Vector3.SqrMagnitude(Position - targets[res].transform.position);
+            if (Set.Count < count)
             {
-                var cnt = Set.OrderBy(x => x.Value).ToList();cnt.RemoveAt(count);
-                Set = cnt.ToDictionary(x => x.Key, x => x.Value);
+                Set.Add((targets[res].transform, curDiff));
+                if(Set.Count == count) Set.Sort((a, b) => a.dist.CompareTo(b.dist));
+            }
+            else if (Set[count - 1].dist > curDiff)
+            {
+                Set[count - 1] = (targets[res].transform, curDiff);
+                Set.Sort((a, b) => a.dist.CompareTo(b.dist));
             }
         }
-        return Set.Keys.ToList();
+        return Set.Select(x => x.target).ToList();
+    }
+    public static Transform GetNearest(float scanRange, Vector3 Position, LayerMask targetLayer,List<Transform> ex = null)
+    {
+        Collider2D[] targets = new Collider2D[75];
+        int res = Physics2D.OverlapCircleNonAlloc(Position, scanRange, targets, targetLayer);
+        float Min = float.MaxValue; Transform ret = null;
+        for (res = res - 1; res >= 0; res--)
+        {
+            if (ex != null) if (ex.Contains(targets[res].transform)) continue;
+            float curDiff = Vector3.SqrMagnitude(Position - targets[res].transform.position);
+            if(curDiff < Min) { Min = curDiff; ret = targets[res].transform; }
+        }
+        return ret;
     }
 
     // On Loby
@@ -178,6 +198,17 @@ public class GameManager : MonoBehaviour
     //[HideInInspector] 
     public Player[] Players;
     public GameObject[] Prefabs;
+    public PlayerSetting[] Scripts;
+    public Dictionary<GameObject, int> ObjToInd;
+
+    public PlayerSetting GetScript(GameObject refObj = null,int ind = -1)
+    {
+        if (refObj != null) return Scripts[ObjToInd[refObj]];
+        else if (ind != -1) return Scripts[ind];
+        else return null;
+    }
+
+
     [HideInInspector] public GameObject[] Prefs;
     public List<int> CurPlayerID;
     public int PlayerInd = 0;
@@ -193,13 +224,6 @@ public class GameManager : MonoBehaviour
         var tmp = Players.ToList(); tmp.Add(player);
         Players = tmp.ToArray();
     }
-
-
-    /*[SerializeField]
-    public List<ItemSub> Items;
-
-    [SerializeField]
-    public List<ItemSub> WeaponSub;*/
 
     public List<Sprite> LoadingSprites;
     [SerializeField] Image LoadedImage;
@@ -272,11 +296,16 @@ public class GameManager : MonoBehaviour
         // Get Operators
         Players = new Player[LL];
         Prefs = new GameObject[LL];
+        Scripts = new PlayerSetting[LL];
+        ObjToInd = new Dictionary<GameObject, int>();
         for (int i = 0; i < LL; i++) 
         {
             var CurId = CurPlayerID[i];
-            Players[i] = ScriptableObject.Instantiate(Data.Infos[CurId].player); Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f);
+            Players[i] = ScriptableObject.Instantiate(Data.Infos[CurId].player); Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f); 
             Prefs[i] = Instantiate(Prefabs[CurPlayerID[i]],DM.transform.parent);
+            ObjToInd[Prefs[i]] = i;
+            Scripts[i] = Prefs[i].GetComponent<PlayerSetting>();
+            Scripts[i].player = Players[i]; Scripts[i].ExternInit();
         }
         /*await AddressablesLoader.InitAssets(BatchName, "Operator_Pref", Prefs, DM.transform.parent);*/
         PlayerObj = Prefs[0];
@@ -308,12 +337,6 @@ public class GameManager : MonoBehaviour
         IM.Init(); BM.Init(); ES.Init(1); DM.Init(); BFM.Init();
         UM.Init(LL, CurPlayerID.Select(index => Data.WeaponSub[index]).ToList(), Players, Prefs, CurPlayerID.Select(index => Data.Infos[index]).ToArray(), PlayerInd);
 
-    }
-
-    int i = 0;
-    public Player GetMyScriptable()
-    {
-        return Players[i++];
     }
 
     // ���۷����� ����

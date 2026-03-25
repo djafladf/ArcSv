@@ -24,9 +24,8 @@ public class Skulslr : Enemy
         BLine = BPart.GetComponent<TrailRenderer>();
     }
 
-    protected override void Start()
+    protected  void Start()
     {
-        base.Start();
         GameManager.instance.ES.ExternalSpawnCall(3, -1, 5f);
         GameManager.instance.ES.ExternalSpawnCall(4, -1, 5f);
         GameManager.instance.ES.ExternalSpawnCall(5, -1, 5f);
@@ -50,7 +49,6 @@ public class Skulslr : Enemy
 
     bool IsRush = false;
     Transform RushTarget;
-    int l = 0;
 
     protected override void FixedUpdate()
     {
@@ -158,7 +156,7 @@ public class Skulslr : Enemy
                         case 0:
                             anim.SetTrigger("Special"); yield return new WaitForSeconds(SpecialCool * 0.5f); break;
                         case 1:
-                            anim.SetTrigger("Special2"); anim.SetBool("IsAttack", false); yield return GameManager.OneSec; RushTarget = ReturnRandomPlayer(); l = 0; IsRush = true; AfterIm.StartMaking(); yield return new WaitForSeconds(SpecialCool * 0.5f); break;
+                            anim.SetTrigger("Special2"); anim.SetBool("IsAttack", false); yield return GameManager.OneSec; RushTarget = ReturnRandomPlayer(); IsRush = true; AfterIm.StartMaking(); yield return new WaitForSeconds(SpecialCool * 0.5f); break;
                     }
             }
 
@@ -212,7 +210,6 @@ public class Skulslr : Enemy
         }
         else
         {
-            print("!");
             GameManager.instance.UM.ShowDialog(new List<string>() { "ÀÌ°É·Î..." },
                 () => { GameManager.instance.BossEnd(); }
                 );

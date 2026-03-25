@@ -186,10 +186,10 @@ public class FrostNova : Enemy
             yield return GameManager.DotOneSec;
             TEffect.color += s;
         }
-        GameManager.instance.BM.MakeMeele(new BulletInfo(10000, false, 0, 200, isFix: true), 0.3f, transform.position, Vector3.zero, 0, true);
+        foreach (var j in GameManager.instance.Scripts) if (j.gameObject.activeSelf) j.GetDamage(new BulletInfo(10000, false, 0, 200, isFix: true), MustHit: true);
         NovaMap.SetActive(true);
         Border.color = new Color(1, 1, 1, 0.8f - 0.35f * Phaze3Process);
-        yield return new WaitForSeconds(0.5f);
+        yield return GameManager.DotFiveSec;
         HideObj.SetActive(false);
         var cnt = Particles[8].emission;
         cnt.rateOverTime = 80 - 35 * Phaze3Process;
@@ -209,7 +209,7 @@ public class FrostNova : Enemy
             {
                 HP -= 50;
                 HPChange();
-                GameManager.instance.BM.MakeMeele(InstanceDamage, 0.2f, GameManager.instance.player.Self.position, Vector3.zero, 0, true);
+                foreach (var j in GameManager.instance.Scripts) if(j.gameObject.activeSelf) j.GetDamage(InstanceDamage,MustHit:true);
             }
             yield return GameManager.OneSec;
         }

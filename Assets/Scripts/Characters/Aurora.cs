@@ -12,13 +12,6 @@ public class Aurora : PlayerSetting
 
     float s = 0;
 
-    protected override void Awake()
-    {
-        player.InitDefense = 50;
-        base.Awake();
-    }
-
-
     protected override void FixedUpdate()
     {
         base.FixedUpdate();

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5413284850559968884}
   - component: {fileID: 305036706953358453}
   - component: {fileID: 3903310299557583134}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4998,7 +4998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5138701874975802491}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5343,7 +5343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2835e68f145ead546abce6acd217c24d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: 7ea27ab6edfe0064a8e9fe4225b4b160, type: 2}
   player: {fileID: 11400000, guid: 7ea27ab6edfe0064a8e9fe4225b4b160, type: 2}
   IsPlayer: 1
   IsSummon: 0
@@ -5360,6 +5359,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -5375,6 +5375,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5704,7 +5705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3772359833579803826}
   - component: {fileID: 3772359833579803827}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6125,7 +6126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2488476389104368000}
   - component: {fileID: 8051009705349220525}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6211,7 +6212,7 @@ GameObject:
   - component: {fileID: 9204884345373321118}
   - component: {fileID: 2864608769850624200}
   - component: {fileID: 6742022308176172255}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -113,12 +113,17 @@ MonoBehaviour:
   MakeLine: 0
   BI:
     Damage: 25
+    DealFrom: 0
+    LayerOrder: 0
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 1
     SpeedFactor: 1
+    ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -126,6 +131,7 @@ MonoBehaviour:
       Defense: 0
       Ice: 0
       Fragility: 0
+      Stun: 0
     Buffs:
       Last: 0
       Speed: 0
@@ -133,6 +139,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   Bull: {fileID: 21300000, guid: dcc19153667bc464ebfa3d8c2b7481f0, type: 3}
   BL:
     Color:
@@ -210,7 +217,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!95 &4883451087436554637
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -227,7 +234,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5856835231089376059
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837772333138293244}
   - component: {fileID: 6544008432362643069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +332,7 @@ GameObject:
   - component: {fileID: 7769702839734820166}
   - component: {fileID: 7769702839734820162}
   - component: {fileID: 3760417788998118722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackRange
   m_TagString: Enemy_Array
   m_Icon: {fileID: 0}
@@ -406,7 +414,7 @@ GameObject:
   - component: {fileID: 8384460213799096070}
   - component: {fileID: 6522062078585694000}
   - component: {fileID: 2118711655534661011}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

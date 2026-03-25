@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6200532938712711813}
   - component: {fileID: 116183324478460322}
   - component: {fileID: 854851726428577865}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze3_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 2242276253134023700}
   - component: {fileID: 1918785279327829842}
   - component: {fileID: 8086197797701584979}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Phaze3Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8930,7 +8930,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     widthOverTrail:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       scalar: 0.5
       minScalar: 1
       maxCurve:
@@ -9702,7 +9702,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845544266465047089}
   - component: {fileID: 1971393351128632209}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BossTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9786,7 +9786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685972762390776311}
   - component: {fileID: 8840508257046442232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SubEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9924,16 +9924,22 @@ MonoBehaviour:
   Defense: 10
   Weight: 10
   EnemyType: 26
+  IsBoss: 1
   IsRange: 0
   MakeLine: 0
   BI:
     Damage: 0
+    DealFrom: 0
+    LayerOrder: 0
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0
+    ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -9941,6 +9947,7 @@ MonoBehaviour:
       Defense: 0
       Ice: 0
       Fragility: 0
+      Stun: 0
     Buffs:
       Last: 0
       Speed: 0
@@ -9948,6 +9955,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   Bull: {fileID: -1269927712, guid: 07a2cbff61dbade4cbcb2535a0a9be98, type: 3}
   BL:
     Color:
@@ -9987,9 +9995,9 @@ MonoBehaviour:
       m_RotationOrder: 4
     Time: 0
   Particles:
+  - {fileID: 116183324478460322}
   - {fileID: 4676800456403187940}
   - {fileID: 7191002221647978299}
-  - {fileID: 116183324478460322}
   - {fileID: 8234798074415624958}
   - {fileID: 1644388707988165488}
   - {fileID: 1175167353681062547}
@@ -10015,6 +10023,7 @@ MonoBehaviour:
     Defense: 0
     Ice: 1
     Fragility: 0
+    Stun: 0
   DeBuffTwo:
     Last: 1
     Speed: 0
@@ -10022,6 +10031,7 @@ MonoBehaviour:
     Defense: 0
     Ice: 5
     Fragility: 0
+    Stun: 0
   IceBullSprites:
   - {fileID: 986492503, guid: 6eaef40db2250d14096cb646ebd551a5, type: 3}
   - {fileID: -1108760311, guid: 6eaef40db2250d14096cb646ebd551a5, type: 3}
@@ -10119,7 +10129,7 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!95 &7180699520266272496
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10136,7 +10146,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!82 &6008427120442999286
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10244,7 +10255,7 @@ GameObject:
   - component: {fileID: 806004910837338737}
   - component: {fileID: 1175167353681062547}
   - component: {fileID: 3214047076027086001}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze3Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15057,7 +15068,7 @@ GameObject:
   - component: {fileID: 8029327513176416244}
   - component: {fileID: 8234798074415624958}
   - component: {fileID: 488121273095537061}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze3_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19878,7 +19889,7 @@ GameObject:
   - component: {fileID: 4719713930462807993}
   - component: {fileID: 1644388707988165488}
   - component: {fileID: 8312019162566866878}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze3_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24708,7 +24719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2663513262220108267}
   - component: {fileID: 7323719117488732448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Char
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24876,7 +24887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2895811447299921689}
   - component: {fileID: 5897303723396971154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Phaze1Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24961,7 +24972,7 @@ GameObject:
   - component: {fileID: 1667542461368750912}
   - component: {fileID: 2196407206679515728}
   - component: {fileID: 2145057380610232185}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Phaze3After
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29831,7 +29842,7 @@ GameObject:
   - component: {fileID: 6011459814076464671}
   - component: {fileID: 8929287394711141092}
   - component: {fileID: 8675908923692138143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34692,7 +34703,7 @@ GameObject:
   - component: {fileID: 3414269787329063468}
   - component: {fileID: 8321481661482005589}
   - component: {fileID: 1608930349332927794}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34772,7 +34783,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &8061488789749495352
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34789,7 +34800,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3414269787329063468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34850,7 +34862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4055504741498201686}
   - component: {fileID: 7268214483216343168}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SubEffect2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34934,7 +34946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837772333138293244}
   - component: {fileID: 6544008432362643069}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35018,7 +35030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7893218056360742294}
   - component: {fileID: 7655433722454008113}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35103,7 +35115,7 @@ GameObject:
   - component: {fileID: 3796191934585010661}
   - component: {fileID: 7191002221647978299}
   - component: {fileID: 752377199900246249}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze2Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39925,7 +39937,7 @@ GameObject:
   - component: {fileID: 7769702839734820166}
   - component: {fileID: 7769702839734820162}
   - component: {fileID: 3760417788998118722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackRange
   m_TagString: Enemy_Array
   m_Icon: {fileID: 0}
@@ -40005,7 +40017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4254999257922771626}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40048,7 +40060,7 @@ GameObject:
   - component: {fileID: 7787643403999702677}
   - component: {fileID: 5805345767448416347}
   - component: {fileID: 6724614520305440830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EyeEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40322,7 +40334,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -40904,7 +40916,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -44859,7 +44871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852643493982425602}
   - component: {fileID: 5395683885239057848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NoDParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45009,7 +45021,7 @@ GameObject:
   - component: {fileID: 8785424176277806881}
   - component: {fileID: 4676800456403187940}
   - component: {fileID: 1800086905963034217}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Phaze1Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49830,7 +49842,7 @@ GameObject:
   - component: {fileID: 5658186702794729092}
   - component: {fileID: 6741215463419491619}
   - component: {fileID: 4201752817870131494}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IceEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

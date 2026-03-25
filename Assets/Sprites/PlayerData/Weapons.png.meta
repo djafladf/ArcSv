@@ -431,6 +431,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Weapons_15
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 9
+        width: 230
+        height: 460
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f039e50da9e27148a6a6d93ea9f54d2
+      internalID: 24901614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -449,6 +470,7 @@ TextureImporter:
       Weapons_12: 630700962
       Weapons_13: -1590178924
       Weapons_14: 885304877
+      Weapons_15: 24901614
       Weapons_2: -1987540644
       Weapons_3: -1700633392
       Weapons_4: 865768842

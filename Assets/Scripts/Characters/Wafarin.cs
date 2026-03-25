@@ -14,13 +14,11 @@ public class Wafarin :PlayerSetting
     List<Wafarin_Bat> Attack_Script = new List<Wafarin_Bat>();
     List<Wafarin_Bat> Heal_Script = new List<Wafarin_Bat>();
  
-    protected override void Awake()
+    public override void ExternInit()
     {
-        base.Awake();
+        base.ExternInit();
         player.SubEffects.Add(Wing.transform.GetChild(0).GetComponent<SpriteRenderer>());
         player.SubEffects.Add(Wing.transform.GetChild(1).GetComponent<SpriteRenderer>());
-        
-        
     }
     protected override void Start()
     {

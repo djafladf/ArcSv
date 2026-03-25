@@ -36085,7 +36085,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36101,7 +36101,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36127,7 +36127,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36143,7 +36143,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36171,7 +36171,7 @@ MonoBehaviour:
       exp: 0
       heal: 0.1
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36187,7 +36187,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36213,7 +36213,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36229,7 +36229,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36256,7 +36256,7 @@ MonoBehaviour:
       exp: 0.3
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36272,7 +36272,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36283,12 +36283,12 @@ MonoBehaviour:
     Islocked: 0
     description:
     - "\uBC84\uBE14\uC744 1\uAC1C \uBCF4\uC720\uD560 \uB54C\uB9C8\uB2E4 \uACF5\uACA9\uB825
-      3% \uC99D\uAC00"
+      5% \uC99D\uAC00"
     extra: "\uADC0\uC5EC\uC6B4 \uBC84\uBE14 \uC778\uD615 \uC2DC\uB9AC\uC988\n\uC5B4\uB518\uAC00
       \uAE30\uBD84\uC774 \uC548 \uC88B\uC544 \uBCF4\uC778\uB2E4."
     sprite: {fileID: 1449561882, guid: fb382ac0cf85d904c985c6866b8d34d5, type: 3}
     attributes:
-      attack: 0
+      attack: 0.05
       attackspeed: 0
       defense: 0
       speed: 0
@@ -36299,7 +36299,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 1
+      stackType: 1
       special: 0
       hp: 0
       vamp: 0
@@ -36315,7 +36315,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36333,7 +36333,7 @@ MonoBehaviour:
     attributes:
       attack: 0
       attackspeed: 0
-      defense: 0
+      defense: 0.03
       speed: 0
       power: 0
       cost: 0
@@ -36342,7 +36342,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 2
+      stackType: 1
       special: 0
       hp: 0
       vamp: 0
@@ -36358,7 +36358,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36377,7 +36377,7 @@ MonoBehaviour:
       attack: 0
       attackspeed: 0
       defense: 0
-      speed: 0
+      speed: 0.05
       power: 0
       cost: 0
       pickup: 0
@@ -36385,7 +36385,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 3
+      stackType: 1
       special: 0
       hp: 0
       vamp: 0
@@ -36401,7 +36401,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36417,7 +36417,7 @@ MonoBehaviour:
     sprite: {fileID: -1362669851, guid: fb382ac0cf85d904c985c6866b8d34d5, type: 3}
     attributes:
       attack: 0
-      attackspeed: 0
+      attackspeed: 0.03
       defense: 0
       speed: 0
       power: 0
@@ -36427,7 +36427,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 4
+      stackType: 1
       special: 0
       hp: 0
       vamp: 0
@@ -36443,7 +36443,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36470,9 +36470,9 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 5
+      stackType: 1
       special: 0
-      hp: 0
+      hp: 0.05
       vamp: 0
     attribute_Enem:
       attack: 0
@@ -36486,7 +36486,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36513,7 +36513,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 1
       hp: 0
       vamp: 0
@@ -36529,7 +36529,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36555,7 +36555,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36571,7 +36571,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36596,7 +36596,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36612,7 +36612,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36637,7 +36637,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 2
       hp: 0
       vamp: 0
@@ -36653,7 +36653,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36680,7 +36680,7 @@ MonoBehaviour:
       exp: 0.2
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36696,7 +36696,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36723,7 +36723,7 @@ MonoBehaviour:
       exp: 0.25
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36739,7 +36739,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36766,7 +36766,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36782,7 +36782,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36808,7 +36808,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36824,7 +36824,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36851,7 +36851,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0.1
       vamp: 0
@@ -36867,7 +36867,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36892,7 +36892,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36908,7 +36908,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36934,7 +36934,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 3
       hp: 0
       vamp: 0
@@ -36950,7 +36950,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36976,7 +36976,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -36992,7 +36992,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37018,7 +37018,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37034,7 +37034,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37060,7 +37060,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0.1
       vamp: 0
@@ -37076,7 +37076,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37103,7 +37103,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37119,7 +37119,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37145,7 +37145,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37161,7 +37161,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37187,7 +37187,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37203,7 +37203,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37229,7 +37229,7 @@ MonoBehaviour:
       exp: 0
       heal: 0.2
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37245,7 +37245,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37270,7 +37270,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0.1
       vamp: 0
@@ -37286,7 +37286,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37311,7 +37311,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37327,7 +37327,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37352,7 +37352,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37368,7 +37368,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37393,7 +37393,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37409,7 +37409,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37435,7 +37435,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0.2
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37451,7 +37451,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37477,7 +37477,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37493,7 +37493,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: -0.1
       vamp: 0
@@ -37519,7 +37519,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37535,7 +37535,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37561,7 +37561,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37577,7 +37577,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37603,7 +37603,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37619,7 +37619,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37645,7 +37645,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37661,7 +37661,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37687,7 +37687,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37703,7 +37703,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37729,7 +37729,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37745,7 +37745,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37772,7 +37772,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37788,7 +37788,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37813,7 +37813,7 @@ MonoBehaviour:
       exp: 0.2
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37829,7 +37829,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37855,7 +37855,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0.1
       vamp: 0
@@ -37871,7 +37871,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37896,7 +37896,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37912,7 +37912,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37937,7 +37937,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37953,7 +37953,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37979,7 +37979,7 @@ MonoBehaviour:
       exp: 0.2
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -37995,7 +37995,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38021,7 +38021,7 @@ MonoBehaviour:
       exp: 0.2
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38037,7 +38037,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38062,7 +38062,7 @@ MonoBehaviour:
       exp: 0.2
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38078,7 +38078,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38104,7 +38104,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 4
       hp: 0
       vamp: 0
@@ -38120,7 +38120,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38146,7 +38146,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38162,7 +38162,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38187,7 +38187,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38203,7 +38203,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38229,7 +38229,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38245,7 +38245,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38271,7 +38271,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38287,7 +38287,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38313,7 +38313,7 @@ MonoBehaviour:
       exp: 0.1
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38329,14 +38329,14 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
   - name: "\uC9C0\uC6D0-\uD06C\uB808\uC778"
     operatorid: 0
     lv: 1
-    rarity: 1
+    rarity: 0
     Islocked: 0
     description:
     - "\uC7AC\uBC30\uCE58 \uC2DC\uAC04 10% \uAC10\uC18C"
@@ -38355,7 +38355,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 5
       hp: 0
       vamp: 0
@@ -38371,7 +38371,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38397,7 +38397,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38413,7 +38413,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38439,7 +38439,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38455,7 +38455,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38489,7 +38489,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38505,7 +38505,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38536,7 +38536,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38552,7 +38552,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38583,7 +38583,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38599,7 +38599,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38631,7 +38631,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38647,7 +38647,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38679,7 +38679,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38695,7 +38695,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38726,7 +38726,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38742,7 +38742,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38773,7 +38773,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38789,7 +38789,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38822,7 +38822,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38838,7 +38838,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38871,7 +38871,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38887,7 +38887,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38919,7 +38919,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38935,7 +38935,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -38966,7 +38966,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -38982,7 +38982,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -39014,7 +39014,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -39030,7 +39030,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -39061,7 +39061,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -39077,7 +39077,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -39108,7 +39108,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -39124,7 +39124,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -39154,7 +39154,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 1
       vamp: 0
@@ -39170,7 +39170,53 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
+      special: 0
+      hp: 0
+      vamp: 0
+  - name: "\uB378\uD540\uC758 \uAC80"
+    operatorid: 0
+    lv: 1
+    rarity: 0
+    Islocked: 0
+    description:
+    - "\uCDA9\uC804\uB7C9 50% \uC99D\uAC00"
+    - "\uB300\uBBF8\uC9C0 50%p \uC99D\uAC00"
+    - "\uD295\uAE38 \uB54C\uC758 \uB300\uBBF8\uC9C0 \uAC10\uC18C\uB7C9 \uAC10\uC18C"
+    - "\uCDA9\uC804\uB7C9 50% \uC99D\uAC00"
+    - "\uACF5\uACA9\uC774 \uD295\uAE30\uB294 \uD69F\uC218 1\uD68C \uC99D\uAC00"
+    - "\uC0AC\uB0E5, \uC2DC\uC791"
+    extra: Test
+    sprite: {fileID: 24901614, guid: cb87e0f4884fbd24d8d2360be61eafdd, type: 3}
+    attributes:
+      attack: 0
+      attackspeed: 0
+      defense: 0
+      speed: 0
+      power: 0
+      cost: 0
+      pickup: 0
+      selection: 0
+      exp: 0
+      heal: 0
+      GoodsEarn: 0
+      stackType: 0
+      special: 0
+      hp: 1
+      vamp: 0
+    attribute_Enem:
+      attack: 0
+      attackspeed: 0
+      defense: 0
+      speed: 0
+      power: 0
+      cost: 0
+      pickup: 0
+      selection: 0
+      exp: 0
+      heal: 0
+      GoodsEarn: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -39375,7 +39421,7 @@ MonoBehaviour:
     CurAwaken: 0
     AwakenInfo: []
     IsLD: 0
-    IsPriorityAttack: 1
+    IsPriorityAttack: 0
     player: {fileID: 11400000, guid: 5095becf503867e41ac9f69cb573f174, type: 2}
     Head: {fileID: 1157879171, guid: 8f431041ae472024aae12403bffc4645, type: 3}
     Standing: {fileID: 626782780, guid: 5ec3cf43f3f22dc4781d780a74235c9d, type: 3}
@@ -39389,11 +39435,24 @@ MonoBehaviour:
     CurAwaken: 0
     AwakenInfo: []
     IsLD: 0
-    IsPriorityAttack: 1
+    IsPriorityAttack: 0
     player: {fileID: 11400000, guid: 1a20fc0c0d8f5034daec3d68104e72cb, type: 2}
     Head: {fileID: -985706157, guid: 8f431041ae472024aae12403bffc4645, type: 3}
     Standing: {fileID: -1172327869, guid: 16d9312e3580d1f468a16d83e3783b3f, type: 3}
     Standing2: {fileID: -1953853971, guid: 6f26af5e459faee4ba780c338335ad37, type: 3}
+  - name: "\uB378\uD540"
+    name_e: Delphin
+    Inst_Weapon: Test
+    Inst_Prop: Test
+    id: 14
+    CurAwaken: 0
+    AwakenInfo: []
+    IsLD: 0
+    IsPriorityAttack: 0
+    player: {fileID: 11400000, guid: 77ddea0c2f922c649b1442c46c372c87, type: 2}
+    Head: {fileID: -589355987, guid: 8f431041ae472024aae12403bffc4645, type: 3}
+    Standing: {fileID: -1514814962, guid: 0d689837a59384d41bff8b69678e4137, type: 3}
+    Standing2: {fileID: -1952076533, guid: 6f26af5e459faee4ba780c338335ad37, type: 3}
   Title: {fileID: 1268481289}
 --- !u!1 &4680751101627770853
 GameObject:
@@ -39595,6 +39654,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4849893903500032359, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849893903500032359, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00051592576
+      objectReference: {fileID: 0}
     - target: {fileID: 4849893903576452152, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -39654,6 +39721,26 @@ PrefabInstance:
     - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
       propertyPath: IsTest
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: Prefabs.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: Player_ID.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: Prefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 2700750476557074040, guid: 3741b82bbe5f9c34f8c2925d89e16ccb, type: 3}
+    - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: Prefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 5604928745050799850, guid: 909b8f667cbc6a0489fb7e5a1147ac0b, type: 3}
+    - target: {fileID: 4849893903593939932, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
+      propertyPath: Player_ID.Array.data[15]
+      value: Delphin
       objectReference: {fileID: 0}
     - target: {fileID: 4849893903609451520, guid: 714bf39cfa628e843a34f950ab77ad2d, type: 3}
       propertyPath: m_IsActive

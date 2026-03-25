@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -276,10 +276,10 @@ TextureImporter:
       name: Low_8
       rect:
         serializedVersion: 2
-        x: 21
-        y: 46
-        width: 85
-        height: 84
+        x: 131
+        y: 93
+        width: 93
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,6 +289,195 @@ TextureImporter:
       bones: []
       spriteID: 569c3fa4287349742b41c44fda1597f3
       internalID: 223705692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_11
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 716
+        width: 136
+        height: 102
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175f95e619891fa4f8c3ab5fe0b0fc9e
+      internalID: -2017550823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_9
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 623
+        width: 67
+        height: 61
+      alignment: 9
+      pivot: {x: 0.875, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e13afcf9fbfc394c9b6c947b6ccca7d
+      internalID: -514989083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_10
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 619
+        width: 61
+        height: 61
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 754ebb1a7fb162b449523e9b43a0cdf7
+      internalID: 263975852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_12
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 542
+        width: 67
+        height: 61
+      alignment: 9
+      pivot: {x: 0.125, y: 0.8}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8274a8e0f19a6ee4891353ad05242d4f
+      internalID: 935398215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_13
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 15
+        width: 44
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc076c45c40983e449c85f71b4c53c58
+      internalID: 203050720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_14
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 8
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71f15ed3f84ba214e8ed72066a6de44e
+      internalID: -2093737932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_15
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 86
+        width: 87
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5575, y: 0.62}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b688b575316306846b97df7dc26f3d43
+      internalID: 1474592542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_16
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 8
+        width: 74
+        height: 68
+      alignment: 9
+      pivot: {x: 0.4795, y: 0.449}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff0416639a2eb449aee89c29a294f15
+      internalID: -289253860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Low_17
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 22
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2cb1ea95e6d633408385dbbe4580e9e
+      internalID: 565018132
       vertices: []
       indices: 
       edges: []
@@ -306,6 +495,14 @@ TextureImporter:
     nameFileIdTable:
       Low_0: -1609728128
       Low_1: -60913233
+      Low_10: 263975852
+      Low_11: -2017550823
+      Low_12: 935398215
+      Low_13: 203050720
+      Low_14: -2093737932
+      Low_15: 1474592542
+      Low_16: -289253860
+      Low_17: 565018132
       Low_2: 1428215238
       Low_3: -1714917641
       Low_4: -454279422
@@ -313,6 +510,7 @@ TextureImporter:
       Low_6: 418652621
       Low_7: -212510627
       Low_8: 223705692
+      Low_9: -514989083
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

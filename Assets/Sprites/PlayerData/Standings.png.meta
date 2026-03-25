@@ -398,7 +398,7 @@ TextureImporter:
         width: 245
         height: 446
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -406,6 +406,27 @@ TextureImporter:
       bones: []
       spriteID: 4d6ef163a6a902347bcf6aaec6ba5b64
       internalID: 40423514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Standings_14
+      rect:
+        serializedVersion: 2
+        x: 2258
+        y: 1585
+        width: 290
+        height: 468
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74632ff66d78bfa4690bb2038fd507b4
+      internalID: -1952076533
       vertices: []
       indices: 
       edges: []
@@ -427,6 +448,7 @@ TextureImporter:
       Standings_11: -1719932979
       Standings_12: -1953853971
       Standings_13: 40423514
+      Standings_14: -1952076533
       Standings_2: 530092768
       Standings_3: 794098961
       Standings_4: 1415707880

@@ -25,11 +25,15 @@ public class Amiya : PlayerSetting
     {
         base.Awake();
         source = GetComponent<AudioSource>(); AttackSounds.Add(PTS[0].GetComponent<AudioSource>());
-        player.SubEffects.Add(Weapon.GetComponent<SpriteRenderer>());
-        player.SubEffects.Add(Weapon2.GetComponent<SpriteRenderer>());
-        
         BulletIm = Bullet1;
         CurApplyLine = BL;
+    }
+
+    public override void ExternInit()
+    {
+        base.ExternInit();
+        player.SubEffects.Add(Weapon.GetComponent<SpriteRenderer>());
+        player.SubEffects.Add(Weapon2.GetComponent<SpriteRenderer>());
     }
 
     BulletInfo SpecInfo = new BulletInfo();
@@ -37,7 +41,7 @@ public class Amiya : PlayerSetting
     protected override void Start()
     {
         base.Start();
-        StartCoroutine(Test());
+        //StartCoroutine(Test());
     }
 
     int LastUse = 0;

@@ -56,7 +56,7 @@ public class Gum : PlayerSetting
                 NormalInfo, 0.2f, TargetPos.position, Vector3.zero, 0, false, null);
 
             Injure.Damage = Mathf.FloorToInt(player.MaxHP * 0.03f);
-            GetDamage(Injure, transform);
+            GetDamage(Injure);
             ActCount = 0;
         }
         else
@@ -68,7 +68,7 @@ public class Gum : PlayerSetting
         }
     }
 
-    protected override void GetDamage(BulletInfo Info, Transform DamageFrom)
+    public override void GetDamage(BulletInfo Info, Vector3 DamageFrom = default, bool MustHit = false)
     {
         if (OnSkill) Info.Damage = Mathf.FloorToInt(Info.Damage * 0.5f);
         base.GetDamage(Info, DamageFrom);
@@ -98,13 +98,14 @@ public class Gum : PlayerSetting
         {
             Buff.Buffs.Last *= 1.3f; Buff.Buffs.Heal = Mathf.FloorToInt(Buff.Buffs.Heal * 1.3f); Buff.Buffs.Attack *= 1.3f; Buff.Buffs.Defense = Buff.Buffs.Attack;
             Injure.Damage = Mathf.FloorToInt(player.MaxHP * 0.03f);
-            GetDamage(Injure, transform);
+            GetDamage(Injure);
             ActCount = 0;
         }
         for(int i = 0; i < GameManager.instance.Prefs.Length; i++) if (GameManager.instance.Prefs[i].activeSelf)
             {
                 BuffEffect[i].SetActive(true);
-                GameManager.instance.BM.MakeBuff(Buff, GameManager.instance.Prefs[i].transform.position, null, false);
+                GameManager.instance.GetScript(ind : i).SetBuff(Buff);
+                //GameManager.instance.BM.MakeBuff(Buff, GameManager.instance.Prefs[i].transform.position, null, false);
             }
 
         SkillEnd();
@@ -117,7 +118,7 @@ public class Gum : PlayerSetting
             Injure.Damage = Mathf.FloorToInt((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * 26);
             GameManager.instance.BM.MakeBullet(Injure, 0, transform.position + Vector3.up, player.sprite.flipX ? Vector3.left : Vector3.right, 30, false,FailMeat);
             NormalInfo.Damage = Mathf.FloorToInt(player.MaxHP * 0.03f);
-            GetDamage(NormalInfo, transform);
+            GetDamage(NormalInfo);
             ActCount = 0;
         }
         else

@@ -33,8 +33,7 @@ public class FEater : PlayerSetting
         HitEffect.gameObject.transform.position = TargetPos.position;
         HitEffect.Play();
         NormalInfo.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + player.AttackRatio + player.ReinforceAmount[0]) * DamageRatio * 10);
-        GameManager.instance.BM.MakeMeele(
-            NormalInfo, 0.2f, TargetPos.position + Gap, -player.Dir, 0, false);
+        GameManager.instance.BM.MakeMeele(NormalInfo, 0.2f, TargetPos.position + Gap, -player.Dir, 0, false);
     }
 
     Vector3 St1 = new Vector3(1.5f, 0.15f, 0);

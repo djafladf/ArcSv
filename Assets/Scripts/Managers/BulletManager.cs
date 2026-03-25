@@ -8,6 +8,9 @@ public class BulletManager : MonoBehaviour
 
     [SerializeField] GameObject Bullet;
     [SerializeField] GameObject Warning;
+    [SerializeField] LayerMask PlMask;
+    [SerializeField] LayerMask EmMask;
+
     GameObject[] Bullets;
     GameObject[] Warnings;
     WarningBullet[] WarningScripts;
@@ -42,6 +45,7 @@ public class BulletManager : MonoBehaviour
             Bullets[i].gameObject.SetActive(false);
             Bullets[i].name = $"{i}";
             BulletScripts[i] = Bullets[i].GetComponent<Bullet>();
+            BulletScripts[i].MyInd = i;
             BulletInfos[i] = new BulletInfo(0, false, 0);
         }
         GameManager.instance.StartLoading();
@@ -102,15 +106,17 @@ public class BulletManager : MonoBehaviour
                 Bullets[LastUseBull].transform.position = Start; Dir.z = 0;
                 Bullets[LastUseBull].transform.rotation = Quaternion.FromToRotation(Vector3.up, Dir);
                 if (Info.SpeedFactor != 0) speed *= Info.SpeedFactor;
-                BulletScripts[LastUseBull].Init_Attack(Penetrate, Dir * speed, false, IsEnemy, 0, Info.ScaleFactor, im, BL, anim, delay: delay, order: Info.LayerOrder);
+                BulletScripts[LastUseBull].Init_Attack(Penetrate, Dir * speed, IsEnemy, 0, Info.ScaleFactor, im, BL, anim, delay: delay, order: Info.LayerOrder);
                 BulletInfos[LastUseBull].Copy(Info);
                 break;
             }
         }
     }
 
+    Collider2D[] hits = new Collider2D[100];
+    int res = 0,mi = 0;
     /// <summary>
-    /// 근거리
+    /// 근거리(보스류랑 플레이어만 처리)
     /// </summary>
     /// <param name="Info"> Info </param>
     /// <param name="AfterTime"> Last Time </param>
@@ -121,35 +127,26 @@ public class BulletManager : MonoBehaviour
     /// <param name="debuffInfo"> About DeBuff </param>
     public void MakeMeele(BulletInfo Info, float AfterTime, Vector3 Start, Vector3 Dir, float speed, bool IsEnemy, Sprite im = null, RuntimeAnimatorController Anim = null, DeBuff debuffInfo = null, float delay = 0)
     {
-        int Fnum = 0;
-        while (Fnum++ < BullNum)
-        {
-            LastUseBull++; if (LastUseBull >= BullNum) LastUseBull = 0;
-            if (!Bullets[LastUseBull].activeSelf)
-            {
-                Bullets[LastUseBull].SetActive(true);
-                Bullets[LastUseBull].transform.position = Start; Dir.z = 0;
-                Bullets[LastUseBull].transform.rotation = Quaternion.FromToRotation(Vector3.up, Dir);
-                if (Info.SpeedFactor != 0) speed *= Info.SpeedFactor;
-                BulletScripts[LastUseBull].Init_Attack(-1, Dir * speed, true, IsEnemy, AfterTime, Info.ScaleFactor, im, Anim: Anim, delay: delay, order: Info.LayerOrder);
-                BulletInfos[LastUseBull].Copy(Info);
-                break;
-            }
-        }
-        /*        for (int i = 0; i < BullNum; i++)
-                {
-                    if (!Bullets[i].activeSelf)
-                    {
-                        Bullets[i].SetActive(true);
-                        Bullets[i].transform.position = Start; Dir.z = 0;
-                        Bullets[i].transform.rotation = Quaternion.FromToRotation(Vector3.up, Dir);
-                        BulletInfos[i].Copy(Info);
-                        if (Info.SpeedFactor != 0) speed *= Info.SpeedFactor;
-                        BulletScripts[i].Init_Attack(-1, Dir * speed, true, IsEnemy, AfterTime, Info.ScaleFactor, im, Anim: Anim, delay: delay, order: Info.LayerOrder);
-                        break;
-                    }
-        }*/
+        if(im != null) MakeEffect(AfterTime, Start, Dir, speed, im,Anim:Anim);
+        res = Physics2D.OverlapBoxNonAlloc(Start, (im == null ? Vector3.one : im.bounds.size) * Info.ScaleFactor, Vector2.SignedAngle(Vector2.up, Dir), hits,IsEnemy ? PlMask : EmMask);
+        if (!IsEnemy) for (mi = 0; mi < res; mi++) GameManager.instance.ES.InstanceTo[hits[mi].gameObject].OnDamage(inf: Info);
+        else for (mi = 0; mi < res; mi++) GameManager.instance.GetScript(hits[mi].gameObject).GetDamage(Info,DamageFrom:Start);
     }
+    /*int Fnum = 0;
+while (Fnum++ < BullNum)
+{
+    LastUseBull++; if (LastUseBull >= BullNum) LastUseBull = 0;
+    if (!Bullets[LastUseBull].activeSelf)
+    {
+        Bullets[LastUseBull].SetActive(true);
+        Bullets[LastUseBull].transform.position = Start; Dir.z = 0;
+        Bullets[LastUseBull].transform.rotation = Quaternion.FromToRotation(Vector3.up, Dir);
+        if (Info.SpeedFactor != 0) speed *= Info.SpeedFactor;
+        BulletScripts[LastUseBull].Init_Attack(-1, Dir * speed, true, IsEnemy, AfterTime, Info.ScaleFactor, im, Anim: Anim, delay: delay, order: Info.LayerOrder);
+        BulletInfos[LastUseBull].Copy(Info);
+        break;
+    }
+}*/
 
     public void MakeBoom(BulletInfo Info, BulletInfo After, Vector3 Start, Vector3 Dir, float Speed, Sprite im, Sprite HitIm, bool IsEnemy, DeBuff debuffInfo = null, BulletLine BL = null, float delay = 0)
     {
@@ -211,7 +208,7 @@ public class BulletManager : MonoBehaviour
     }
 
     Quaternion ZeroQuat = new Quaternion(0, 0, 0, 0);
-    public void MakeBuff(BulletInfo BI, Vector3 Start, Sprite im, bool IsEnemy, bool IsField = false)
+/*    public void MakeBuff(BulletInfo BI, Vector3 Start, Sprite im, bool IsEnemy, bool IsField = false)
     {
         
         int Fnum = 0;
@@ -228,19 +225,7 @@ public class BulletManager : MonoBehaviour
                 break;
             }
         }
-/*        for (int i = 0; i < BullNum; i++)
-        {
-            if (!Bullets[i].activeSelf)
-            {
-                Bullets[i].SetActive(true);
-                Bullets[i].transform.position = Start;
-                Bullets[i].transform.rotation = new Quaternion(0, 0, 0, 0);
-                BulletScripts[i].Init_Buff(BI.ScaleFactor, im, IsEnemy, IsField);
-                BulletInfos[i].Copy(BI);
-                break;
-            }
-        }*/
-    }
+    }*/
 
     public BulletInfo GetBulletInfo(int ind)
     {

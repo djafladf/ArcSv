@@ -267,7 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 34239255}
   - component: {fileID: 34239254}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 118430019}
   - component: {fileID: 118430018}
   - component: {fileID: 118430017}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RT
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -895,20 +895,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 118430019}
     m_ColliderPaths:
-    - - X: 260555552
-        Y: 160555552
-      - X: -260555552
-        Y: 160555552
-      - X: -260555552
-        Y: -160555552
-      - X: 260555552
-        Y: -160555552
+    - - X: 260555584
+        Y: 160555648
+      - X: -260555584
+        Y: 160555648
+      - X: -260555648
+        Y: 160555584
+      - X: -260555648
+        Y: -160555584
+      - X: -260555584
+        Y: -160555648
+      - X: 260555584
+        Y: -160555648
+      - X: 260555648
+        Y: -160555584
+      - X: 260555648
+        Y: 160555584
   m_CompositePaths:
     m_Paths:
-    - - {x: 26.055527, y: -16.055555}
-      - {x: 26.055527, y: 16.055555}
-      - {x: -26.055555, y: 16.055527}
-      - {x: -26.055527, y: -16.055555}
+    - - {x: 26.05553, y: -16.055565}
+      - {x: 26.05553, y: 16.055565}
+      - {x: -26.055565, y: 16.05553}
+      - {x: -26.05553, y: -16.055565}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &118430018
@@ -11926,7 +11934,7 @@ GameObject:
   - component: {fileID: 314900863}
   - component: {fileID: 314900862}
   - component: {fileID: 314900861}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RB
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -11968,20 +11976,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 314900863}
     m_ColliderPaths:
-    - - X: -260555552
-        Y: 160555552
-      - X: -260555552
-        Y: -160555552
-      - X: 260555552
-        Y: -160555552
-      - X: 260555552
-        Y: 160555552
+    - - X: 260555584
+        Y: 160555648
+      - X: -260555584
+        Y: 160555648
+      - X: -260555648
+        Y: 160555584
+      - X: -260555648
+        Y: -160555584
+      - X: -260555584
+        Y: -160555648
+      - X: 260555584
+        Y: -160555648
+      - X: 260555648
+        Y: -160555584
+      - X: 260555648
+        Y: 160555584
   m_CompositePaths:
     m_Paths:
-    - - {x: 26.055527, y: -16.055555}
-      - {x: 26.055527, y: 16.055555}
-      - {x: -26.055555, y: 16.055527}
-      - {x: -26.055527, y: -16.055555}
+    - - {x: 26.05553, y: -16.055565}
+      - {x: 26.05553, y: 16.055565}
+      - {x: -26.055565, y: 16.05553}
+      - {x: -26.05553, y: -16.055565}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &314900862
@@ -17283,7 +17299,7 @@ GameObject:
   - component: {fileID: 425377586}
   - component: {fileID: 425377585}
   - component: {fileID: 425377584}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LB
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -17325,20 +17341,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 425377586}
     m_ColliderPaths:
-    - - X: -260555552
-        Y: 160555552
-      - X: -260555552
-        Y: -160555552
-      - X: 260555552
-        Y: -160555552
-      - X: 260555552
-        Y: 160555552
+    - - X: 260555584
+        Y: 160555648
+      - X: -260555584
+        Y: 160555648
+      - X: -260555648
+        Y: 160555584
+      - X: -260555648
+        Y: -160555584
+      - X: -260555584
+        Y: -160555648
+      - X: 260555584
+        Y: -160555648
+      - X: 260555648
+        Y: -160555584
+      - X: 260555648
+        Y: 160555584
   m_CompositePaths:
     m_Paths:
-    - - {x: 26.055527, y: -16.055555}
-      - {x: 26.055527, y: 16.055555}
-      - {x: -26.055555, y: 16.055527}
-      - {x: -26.055527, y: -16.055555}
+    - - {x: 26.05553, y: -16.055565}
+      - {x: 26.05553, y: 16.055565}
+      - {x: -26.055565, y: 16.05553}
+      - {x: -26.05553, y: -16.055565}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &425377585
@@ -22107,8 +22131,8 @@ MonoBehaviour:
   - spawninfo:
     - id: 0
       start: 0
-      end: 1
-      respawn: 1000
+      end: 100
+      respawn: 5
       IsBoss: 0
       IsLast: 1
   StageInits: 0000000000000000
@@ -35658,7 +35682,7 @@ GameObject:
   - component: {fileID: 1615434795}
   - component: {fileID: 1615434794}
   - component: {fileID: 1615434793}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LT
   m_TagString: Map
   m_Icon: {fileID: 0}
@@ -35700,20 +35724,28 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1615434795}
     m_ColliderPaths:
-    - - X: -260555552
-        Y: 160555552
-      - X: -260555552
-        Y: -160555552
-      - X: 260555552
-        Y: -160555552
-      - X: 260555552
-        Y: 160555552
+    - - X: 260555584
+        Y: 160555648
+      - X: -260555584
+        Y: 160555648
+      - X: -260555648
+        Y: 160555584
+      - X: -260555648
+        Y: -160555584
+      - X: -260555584
+        Y: -160555648
+      - X: 260555584
+        Y: -160555648
+      - X: 260555648
+        Y: -160555584
+      - X: 260555648
+        Y: 160555584
   m_CompositePaths:
     m_Paths:
-    - - {x: 26.055527, y: -16.055555}
-      - {x: 26.055527, y: 16.055555}
-      - {x: -26.055555, y: 16.055527}
-      - {x: -26.055527, y: -16.055555}
+    - - {x: 26.05553, y: -16.055565}
+      - {x: 26.05553, y: 16.055565}
+      - {x: -26.055565, y: 16.05553}
+      - {x: -26.05553, y: -16.055565}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &1615434794
@@ -49240,7 +49272,7 @@ GameObject:
   - component: {fileID: 2094199810}
   - component: {fileID: 2094199809}
   - component: {fileID: 2094199808}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52611,6 +52643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 016f0d88423d4fb47a8a108d3617d326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StackObjNum: 4
   Name: {fileID: 2034442019555543234}
   LV: {fileID: 2034442019978905622}
   Kill: {fileID: 2034442018712516513}
@@ -52659,7 +52692,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: -1
       hp: 0
       vamp: 0
@@ -52675,7 +52708,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -52700,7 +52733,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: -1
       hp: 0
       vamp: 0
@@ -52716,7 +52749,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -52741,7 +52774,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: -1
       hp: 0.01
       vamp: 0
@@ -52757,7 +52790,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -52782,7 +52815,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: -1
       hp: 0
       vamp: 0
@@ -52798,7 +52831,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -52823,7 +52856,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: -1
       hp: 0
       vamp: 0
@@ -52839,7 +52872,7 @@ MonoBehaviour:
       exp: 0
       heal: 0
       GoodsEarn: 0
-      dragons: 0
+      stackType: 0
       special: 0
       hp: 0
       vamp: 0
@@ -52858,7 +52891,7 @@ MonoBehaviour:
   - {fileID: 2003958746, guid: 71c8da25a7a6b3f44a3ad4e081c4d6aa, type: 3}
   - {fileID: -1170912894, guid: 71c8da25a7a6b3f44a3ad4e081c4d6aa, type: 3}
   - {fileID: -670043424, guid: 71c8da25a7a6b3f44a3ad4e081c4d6aa, type: 3}
-  DragonCount: 0
+  StackObj: 
   CurRequest: {fileID: 0}
   BatchImage: {fileID: 2034442018859482266}
   BatchOrder: 
@@ -53768,6 +53801,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bullet: {fileID: 1388142925665638543, guid: 5dae1f10d5d22234fa6c015897bc7fb5, type: 3}
   Warning: {fileID: 2881917522911814504, guid: d9b299f2abf29f943aba7124449bdd7b, type: 3}
+  PlMask:
+    serializedVersion: 2
+    m_Bits: 128
+  EmMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &8712970481818257480
 Transform:
   m_ObjectHideFlags: 0

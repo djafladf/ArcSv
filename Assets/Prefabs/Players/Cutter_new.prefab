@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539120915633731624}
   - component: {fileID: 1539120915633731625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,6 +261,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -276,6 +277,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -296,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2622139986343179335}
   - component: {fileID: 7588988479603082602}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +384,7 @@ GameObject:
   - component: {fileID: 8742964557092350553}
   - component: {fileID: 2389806132651377935}
   - component: {fileID: 6591888774103275800}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +462,7 @@ GameObject:
   - component: {fileID: 1202188581394550247}
   - component: {fileID: 1153632328980325955}
   - component: {fileID: 3604648949331318458}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -594,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3634089304634805731}
   - component: {fileID: 3311437125361914158}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: PT
   m_TagString: Untagged
   m_Icon: {fileID: 0}

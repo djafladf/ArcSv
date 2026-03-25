@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [NonSerialized] public int MyInd;
+
     Rigidbody2D rigid;
     CapsuleCollider2D coll;
     SpriteRenderer sprite;
@@ -30,7 +33,7 @@ public class Bullet : MonoBehaviour
 
 
     public void Init_Attack(int Penetrate, Vector3 Dir,
-        bool IsMeele, bool IsEnemy, float AfterTime, float ScaleFactor = 1, Sprite Image = null,
+        bool IsEnemy, float AfterTime, float ScaleFactor = 1, Sprite Image = null,
         BulletLine BL = null, RuntimeAnimatorController Anim = null, Sprite HitImage = null, float delay = 0, int order = 4)
     {
         if (BL != null)
@@ -45,7 +48,7 @@ public class Bullet : MonoBehaviour
         if (Anim != null) { anim.enabled = true; anim.runtimeAnimatorController = Anim; }
 
         this.HitImage = HitImage;
-        rigid.simulated = true; rigid.velocity = Dir; this.Penetrate = Penetrate; sprite.sprite = Image; this.IsMeele = IsMeele; this.IsEnem = IsEnemy; IsBoom = false;
+        rigid.simulated = true; rigid.velocity = Dir; this.Penetrate = Penetrate; sprite.sprite = Image; this.IsEnem = IsEnemy; IsBoom = false;
 
         if (delay != 0 && gameObject.activeSelf) StartCoroutine(AttackDelay(delay));
         else coll.enabled = true;
@@ -58,7 +61,7 @@ public class Bullet : MonoBehaviour
         
         if (IsMeele && gameObject.activeSelf) StartCoroutine(AfterImage(AfterTime,delay == 0));
         
-        tag = IsEnemy ? "EnemyAttack" : "PlayerAttack";
+        //tag = IsEnemy ? "EnemyAttack" : "PlayerAttack";
 
         sprite.color -= new Color(0,0,0,1 - GameManager.instance.gameStatus.AttackAlpha);
         sprite.sortingOrder = order;
@@ -117,43 +120,28 @@ public class Bullet : MonoBehaviour
         if(gameObject.activeSelf) StartCoroutine(AfterImage(AfterTime,AlphaChange));
     }
 
-    public void Init_Buff(float ScaleFactor, Sprite Im,  bool IsEnemy,bool IsField)
-    {
-        rigid.simulated = true;
-        coll.enabled = true;
-        
-        sprite.sprite = Im;
-        if (ScaleFactor == 0) ScaleFactor = 1;
-        if (Im != null) coll.size = sprite.bounds.size * ScaleFactor;
-        else coll.size = Vector2.one * ScaleFactor;
-
-        IsMeele = true;
-        sprite.color -= new Color(0, 0, 0, 1 - GameManager.instance.gameStatus.AttackAlpha);
-        if (gameObject.activeSelf) StartCoroutine(AfterImage(0.3f,true));
-        tag = IsEnemy ? "EnemyBuff" : "PlayerBuff";
-    }
-
     public void OnDisable()
     {
         Line.Clear(); Line.enabled = false;
         anim.enabled = false; rigid.simulated = false; coll.enabled = false;
         sprite.color = Color.white;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") && !IsEnem)
         {
+            GameManager.instance.ES.InstanceTo[collision.gameObject].OnDamage(MyInd);
             if (IsMeele) { coll.enabled = false; return; }
             if (HitImage != null)
             {
                 if (IsBoom) GameManager.instance.BM.MakeMeele(AfterBull, 0.3f, transform.position, Vector3.zero,0, IsEnem, HitImage);
                 else GameManager.instance.BM.MakeEffect(0.3f, transform.position, Vector3.zero,0, HitImage);
             }
-            if (Penetrate-- <= 0) { if (Line.enabled && gameObject.activeSelf) StartCoroutine(ForLine());  else gameObject.SetActive(false);  }
+            if (Penetrate-- <= 0) { if (Line.enabled && gameObject.activeSelf) StartCoroutine(ForLine());  else gameObject.SetActive(false);}
         }
         else if((collision.CompareTag("Player")||collision.CompareTag("Player_Hide")) && IsEnem)
         {
+            GameManager.instance.GetScript(collision.gameObject).GetDamage(GameManager.instance.BM.GetBulletInfo(MyInd));
             if (IsMeele) { coll.enabled = false; return; }
             if (HitImage != null)
             {
@@ -179,6 +167,7 @@ public class Bullet : MonoBehaviour
         StartCoroutine(ForLine());
     }
 
+    // LineRenderer°¡ Bullet °ú 
     IEnumerator ForLine()
     {
         IsMeele = true;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 102927214651053898}
   - component: {fileID: 7604243763323936436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2958517739862157654}
   - component: {fileID: 2958517739862157655}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1685abb01cb423145b487aff60f8451f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: 0fad72ddab4b9c84382513dae0336576, type: 2}
   player: {fileID: 11400000, guid: 0fad72ddab4b9c84382513dae0336576, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -291,6 +290,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -306,6 +306,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -443,7 +444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 205988947945634026}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -653,7 +654,7 @@ GameObject:
   - component: {fileID: 7938602339925048564}
   - component: {fileID: 3915008177283568546}
   - component: {fileID: 5477992191660871605}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -728,7 +729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3683132338420966122}
   - component: {fileID: 9092534437954376647}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4306681069008327578}
   - component: {fileID: 4517738761991777624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -901,7 +902,7 @@ GameObject:
   - component: {fileID: 536944515340773924}
   - component: {fileID: 5226614351519314654}
   - component: {fileID: 3084833691443099464}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bat_Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1076,7 +1077,7 @@ GameObject:
   - component: {fileID: 2045796116565323314}
   - component: {fileID: 5863845007773296214}
   - component: {fileID: 8390821446257819982}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bat_Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

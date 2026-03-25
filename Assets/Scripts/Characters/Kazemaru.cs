@@ -65,14 +65,14 @@ public class Kazemaru : PlayerSetting
         OnEvade = false;
     }
 
-    protected override void GetDamage(BulletInfo Info, Transform DamageFrom)
+    public override void GetDamage(BulletInfo Info, Vector3 DamageFrom = default, bool MustHit = false)
     {
         if (CanEvade && gameObject.activeSelf)
         {
             OnEvade = true;
             player.anim.SetTrigger("Evade");
             StartCoroutine(Evade());
-            EvadeFrom = DamageFrom.position;
+            EvadeFrom = DamageFrom;
             CanMove = false;
             return;
         }

@@ -209,6 +209,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: dd_5
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 87
+        width: 116
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0386ed5eeedecba4aa198c9ebc34b37a
+      internalID: 180612215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -225,6 +246,7 @@ TextureImporter:
       dd_2: 1640438525
       dd_3: -171286313
       dd_4: 1064226073
+      dd_5: 180612215
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -129,10 +141,10 @@ TextureImporter:
       name: Effect_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 218
-        width: 40
-        height: 41
+        x: 78
+        y: 207
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +162,10 @@ TextureImporter:
       name: Effect_2
       rect:
         serializedVersion: 2
-        x: 133
-        y: 231
-        width: 21
-        height: 21
+        x: 140
+        y: 214
+        width: 40
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +183,10 @@ TextureImporter:
       name: Effect_3
       rect:
         serializedVersion: 2
-        x: 89
-        y: 188
-        width: 25
-        height: 23
+        x: 143
+        y: 178
+        width: 26
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,12 +204,12 @@ TextureImporter:
       name: Effect_4
       rect:
         serializedVersion: 2
-        x: 123
-        y: 38
-        width: 130
-        height: 115
+        x: 83
+        y: 91
+        width: 99
+        height: 50
       alignment: 9
-      pivot: {x: 0.5, y: 0.8}
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,10 +225,10 @@ TextureImporter:
       name: Effect_5
       rect:
         serializedVersion: 2
-        x: 300
-        y: 125
-        width: 76
-        height: 34
+        x: 98
+        y: 33
+        width: 72
+        height: 30
       alignment: 9
       pivot: {x: 0.45, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,6 +238,27 @@ TextureImporter:
       bones: []
       spriteID: 1924563241f076c459e0bd341e567fdb
       internalID: 517173504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Effect_6
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 141
+        width: 99
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec034bd04f3dc24ab00ca8912785635
+      internalID: -1042267393
       vertices: []
       indices: 
       edges: []
@@ -241,15 +274,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Effect_2: -317277691
-      Effect_1: -314280399
       Effect_0: 1060529650
-      Effect_4: 86722428
+      Effect_1: -314280399
+      Effect_2: -317277691
       Effect_3: -1607878231
-      Effect_7: 207967300
+      Effect_4: 86722428
       Effect_5: 517173504
-      Effect_8: 435452181
       Effect_6: -1042267393
+      Effect_7: 207967300
+      Effect_8: 435452181
       Effect_9: 1796706519
   spritePackingTag: 
   pSDRemoveMatte: 0

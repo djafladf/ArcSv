@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3500845343173602749}
   - component: {fileID: 6251274062644783543}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539120915633731624}
   - component: {fileID: 1539120915633731625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de719e6c0afbde345a85698e30cacbac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: 394e87bae147e6745b45b65061851e3e, type: 2}
   player: {fileID: 11400000, guid: 5095becf503867e41ac9f69cb573f174, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -348,6 +347,7 @@ MonoBehaviour:
     ScaleFactor: 1.5
     SpeedFactor: 1
     ExecuteRatio: 0.05
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -449,7 +450,7 @@ GameObject:
   - component: {fileID: 8555947256395292204}
   - component: {fileID: 7418583222373978171}
   - component: {fileID: 4201674306256235486}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5260,7 +5261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2622139986343179335}
   - component: {fileID: 7588988479603082602}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5346,7 +5347,7 @@ GameObject:
   - component: {fileID: 353761061264238739}
   - component: {fileID: 5016605162989011088}
   - component: {fileID: 5480282764621973633}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Gage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5424,7 +5425,7 @@ GameObject:
   - component: {fileID: 334469352550080915}
   - component: {fileID: 6054427101749548114}
   - component: {fileID: 3937467850904522310}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Nyam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5563,7 +5564,7 @@ GameObject:
   - component: {fileID: 8742964557092350553}
   - component: {fileID: 2389806132651377935}
   - component: {fileID: 6591888774103275800}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5638,7 +5639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2616872219839429353}
   - component: {fileID: 8147550155309558871}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: GageBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5723,7 +5724,7 @@ GameObject:
   m_Component:
   - component: {fileID: 956707531532350020}
   - component: {fileID: 4437215538293055881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}

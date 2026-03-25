@@ -45,20 +45,13 @@ public class Wafarin_Bat : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!gameObject.activeSelf) return;
-        if (IsAttack == 0)
+        OnTarget = true;
+        coll.enabled = false;
+
+        if (IsAttack == 0 && collision.transform == Target) cor = StartCoroutine(HealCor());
+        else
         {
-            if (collision.transform == Target)
-            {
-                OnTarget = true;
-                coll.enabled = false;
-                cor = StartCoroutine(HealCor());
-            }
-        }
-        else if (collision.CompareTag("Enemy"))
-        {
-            OnTarget = true;
             Target = collision.transform;
-            coll.enabled = false;
             cor = StartCoroutine(AttackCor());
         }
     }
@@ -71,7 +64,7 @@ public class Wafarin_Bat : MonoBehaviour
         while(ActCount-- > 0)
         {
             BI.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + Wafarin.player.AttackRatio + Wafarin.player.ReinforceAmount[0]) * Wafarin.DamageRatio);
-            GameManager.instance.BM.MakeMeele(BI, 0.2f, Target.position, Vector3.zero, 0, false);
+            GameManager.instance.ES.InstanceTo[Target.gameObject].OnDamage(inf : BI);
             yield return GameManager.DotFiveSec;
         }
         gameObject.SetActive(false);
@@ -82,7 +75,8 @@ public class Wafarin_Bat : MonoBehaviour
         while (ActCount-- > 0)
         {
             BI.Buffs.Heal = (int)((1 + GameManager.instance.PlayerStatus.attack + Wafarin.player.AttackRatio + Wafarin.player.ReinforceAmount[0]) * Wafarin.HealRatio);
-            GameManager.instance.BM.MakeBuff(BI,Target.position,null,false);
+            GameManager.instance.GetScript(Target.gameObject).SetBuff(BI);
+            //GameManager.instance.BM.MakeBuff(BI,Target.position,null,false);
             yield return GameManager.DotFiveSec;
         }
         gameObject.SetActive(false);

@@ -18,9 +18,10 @@ public class Player : ScriptableObject
     [SerializeField] public int InitDefense;
     [SerializeField] public int Cost;
     [SerializeField] public int ReBatchTime;
-    
+
 
     // Status(NonSerializeAble)
+    [NonSerialized] public PlayerSetting Scripts;
     [NonSerialized] public int MaxHP;
     [NonSerialized] public int CurHP;
     [NonSerialized] public int MaxSp;

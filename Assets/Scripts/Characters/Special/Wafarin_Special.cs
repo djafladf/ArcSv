@@ -32,29 +32,43 @@ public class Wafarin_Special : MonoBehaviour
         StartCoroutine(Attack());
     }
 
+    HashSet<GameObject> OnPlayer = new HashSet<GameObject>();
+    List<GameObject> TmpPlayer = new();
+    HashSet<GameObject> OnEnemy = new HashSet<GameObject>();
+    List<GameObject> TmpEnemy = new();
+
     IEnumerator Attack()
     {
-        Coll.enabled = true;
-        yield return ZeroDotFive;
-        for(int i = 0; i < 10; i++)
+        OnPlayer.Clear(); OnEnemy.Clear();
+        yield return GameManager.DotOneSec;
+        for (int i = 0; i < 10; i++)
         {
-            Coll.enabled = false;
-            yield return ZeroDotFive;
-            Coll.enabled = true;
-            yield return ZeroDotFive;
+            TmpPlayer.AddRange(OnPlayer);
+            BI.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + Wafarin.AttackRatio + Wafarin.ReinforceAmount[0]) * 30);
+            foreach (var j in TmpPlayer) if(j.activeSelf) GameManager.instance.GetScript(j).SetBuff(Buff);
+            TmpPlayer.Clear();
+
+            TmpEnemy.AddRange(OnEnemy);
+            foreach (var j in TmpEnemy) if (j.activeSelf)
+                {
+                    //GameManager.instance.BM.MakeMeele(BI, 0.6f, j.transform.position, Vector3.zero, 0, false, Bullet);
+                    GameManager.instance.ES.InstanceTo[j].OnDamage(inf : BI);
+                    GameManager.instance.BM.MakeEffect(0.6f, j.transform.position, Vector3.zero, 0, Bullet);
+                }
+            TmpEnemy.Clear();
+            yield return GameManager.DotOneSec;
         }
         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Player_Hide"))
-            GameManager.instance.BM.MakeBuff(Buff, collision.transform.position, null, false);
-        if (collision.CompareTag("Enemy"))
-        {
-            Transform cnt = collision.transform;
-            BI.Damage = (int)((1 + GameManager.instance.PlayerStatus.attack + Wafarin.AttackRatio + Wafarin.ReinforceAmount[0]) * 30);
-            GameManager.instance.BM.MakeMeele(BI, 0.6f, cnt.position, Vector3.zero, 0, false, Bullet);
-        }
+        if (collision.CompareTag("Player") || collision.CompareTag("Player_Hide")) OnPlayer.Add(collision.gameObject);
+        if (collision.CompareTag("Enemy")) OnEnemy.Add(collision.gameObject);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Player_Hide")) OnPlayer.Remove(collision.gameObject);
+        if (collision.CompareTag("Enemy")) OnEnemy.Remove(collision.gameObject);
     }
 }

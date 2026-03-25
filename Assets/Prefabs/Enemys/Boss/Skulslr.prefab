@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 845544266465047089}
   - component: {fileID: 1971393351128632209}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossTag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,6 +254,7 @@ MonoBehaviour:
   Defense: 30
   Weight: 1
   EnemyType: 8
+  IsBoss: 1
   IsRange: 0
   MakeLine: 0
   BI:
@@ -267,6 +268,8 @@ MonoBehaviour:
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0
+    ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -282,6 +285,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   Bull: {fileID: 0}
   BL:
     Color:
@@ -336,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4933307748615392279}
   - component: {fileID: 394083742318455229}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: AfterIm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +423,7 @@ GameObject:
   - component: {fileID: 8029327513176416244}
   - component: {fileID: 8234798074415624958}
   - component: {fileID: 488121273095537061}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: BackParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5230,7 +5234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837772333138293244}
   - component: {fileID: 6544008432362643069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5316,7 +5320,7 @@ GameObject:
   - component: {fileID: 7769702839734820166}
   - component: {fileID: 7769702839734820162}
   - component: {fileID: 3760417788998118722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackRange
   m_TagString: Enemy_Array
   m_Icon: {fileID: 0}
@@ -5397,7 +5401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 852643493982425602}
   - component: {fileID: 5395683885239057848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FrontParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5547,7 +5551,7 @@ GameObject:
   - component: {fileID: 2449514518180665793}
   - component: {fileID: 7930836591809819797}
   - component: {fileID: 423425500997905602}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

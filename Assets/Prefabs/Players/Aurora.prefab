@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 3088294030132790921}
   - component: {fileID: 2732047803308798909}
   - component: {fileID: 1455379297367631880}
-  m_Layer: 0
+  - component: {fileID: 406186915108711919}
+  - component: {fileID: 2343117862474649339}
+  m_Layer: 12
   m_Name: IceMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 265244429008350597}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2, z: -1}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7882917619409072174}
@@ -55,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: d3e85573fd9e8e443b774d7c34a3c9f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,13 +77,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -909833349, guid: 1bea2ac0fbe00394e91b223a31ecac66, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 1bea2ac0fbe00394e91b223a31ecac66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2.6666667, y: 2.6666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99,8 +101,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25fbce6c669e104db3099b3cc8e192e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 0d6143cb0a66d034e872112b686cb97d, type: 2}
-  Sp: {fileID: 2125407789, guid: 1bea2ac0fbe00394e91b223a31ecac66, type: 3}
+  main: {fileID: 2873998659933538101}
+--- !u!61 &406186915108711919
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265244429008350597}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.6, y: 4.6}
+    newSize: {x: 2.6666667, y: 2.6666667}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.6, y: 4.6}
+  m_EdgeRadius: 0
+--- !u!50 &2343117862474649339
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265244429008350597}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &938244301962743683
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7637916188083650588}
   - component: {fileID: 2651884549679460657}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539120915633731624}
   - component: {fileID: 1539120915633731625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539120915633731631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalPosition: {x: 0, y: -2.2, z: 0}
   m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -431,7 +479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8f46e7ad9766742a82e876acb8967a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: 0d6143cb0a66d034e872112b686cb97d, type: 2}
   player: {fileID: 11400000, guid: 0d6143cb0a66d034e872112b686cb97d, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -448,6 +495,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -463,6 +511,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -481,7 +530,7 @@ GameObject:
   - component: {fileID: 3803815261801963010}
   - component: {fileID: 7833640083999158612}
   - component: {fileID: 1650558031302503747}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +606,7 @@ GameObject:
   - component: {fileID: 1434063462458362665}
   - component: {fileID: 6508259766333623013}
   - component: {fileID: 5981628143620694416}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LTR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +621,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2141672736996372342}
   m_LocalRotation: {x: -0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -831,7 +880,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1413,7 +1462,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 6
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2310,7 +2359,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5379,7 +5428,7 @@ GameObject:
   - component: {fileID: 7882917619409072174}
   - component: {fileID: 5881452785950598561}
   - component: {fileID: 363209458122210140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RTL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5394,7 +5443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4380867215642069852}
   m_LocalRotation: {x: -0.5735764, y: 0, z: 0, w: 0.8191521}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5653,7 +5702,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6235,7 +6284,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 6
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -7132,7 +7181,7 @@ ParticleSystem:
     orbitalZ:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4
       minScalar: 0
       maxCurve:
         serializedVersion: 2

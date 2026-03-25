@@ -88,13 +88,10 @@ public class Rosmon_Special : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
-        {
             if (!AS.isPlaying) AS.Play();
             BI.Damage = Mathf.FloorToInt((1 + GameManager.instance.PlayerStatus.attack + GameManager.instance.PlayerStatus.attackspeed + Rosmon.AttackRatio + Rosmon.ReinforceAmount[0]) * 30);
-            GameManager.instance.BM.MakeMeele(BI,0.3f,collision.transform.position,Vector3.zero,0,false);
+            GameManager.instance.ES.InstanceTo[collision.gameObject].OnDamage(inf:BI);
             if (collision.transform == Target && !tmp) { tmp = true; rigid.AddForce(Vector2.right); }
-        }
     }
 
     [SerializeField] float AttackGap = 0.2f;

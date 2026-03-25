@@ -172,12 +172,16 @@ MonoBehaviour:
   BI:
     Damage: 0
     DealFrom: 0
+    LayerOrder: 0
     IsEffect: 0
     IsFix: 0
     KnockBack: 0
+    Vamp: 0
     IgnoreDefense: 0
     ScaleFactor: 0
     SpeedFactor: 0
+    ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -185,6 +189,7 @@ MonoBehaviour:
       Defense: 0
       Ice: 0
       Fragility: 0
+      Stun: 0
     Buffs:
       Last: 0
       Speed: 0
@@ -192,6 +197,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   Bull: {fileID: 0}
   BL:
     Color:
@@ -243,7 +249,7 @@ GameObject:
   - component: {fileID: 4332775793810164914}
   - component: {fileID: 8394261529672827976}
   - component: {fileID: 5120736299570516996}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Part1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5055,7 +5061,7 @@ GameObject:
   - component: {fileID: 1592525178102247436}
   - component: {fileID: 9197726828956078439}
   - component: {fileID: 7316642437418243365}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Part2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9866,7 +9872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837772333138293244}
   - component: {fileID: 6544008432362643069}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9952,7 +9958,7 @@ GameObject:
   - component: {fileID: 7769702839734820166}
   - component: {fileID: 7769702839734820162}
   - component: {fileID: 3760417788998118722}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackRange
   m_TagString: Enemy_Array
   m_Icon: {fileID: 0}
@@ -10032,7 +10038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5573571389807674961}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RideParts
   m_TagString: Untagged
   m_Icon: {fileID: 0}

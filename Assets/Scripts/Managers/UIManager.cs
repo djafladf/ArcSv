@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     [NonSerialized] public float CurTime = 0;
     [NonSerialized] public float BatchAreaSize = 600;
 
+    [SerializeField] int StackObjNum = 4;
     [SerializeField] TMP_Text Name;
     [SerializeField] TMP_Text LV;
     [SerializeField] TMP_Text Kill;
@@ -49,6 +50,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.instance.UM = this;
         CurCost = GameManager.instance.gameStatus.Stat[6] * 5;
+        StackObj = new int[StackObjNum]; for (int i = 0; i < StackObjNum; i++) { StackObj[i] = 0; StackDetail.Add(new float[12]); }
         GameManager.instance.StartLoading();
 
 #if UNITY_STANDALONE
@@ -327,8 +329,10 @@ public class UIManager : MonoBehaviour
     int ReRollCount;
 
     [SerializeField] List<Sprite> RelicSubSprites;
-    bool[] Dragons = { false, false, false, false, false };
-    [HideInInspector] public int DragonCount = 0;
+    [HideInInspector] public List<float[]> StackDetail = new List<float[]>();  //attribute 순이니까 기억해둘것(selection, stackType,special 제외)
+    [HideInInspector] public int[] StackObj;
+
+    public event Action StatChange;
     public void ApplySelection(int ind,bool IsWeapon,int rarity)
     {
         StickStatChange(true);
@@ -353,116 +357,103 @@ public class UIManager : MonoBehaviour
             attribute cntatt = cnt.attributes;
             attribute enem = cnt.attribute_Enem;
 
-
-            if(cntatt.GoodsEarn != 0)GameManager.instance.PlayerStatus.GoodsEarn += cntatt.GoodsEarn;
-            if(cntatt.heal != 0) GameManager.instance.PlayerStatus.heal += cntatt.heal;
-            if(cntatt.power != 0) GameManager.instance.PlayerStatus.power += cntatt.power;
+            
+            if (cntatt.selection != 0) GameManager.instance.PlayerStatus.selection += cntatt.selection;
             if (enem.attack != 0) GameManager.instance.EnemyStatus.attack += enem.attack;
             if (enem.defense != 0) GameManager.instance.EnemyStatus.defense += enem.defense;
             if (enem.speed != 0) GameManager.instance.EnemyStatus.speed += enem.speed;
             if (enem.hp != 0) GameManager.instance.EnemyStatus.hp += enem.hp;
 
-            //if (cntatt.special != -1) { Selected.Add(cnt); NonSelected.RemoveAt(ind); }
-            
+            float stDesc = 0;
             if (cntatt.attack != 0)
             {
-                GameManager.instance.PlayerStatus.attack += cntatt.attack;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.attack += cntatt.attack;
+                else { stDesc = StackDetail[cntatt.stackType - 1][0] = cntatt.attack; StackObj[cntatt.stackType-1]++;}
                 AttackStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attack * 100)}%";
             }
-
-            if (cntatt.cost != 0)
+            if (cntatt.attackspeed != 0)
             {
-                GameManager.instance.PlayerStatus.cost += cntatt.cost;
-                CostStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.cost - 1) * 100)}%";
-            }
-
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.attackspeed += cntatt.attackspeed;
+                else { stDesc = StackDetail[cntatt.stackType - 1][1] = cntatt.attackspeed; StackObj[cntatt.stackType-1]++; }
+                HasteStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attackspeed * 100)}%";
+                StatChange?.Invoke();
+            } 
             if (cntatt.defense != 0)
             {
-                GameManager.instance.PlayerStatus.defense += cntatt.defense;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.defense += cntatt.defense;
+                else { stDesc = StackDetail[cntatt.stackType - 1][2] = cntatt.defense; StackObj[cntatt.stackType - 1]++; }
                 DefenseStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.defense * 100)}%";
             }
-
-            if(cntatt.speed != 0)
+            if (cntatt.speed != 0)
             {
-                GameManager.instance.PlayerStatus.speed += cntatt.speed;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.speed += cntatt.speed;
+                else { stDesc = StackDetail[cntatt.stackType - 1][3] = cntatt.speed; StackObj[cntatt.stackType - 1]++; }
                 SpeedStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.speed * 100)}%";
             }
-
+            if (cntatt.power != 0)
+            {
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.power += cntatt.power;
+                else { stDesc = StackDetail[cntatt.stackType - 1][4] = cntatt.power; StackObj[cntatt.stackType - 1]++; }
+            }
+            if (cntatt.cost != 0)
+            {
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.cost += cntatt.cost;
+                else { stDesc = StackDetail[cntatt.stackType - 1][5] = cntatt.cost; StackObj[cntatt.stackType - 1]++; }
+                CostStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.cost - 1) * 100)}%";
+            }
             if (cntatt.pickup != 0) 
-            { 
-                GameManager.instance.PlayerStatus.pickup += cntatt.pickup; 
+            {
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.pickup += cntatt.pickup;
+                else { stDesc = StackDetail[cntatt.stackType - 1][6] = cntatt.pickup; StackObj[cntatt.stackType - 1]++; }
                 GetArea.localScale = new Vector3(1.5f,1.5f,1) * GameManager.instance.PlayerStatus.pickup;
                 GainStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.pickup-1) * 100)}%";
             }
             if (cntatt.exp != 0)
             {
-                GameManager.instance.PlayerStatus.exp += cntatt.exp;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.exp += cntatt.exp;
+                else { stDesc = StackDetail[cntatt.stackType - 1][7] = cntatt.exp; StackObj[cntatt.stackType - 1]++; }
                 ExpStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.exp-1) * 100)}%";
             }
-
-            if (cntatt.selection != 0) GameManager.instance.PlayerStatus.selection += cntatt.selection;
-            if(cntatt.attackspeed != 0)
+            if (cntatt.heal != 0)
             {
-                GameManager.instance.PlayerStatus.attackspeed += cntatt.attackspeed;
-                HasteStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attackspeed * 100)}%";
-                foreach (var k in GameManager.instance.Players) k.ChangeOccur = true;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.heal += cntatt.heal;
+                else { stDesc = StackDetail[cntatt.stackType - 1][8] = cntatt.heal; StackObj[cntatt.stackType - 1]++; }
             }
-            if(cntatt.hp != 0)
+            if (cntatt.GoodsEarn != 0)
             {
-                GameManager.instance.PlayerStatus.hp += cntatt.hp;
-                foreach (var k in GameManager.instance.Players) k.ChangeOccur = true;
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.GoodsEarn += cntatt.GoodsEarn;
+                else { stDesc = StackDetail[cntatt.stackType - 1][9] = cntatt.GoodsEarn; StackObj[cntatt.stackType - 1]++; }
+            }
+            if (cntatt.hp != 0)
+            {
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.hp += cntatt.hp;
+                else { stDesc = StackDetail[cntatt.stackType -1][10] = cntatt.hp; StackObj[cntatt.stackType - 1]++; }
+                StatChange?.Invoke();
                 HealthStat.text = $"{Mathf.FloorToInt(cntatt.hp * 100)}%";
             }
-
-            
-
-            if (cntatt.dragons != 0)
+            if (cntatt.vamp != 0)
             {
-                
-                Dragons[cntatt.dragons - 1] = true;
-                if(DragonCount >= 1)
-                {
-                    switch (cntatt.dragons)
-                    {
-                        case 1: GameManager.instance.PlayerStatus.attack += 0.03f * DragonCount; break;
-                        case 2: GameManager.instance.PlayerStatus.defense += 0.03f * DragonCount; break;
-                        case 3: GameManager.instance.PlayerStatus.exp += 0.05f * DragonCount; break;
-                        case 4: GameManager.instance.PlayerStatus.attackspeed += 0.03f * DragonCount; break;
-                        case 5: GameManager.instance.PlayerStatus.hp += 0.05f * DragonCount; break;
-                    }
-                }
-                DragonCount++;
-                if (Dragons[0])
-                {
-                    GameManager.instance.PlayerStatus.attack += 0.03f;
-                    AttackStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attack * 100)}%";
-                }
-
-                if (Dragons[1])
-                {
-                    GameManager.instance.PlayerStatus.defense += 0.03f;
-                    DefenseStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.defense * 100)}%";
-                }
-
-                if (Dragons[2])
-                {
-                    GameManager.instance.PlayerStatus.exp += 0.05f;
-                    ExpStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.exp * 100)}%";
-                }
-
-                if (Dragons[3])
-                {
-                    GameManager.instance.PlayerStatus.attackspeed += 0.03f;
-                    foreach (var k in GameManager.instance.Players) k.ChangeOccur = true;
-                    HasteStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attackspeed * 100)}%";
-                }
-                if (Dragons[4])
-                {
-                    GameManager.instance.PlayerStatus.hp += 0.05f;
-                    foreach (var k in GameManager.instance.Players) k.ChangeOccur = true;
-                    HealthStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.hp * 100)}%";
-                }
+                if (cntatt.stackType == 0) GameManager.instance.PlayerStatus.vamp += cntatt.vamp;
+                else { stDesc = StackDetail[cntatt.stackType -1][11] = cntatt.vamp; StackObj[cntatt.stackType - 1]++; }
             }
+
+            if(cntatt.stackType != 0)
+            {
+                GameManager.instance.PlayerStatus.attack += StackDetail[cntatt.stackType - 1][0]; AttackStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attack * 100)}%";
+                GameManager.instance.PlayerStatus.attackspeed += StackDetail[cntatt.stackType - 1][1]; HasteStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.attackspeed * 100)}%";
+                GameManager.instance.PlayerStatus.defense += StackDetail[cntatt.stackType - 1][2]; DefenseStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.defense * 100)}%";
+                GameManager.instance.PlayerStatus.speed += StackDetail[cntatt.stackType - 1][3]; SpeedStat.text = $"{Mathf.FloorToInt(GameManager.instance.PlayerStatus.speed * 100)}%";
+                GameManager.instance.PlayerStatus.power += StackDetail[cntatt.stackType - 1][4]; 
+                GameManager.instance.PlayerStatus.cost += StackDetail[cntatt.stackType - 1][5]; CostStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.cost - 1) * 100)}%";
+                GameManager.instance.PlayerStatus.pickup += StackDetail[cntatt.stackType - 1][6]; GainStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.pickup - 1) * 100)}%";
+                GameManager.instance.PlayerStatus.exp += StackDetail[cntatt.stackType - 1][7]; ExpStat.text = $"{Mathf.FloorToInt((GameManager.instance.PlayerStatus.exp - 1) * 100)}%";
+                GameManager.instance.PlayerStatus.heal += StackDetail[cntatt.stackType - 1][8];
+                GameManager.instance.PlayerStatus.GoodsEarn += StackDetail[cntatt.stackType - 1][9];
+                GameManager.instance.PlayerStatus.hp += StackDetail[cntatt.stackType - 1][10]; HealthStat.text = $"{Mathf.FloorToInt(cntatt.hp * 100)}%";
+                GameManager.instance.PlayerStatus.vamp += StackDetail[cntatt.stackType - 1][11];
+                StatChange?.Invoke();
+            }
+
 
             if (cntatt.special != 0)
             {
@@ -479,7 +470,7 @@ public class UIManager : MonoBehaviour
                         break;
                     case 3:
                         Player sub = GameManager.instance.Players[UnityEngine.Random.Range(0,GameManager.instance.Players.Length)];
-                        sub.HPRatio += 0.3f; sub.AttackRatio += 0.3f; sub.ChangeOccur = true; cnt.description[0] += $"<size=75%>({sub.name})</size>";
+                        sub.HPRatio += 0.3f; sub.AttackRatio += 0.3f; StatChange?.Invoke(); cnt.description[0] += $"<size=75%>({sub.name})</size>";
                         break;
                     case 4:
                         RarityPickVar[0] = 86; RarityPickVar[1] = 98;
@@ -492,9 +483,7 @@ public class UIManager : MonoBehaviour
                         break;
                 }
             }
-
-            if(cntatt.dragons != 0) Instantiate(RelicObj, RelicList).GetComponent<RelicSub>().Init(RelicSubSprites[cnt.rarity], cnt.sprite, cnt.name, cnt.description[0], cnt.extra, 1, ((cntatt.dragons == 3 || cntatt.dragons == 5) ? 5 : 3));
-            else Instantiate(RelicObj, RelicList).GetComponent<RelicSub>().Init(RelicSubSprites[cnt.rarity],cnt.sprite, cnt.name, cnt.description[0], cnt.extra);
+            Instantiate(RelicObj, RelicList).GetComponent<RelicSub>().Init(RelicSubSprites[cnt.rarity],cnt.sprite, cnt.name, cnt.description[0], cnt.extra,cntatt.stackType,stDesc);
 
         }
         else

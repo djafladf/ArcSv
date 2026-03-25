@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8037357448339373083}
   - component: {fileID: 5478014778208049916}
   - component: {fileID: 6416896793892730314}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 4584099351077619593}
   - component: {fileID: 2875267705741611829}
   - component: {fileID: 1198967365656708100}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4950,7 +4950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539120915633731624}
   - component: {fileID: 1539120915633731625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5129,7 +5129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12069b1ebadb874db28c7c1c275691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: bc324088d7a7d8d4a8d597e2433dfb2b, type: 2}
   player: {fileID: 11400000, guid: bc324088d7a7d8d4a8d597e2433dfb2b, type: 2}
   IsPlayer: 0
   IsSummon: 0
@@ -5146,6 +5145,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -5161,6 +5161,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5239,7 +5240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2622139986343179335}
   - component: {fileID: 7588988479603082602}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5325,7 +5326,7 @@ GameObject:
   - component: {fileID: 8742964557092350553}
   - component: {fileID: 2389806132651377935}
   - component: {fileID: 6591888774103275800}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5400,7 +5401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4722258408010356473}
   - component: {fileID: 4273536412776282062}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: AfterIm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5484,7 +5485,7 @@ GameObject:
   - component: {fileID: 5212184804427855541}
   - component: {fileID: 810797253138052848}
   - component: {fileID: 3540475906004073819}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Steam
   m_TagString: Untagged
   m_Icon: {fileID: 0}

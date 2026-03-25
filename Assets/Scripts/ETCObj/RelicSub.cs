@@ -13,9 +13,9 @@ public class RelicSub : MonoBehaviour
     string Info;
 
     int specialType = 0;
-    int specialCount = 0;
+    float specialCount = 0;
 
-    public void Init(Sprite myIm,Sprite Im, string name,string info, string extra, int SpecialType = 0, int SpecialCount = 0)
+    public void Init(Sprite myIm,Sprite Im, string name,string info, string extra, int SpecialType = 0,float SpecialCount = 0)
     {
         GetComponent<Image>().sprite = myIm;
         transform.GetChild(0).GetComponent<Image>().sprite = Im;
@@ -51,8 +51,8 @@ public class RelicSub : MonoBehaviour
     protected virtual void OnPointer(PointerEventData data) 
     {
         if (specialType == 0) GameManager.instance.FloatM.Init(Info, 35);
-        else if (specialType == 1)
-            GameManager.instance.FloatM.Init($"{Info}<size=75%>(현재 {specialCount * GameManager.instance.UM.DragonCount}%)", 35);
+        else 
+            GameManager.instance.FloatM.Init($"{Info}<size=75%>(현재 {100 * specialCount * GameManager.instance.UM.StackObj[specialType-1]}%)", 35);
     }
 
     protected virtual void OutPointer(PointerEventData data)

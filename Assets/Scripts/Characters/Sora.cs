@@ -7,9 +7,9 @@ public class Sora : PlayerSetting
 {
     [SerializeField] ParticleSystem Norm;
     [SerializeField] ParticleSystem Spec;
+    [SerializeField] ParticleSystem Field1, Field2;
     [SerializeField] List<Image> Synthe;
-    [SerializeField] Transform ForceField;
-    [SerializeField] AfterImMaker AIM_Force;
+    [SerializeField] GameObject Display;
 
     [SerializeField] GameObject FlyOne;
     [SerializeField] GameObject FlyTwo;
@@ -21,46 +21,39 @@ public class Sora : PlayerSetting
 
     bool SpecO = false;
 
-    int MaxScale = 20;
-
     protected override void Awake()
     {
         base.Awake();
         As = GetComponent<AudioSource>();
+        yPos = Display.transform.localPosition;
+        xPos = new Vector3(-yPos.x, yPos.y);
+    }
+
+    public override void ExternInit()
+    {
+        base.ExternInit();
         player.SubEffects.Add(transform.GetChild(1).GetComponent<SpriteRenderer>());
         player.SubEffects.Add(FlyOne.GetComponent<SpriteRenderer>());
         player.SubEffects.Add(FlyTwo.GetComponent<SpriteRenderer>());
     }
 
+    Vector3 xPos = new Vector3(-0.2f, 3, -1);
+    Vector3 yPos = new Vector3(0.2f, 3, -1);
     protected override void Start()
     {
         base.Start();
         NormalInfo.Buffs = new Buff(last: 0.2f, heal: 0, attack: 0.1f, defense: 0.1f);
-        NormalInfo.ScaleFactor = MaxScale * 0.5f;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         foreach (var k in Synthe) k.gameObject.SetActive(false);
+        Field1.Stop(); Field2.Stop();
     }
 
     new protected void FixedUpdate()
     {
-        if (player.ChangeOccur && !IsSummon)
-        {
-            player.ChangeOccur = false;
-            int cnt = player.MaxHP;
-            player.MaxHP = Mathf.FloorToInt(player.InitHP * (1 + player.HPRatio + GameManager.instance.PlayerStatus.hp));
-            if (cnt - player.MaxHP != 0)
-            {
-                player.CurHP += player.MaxHP - cnt;
-                HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
-                player.MyBatch.HPBar.fillAmount = player.CurHP / (float)player.MaxHP;
-            }
-            player.anim.SetFloat("AttackSpeed", player.AttackSpeed + GameManager.instance.PlayerStatus.attackspeed);
-        }
-
         player.rigid.velocity = Vector2.zero;
         if (CanMove && !OnIce && player.AllowMove)
         {
@@ -98,11 +91,13 @@ public class Sora : PlayerSetting
             {
                 if (player.Dir.x > 0 && !player.sprite.flipX)
                 {
+                    Display.transform.localPosition = xPos;
                     player.sprite.flipX = true;
                     foreach (var k in player.SubEffects) k.flipX = true;
                 }
                 else if (player.Dir.x < 0 && player.sprite.flipX)
                 {
+                    Display.transform.localPosition = yPos;
                     player.sprite.flipX = false;
                     foreach (var k in player.SubEffects) k.flipX = false;
                 }
@@ -132,6 +127,7 @@ public class Sora : PlayerSetting
         {
             StartCoroutine(SyntheEffect());
             StartCoroutine(FieldEffect());
+            Field1.Play(); Field2.Play();
         }
         Norm.Play();
         foreach (var k in Synthe) k.gameObject.SetActive(true);
@@ -146,29 +142,24 @@ public class Sora : PlayerSetting
         Spec.Play();
     }
 
-    Vector3 SizeSub;
-    List<Transform> EtcPos = new List<Transform>();
-
-
     IEnumerator FieldEffect()
     {
-        SizeSub = new Vector3(2f, 2f, 0);
-        ForceField.localScale = new Vector3(0, 0, 1);
-        AIM_Force.StartMaking();
         while (true)
         {
-            ForceField.localScale += SizeSub;
             NormalInfo.Buffs.Heal = (int)Mathf.Round((1 + GameManager.instance.PlayerStatus.attack) * HealRatio);
-            GameManager.instance.BM.MakeBuff(NormalInfo, new Vector3(transform.position.x, transform.position.y - 0.6f), null, false);
-            if (ForceField.localScale.x >= MaxScale)
+            foreach(var j in GameManager.instance.Prefs)
             {
-                yield return GameManager.DotOneSec;
-                ForceField.localScale = new Vector3(0, 0, 1);
+                if (!j.activeSelf) continue;
+                var VectorSub = j.transform.position - transform.position;
+                if(VectorSub.x >= BuffRange_x.x && VectorSub.x <= BuffRange_x.y && VectorSub.y >= BuffRange_y.x && VectorSub.y<= BuffRange_y.y) GameManager.instance.GetScript(j).SetBuff(NormalInfo);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return GameManager.DotQuarter;
         }
     }
 
+
+    Vector2 BuffRange_x = new Vector2(-13f, 13f);
+    Vector2 BuffRange_y = new Vector2(-14f, 4f);
     IEnumerator SyntheEffect()
     {
         while (true)
@@ -180,7 +171,7 @@ public class Sora : PlayerSetting
                 else if (k.fillAmount > 0) k.fillAmount -= 0.1f;
                 else k.fillAmount += 0.1f;
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return GameManager.DotQuarter;
         }
     }
 
@@ -189,12 +180,13 @@ public class Sora : PlayerSetting
 
     protected override int WeaponLevelUp(bool IsUp = true)
     {
+        ParticleSystem.MainModule obj = Field1.main,obj2 = Field2.main;
         switch (player.WeaponLevel++)
         {
             case 1: HealRatio += 0.1f; break;
-            case 2: MaxScale = 24; SizeSub = new Vector3(2.4f, 2.4f); break;
+            case 2: obj2.startSize = obj.startSize = 35; BuffRange_x.x = -16.25f; BuffRange_x.y = 16.25f; BuffRange_y.y = 5f; BuffRange_y.x = -17.5f; break;
             case 3: HealRatio += 0.2f; break;
-            case 4: MaxScale = 30; SizeSub = new Vector3(3f, 3f); break;
+            case 4: obj2.startSize = obj.startSize = 42; BuffRange_x.x = -19.5f; BuffRange_x.y = 19.5f; BuffRange_y.y = 6f; BuffRange_y.x = -21f; break;
             case 5: NormalInfo.Buffs.Attack = 0.15f; NormalInfo.Buffs.Defense = 0.15f; break;
             case 6: NormalInfo.Buffs.Attack = 0.2f; NormalInfo.Buffs.Defense = 0.2f; NormalInfo.DeBuffs = new DeBuff(last: 0.2f, attack: 0.1f, defense: 0.1f); FlyOne.SetActive(true); FlyTwo.SetActive(true); break;
         }

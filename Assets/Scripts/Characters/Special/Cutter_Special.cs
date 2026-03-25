@@ -18,7 +18,7 @@ public class Cutter_Special : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             BI.Damage = Mathf.FloorToInt((1 + GameManager.instance.PlayerStatus.attack + Cutter.AttackRatio + Cutter.ReinforceAmount[0]) * 15);
-            GameManager.instance.BM.MakeMeele(BI, 0.3f, collision.transform.position, Vector3.zero, 0, false);
+            GameManager.instance.ES.InstanceTo[collision.gameObject].OnDamage(inf:BI);
         }
     }
 }

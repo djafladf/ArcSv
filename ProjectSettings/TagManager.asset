@@ -28,11 +28,11 @@ TagManager:
   - Team
   - Bloom
   - NoCol
-  - 
-  - 
-  - 
-  - 
-  - 
+  - NoCamera
+  - OnlyPlayer
+  - OnlyEnemy
+  - Map
+  - WaterSpecial
   - 
   - 
   - 

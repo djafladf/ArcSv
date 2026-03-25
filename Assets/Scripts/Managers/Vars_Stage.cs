@@ -42,7 +42,7 @@ public class attribute
     public float exp;
     public float heal;
     public float GoodsEarn;
-    public int dragons;
+    public int stackType;
     public int special;
     public float hp;
     public float vamp;
@@ -86,10 +86,12 @@ public class BulletInfo
 
     public Buff Buffs;
 
+    public Sprite HitEffect;
+
     public BulletInfo(int damage = 0, bool isEffect = false, float knockBack = 0, float scalefactor = 1,
         float speedfactor = 1, bool isFix = false, float ignoreDefense = 0,
         DeBuff debuffs = null, Buff buffs = null, int dealFrom = -1, int layerOrder = 4, float vamp = 0,
-        Action<Transform, int> DT = null, float executeRatio = 0)
+        Action<Transform, int> DT = null, float executeRatio = 0, Sprite hitEffect = null)
     {
         Damage = damage; DealFrom = dealFrom;
         IsEffect = isEffect; IsFix = isFix; ScaleFactor = scalefactor; SpeedFactor = speedfactor;
@@ -97,7 +99,8 @@ public class BulletInfo
         DeBuffs = debuffs;
         Buffs = buffs;
         LayerOrder = layerOrder; ExecuteRatio = executeRatio;
-        if(GameManager.instance != null) Vamp = vamp + GameManager.instance.PlayerStatus.vamp;
+        if (GameManager.instance != null) Vamp = vamp + GameManager.instance.PlayerStatus.vamp;
+        HitEffect = hitEffect;
     }
 
     public int ReturnDamage(float defense)

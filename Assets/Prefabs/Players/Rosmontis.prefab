@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6476512225783366113}
   - component: {fileID: 8250645182473582092}
   - component: {fileID: 1413036723199940826}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129400909973203835}
   - component: {fileID: 5131600962482113249}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AfterIm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1090238433872343499}
   - component: {fileID: 8495827036408205564}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: AfterIm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1539120915633731624}
   - component: {fileID: 1539120915633731625}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c56d252f4d496247bf2e91776f0b93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginPlayer: {fileID: 11400000, guid: d90cfe6717ab5824d86b1bb6407c4206, type: 2}
   player: {fileID: 11400000, guid: d90cfe6717ab5824d86b1bb6407c4206, type: 2}
   IsPlayer: 1
   IsSummon: 0
@@ -619,6 +618,7 @@ MonoBehaviour:
     ScaleFactor: 1
     SpeedFactor: 1
     ExecuteRatio: 0
+    AttackPos: {x: 0, y: 0, z: 0}
     DeBuffs:
       Last: 0
       Speed: 0
@@ -634,6 +634,7 @@ MonoBehaviour:
       Defense: 0
       AttackSpeed: 0
       Heal: 0
+    HitEffect: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -940,7 +941,7 @@ GameObject:
   - component: {fileID: 2388021706861370153}
   - component: {fileID: 192610789785419214}
   - component: {fileID: 1703766617230332664}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,7 +1047,7 @@ GameObject:
   - component: {fileID: 7324615760585250882}
   - component: {fileID: 4456646973386454804}
   - component: {fileID: 5154487564680768259}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1121,7 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4075980483759801948}
   - component: {fileID: 8476614642297124721}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1240,7 +1241,7 @@ GameObject:
   - component: {fileID: 2892815474356868159}
   - component: {fileID: 2746077044925674449}
   - component: {fileID: 7404850748266027726}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,7 +1350,7 @@ GameObject:
   - component: {fileID: 5152820532747184144}
   - component: {fileID: 4211073251426949286}
   - component: {fileID: 1604106567483392883}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

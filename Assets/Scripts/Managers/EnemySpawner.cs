@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -12,8 +13,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int[] PoolSize;
     public bool IsTest;
 
-    List<List<GameObject>> Pool = new List<List<GameObject>>();
-    List<List<Enemy>> ScriptPool = new List<List<Enemy>>();
+    List<List<GameObject>> Pool = new();
+    [HideInInspector] public Dictionary<GameObject, Enemy> InstanceTo = new();
 
     [HideInInspector] public int CurActive = 0;
 
@@ -49,8 +50,8 @@ public class EnemySpawner : MonoBehaviour
     int CurStage = 0;
     int[] LastUse;
     bool[] IsLast;
-    public Action<int,int>[] TargetChangeAct = new Action<int,int>[5];
-    public List<List<bool[]>> TargetChange;
+    public Action<GameObject>[] TargetChangeAct = new Action<GameObject>[5];
+    public Dictionary<GameObject, bool[]> TargetChange = new Dictionary<GameObject, bool[]>();
 
     private void Awake()
     {
@@ -79,11 +80,11 @@ public class EnemySpawner : MonoBehaviour
 
         if (GameManager.instance.IsTest) EnemyCount = 1;
 
-        IsLast = new bool[EnemyCount]; LastUse = new int[EnemyCount]; TargetChange = new List<List<bool[]>>();
+        IsLast = new bool[EnemyCount]; LastUse = new int[EnemyCount];
         for (i = 0; i < EnemyCount; i++) 
         { 
-            IsLast[i] = false; TargetChange.Add(new List<bool[]>());
-            for(int j = 0; j < PoolSize[i]; j++) TargetChange[i].Add( new bool[]{false,false,false,false,false} );
+            IsLast[i] = false;
+            //for(int j = 0; j < PoolSize[i]; j++) TargetChange[i].Add( new bool[]{false,false,false,false,false} );
         }
 
         MaxSpawn = (int)(MaxSpawn * (1+GameManager.instance.EnemyStatus.spawn));
@@ -98,18 +99,18 @@ public class EnemySpawner : MonoBehaviour
     public void MakeNewPref(int st, int ed)
     {
         if (st == ed && st != 0) return;
+        Enemy Script;
+        GameObject Obj;
         for (int i = st; i <= ed; i++)
         {
             Pool.Add(new List<GameObject>());
-            ScriptPool.Add(new List<Enemy>());
             if (EnemyTypes[i] == null) continue;
             for (int y = 0; y < PoolSize[i]; y++)
             {
-                Pool[i].Add(Instantiate(EnemyTypes[i], transform));
-                ScriptPool[i].Add(Pool[i][y].GetComponent<Enemy>());
-                if (ScriptPool[i][y] == null) print("!");
-                Pool[i][y].name = $"{(char)(i+1)}{(char)(y+1)}";
-                Pool[i][y].SetActive(false);
+                Obj = Instantiate(EnemyTypes[i], transform); Pool[i].Add(Obj);
+                Script = Obj.GetComponent<Enemy>();
+                InstanceTo.Add(Obj,Script); TargetChange[Obj] = new bool[] { false, false, false, false, false };
+                Obj.SetActive(false);
             }
         }
         GameManager.instance.UM.BossShaft.gameObject.SetActive(false);
@@ -146,7 +147,7 @@ public class EnemySpawner : MonoBehaviour
         if (Info.IsBoss) { GameManager.instance.BossStage(); /*BossSet.SetActive(true);*/ }
 
         int Id = (int)Info.id;
-
+        Enemy Script;
         for (int i = 0; i <= SpawnTimes; i++)
         {
             IsSpawned = false;
@@ -166,8 +167,11 @@ public class EnemySpawner : MonoBehaviour
 
             if (!IsSpawned && PoolSize[Id] < MaxSpawn)
             {
-                var tmp = Instantiate(EnemyTypes[Id], transform); tmp.name = $"{(char)(Id+1)}{(char)(PoolSize[Id]+1)}"; 
-                Pool[Id].Add(tmp); Pool[Id][PoolSize[Id]++].transform.position = cnt; TargetChange[Id].Add(new bool[] { false, false, false, false, false });
+                var tmp = Instantiate(EnemyTypes[Id], transform);
+                Pool[Id].Add(tmp);
+                Script = tmp.GetComponent<Enemy>();
+                InstanceTo.Add(tmp,tmp.GetComponent<Enemy>());
+                Pool[Id][PoolSize[Id]++].transform.position = cnt; TargetChange[tmp] = new bool[] { false, false, false, false, false };
             }
             if (Info.IsBoss) break;
             yield return SpawnGap;
@@ -193,7 +197,9 @@ public class EnemySpawner : MonoBehaviour
         if (!IsSpawned)
         {
             GameObject tmp = Instantiate(EnemyTypes[ind], transform); tmp.SetActive(false);
-            tmp.name = $"{(char)(ind+1)}{(char)(Pool[ind].Count+1)}"; Pool[ind].Add(tmp); TargetChange[ind].Add(new bool[] { false, false, false, false, false });
+            var Script = tmp.GetComponent<Enemy>(); 
+            InstanceTo.Add(tmp, Script); TargetChange[tmp] = new bool[] { false, false, false, false, false };
+            Pool[ind].Add(tmp); PoolSize[ind]++;
             return tmp;
         }
         return null;
@@ -221,8 +227,10 @@ public class EnemySpawner : MonoBehaviour
             }
             if (!IsSpawned && PoolSize[Id] < MaxSpawn)
             {
-                var tmp = Instantiate(EnemyTypes[Id], transform); tmp.name = $"{(char)(Id+1)}{(char)(PoolSize[Id]+1)}";
-                Pool[Id].Add(tmp); Pool[Id][PoolSize[Id]++].transform.position = cnt; TargetChange[Id].Add(new bool[] { false, false, false, false, false });
+                var tmp = Instantiate(EnemyTypes[Id], transform);
+                var Script = tmp.GetComponent<Enemy>();
+                InstanceTo.Add(tmp, tmp.GetComponent<Enemy>());
+                Pool[Id].Add(tmp); Pool[Id][PoolSize[Id]++].transform.position = cnt; TargetChange[tmp] = new bool[] { false, false, false, false, false };
             }
             yield return SpawnGap;
         }

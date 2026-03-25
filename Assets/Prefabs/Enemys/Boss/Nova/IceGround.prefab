@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6937599358129131489}
   - component: {fileID: 5092615158596283745}
   - component: {fileID: 7721395673194336470}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: MakePart1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4883,7 +4883,7 @@ GameObject:
   - component: {fileID: 1470264921881582198}
   - component: {fileID: 3916680595612898570}
   - component: {fileID: 8531477817992753606}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IceGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4953,7 +4953,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.0876276, y: 1.9749999}
+  m_Size: {x: 0.36260167, y: 5.1375003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -4961,7 +4961,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &3916680595612898570
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4978,7 +4978,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8531477817992753606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,7 +5006,7 @@ GameObject:
   - component: {fileID: 3600677040783201490}
   - component: {fileID: 4359792597663358370}
   - component: {fileID: 3910755168141326564}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: MakePart2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

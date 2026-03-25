@@ -15,7 +15,6 @@ public class Mepisto : Enemy
         MaxDefense = Mathf.FloorToInt(MaxDefense * (1 + GameManager.instance.EnemyStatus.boss * 0.05f)); Defense = MaxDefense;
         MaxDamage = Mathf.FloorToInt(MaxDamage * (1 + GameManager.instance.EnemyStatus.boss * 0.05f)); Damage = MaxDamage;
     }
-
     protected override void OnEnable()
     {
         if (!IsInit)
@@ -61,14 +60,17 @@ public class Mepisto : Enemy
     }
 
     [SerializeField]LayerMask TargetLayer;
+    Vector2 SkillRange = new Vector2(50, 24);
+    Collider2D[] hits = new Collider2D[100];
     public void MakeHeal()
     {
         VirusSystem.Play();
-        foreach(var k in GameManager.GetNearest(50, 100, transform.position, TargetLayer))
+        int res = Physics2D.OverlapBoxNonAlloc(transform.position, SkillRange, 0, hits, TargetLayer);
+        for(int i = 0; i < res; i++)
         {
-            GameManager.instance.BM.MakeEffect(0.5f, k.position, Vector3.zero, 0, Bull);
+            GameManager.instance.BM.MakeEffect(0.5f, hits[i].transform.position,Vector3.zero,0,Bull);
+            GameManager.instance.ES.InstanceTo[hits[i].gameObject].OnBuff(BI.Buffs);
         }
-        GameManager.instance.BM.MakeBuff(BI, transform.position, null, true);
     }
 
     protected override void HPChange()
