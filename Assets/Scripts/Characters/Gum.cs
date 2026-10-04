@@ -41,7 +41,7 @@ public class Gum : PlayerSetting
         Injure.DealFrom = NormalInfo.DealFrom;
         Buff.DealFrom = NormalInfo.DealFrom;
         BuffEffect[0].transform.parent = GameManager.instance.Prefs[0].transform; BuffEffect[0].transform.localPosition = new Vector3(0, 5);
-        for(int i = 1; i < GameManager.instance.Prefs.Length; i++)
+        for(int i = 1; i < GameManager.instance.Prefs.Count; i++)
         {
             BuffEffect.Add(Instantiate(BuffEffect[0], GameManager.instance.Prefs[i].transform));
         }
@@ -101,7 +101,7 @@ public class Gum : PlayerSetting
             GetDamage(Injure);
             ActCount = 0;
         }
-        for(int i = 0; i < GameManager.instance.Prefs.Length; i++) if (GameManager.instance.Prefs[i].activeSelf)
+        for(int i = 0; i < GameManager.instance.Prefs.Count; i++) if (GameManager.instance.Prefs[i].activeSelf)
             {
                 BuffEffect[i].SetActive(true);
                 GameManager.instance.GetScript(ind : i).SetBuff(Buff);

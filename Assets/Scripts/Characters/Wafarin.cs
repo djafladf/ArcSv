@@ -39,7 +39,7 @@ public class Wafarin :PlayerSetting
         Targets = GameManager.GetNearest(AttackRange, SummonNum, transform.position, targetLayer);
         HealTargets.Clear();
         float[] HealVar = { 1, 1 }; int[] HealInd = { -1, -1 };
-        for(int i = 0; i < GameManager.instance.Prefs.Length; i++)
+        for(int i = 0; i < GameManager.instance.Prefs.Count; i++)
         {
             if (!GameManager.instance.Prefs[i].activeSelf) continue;
             float rat = GameManager.instance.Players[i].CurHP / GameManager.instance.Players[i].MaxHP; //if (rat == 1) continue;

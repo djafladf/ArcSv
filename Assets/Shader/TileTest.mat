@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TileTest
+  m_Shader: {fileID: 4800000, guid: ea6cbd195dbf0984db0cec29cf92cda5, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Atlas:
+        m_Texture: {fileID: 2800000, guid: 89993c7dd422b5e4b91b0c5191bbc25e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 89993c7dd422b5e4b91b0c5191bbc25e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaWeight: 0.3
+    - _ApplyTime: 1
+    - _BlurRadius: 3
+    - _BlurSize: 1
+    - _Degree: 15
+    - _DegreeMax: 20
+    - _EnableExternalAlpha: 0
+    - _OnBlur: 0
+    - _Power: 1
+    - _ShakeFreq: 0.97
+    - _Sint: 1
+    - _TimeScale: 0.25
+    - _UnscaledTime: 60.89696
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _Outline: {r: 1, g: 0, b: 0, a: 1}
+    - _RectSize: {r: 80, g: 80, b: 0, a: 0}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SideMargin: {r: 0, g: 0, b: 0, a: 0}
+    - _TileNum: {r: 3, g: 3, b: 0, a: 0}
+    - _TileSize: {r: 26.666666, g: 26.66667, b: 0, a: 0}
+  m_BuildTextureStacks: []

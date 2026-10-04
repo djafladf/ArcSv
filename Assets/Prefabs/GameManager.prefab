@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 4.8
+    OrthographicSize: 12
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5962,6 +5962,7 @@ MonoBehaviour:
   BFM: {fileID: 0}
   Git: {fileID: 0}
   AudioM: {fileID: 0}
+  _base: {fileID: 0}
   SettingM: {fileID: 0}
   FloatM: {fileID: 0}
   MainCam: {fileID: 7729928239948477873}
@@ -5994,7 +5995,7 @@ MonoBehaviour:
     exp: 1
     heal: 0
     GoodsEarn: 0
-    dragons: 0
+    stackType: 0
     special: 0
     hp: 0
     vamp: 0
@@ -6049,6 +6050,7 @@ MonoBehaviour:
   - {fileID: 1539120915725065947, guid: ae9e941a86c990e45b9258665d95df14, type: 3}
   - {fileID: 1539120915725065947, guid: 21f7f99ebce0ec2418bba65f22dd35ee, type: 3}
   - {fileID: 1539120915725065947, guid: 3741b82bbe5f9c34f8c2925d89e16ccb, type: 3}
+  Scripts: []
   Prefs: []
   CurPlayerID: 
   PlayerInd: 0
@@ -9063,7 +9065,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4849893903151512988}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99105257
+  m_Size: 0.9910526
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13484,7 +13486,6 @@ GameObject:
   - component: {fileID: 7729928239948477873}
   - component: {fileID: 7729928239948477875}
   - component: {fileID: 7729928239948477872}
-  - component: {fileID: 7729928239948477775}
   - component: {fileID: 7729928239948477772}
   m_Layer: 0
   m_Name: Main Camera
@@ -13535,7 +13536,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 11.25
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13576,7 +13577,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -13592,29 +13593,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &7729928239948477775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7729928239948477874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ComponentVersion: 1
-  m_AssetsPPU: 12
-  m_RefResolutionX: 135
-  m_RefResolutionY: 270
-  m_CropFrame: 0
-  m_GridSnapping: 0
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!114 &7729928239948477772
 MonoBehaviour:
   m_ObjectHideFlags: 0

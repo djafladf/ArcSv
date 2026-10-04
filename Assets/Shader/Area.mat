@@ -51,7 +51,7 @@ Material:
     - _Power: 10
     - _Ratio: 0.6666667
     m_Colors:
-    - _Color: {r: 0.745283, g: 0.23183064, b: 0.17225882, a: 1}
+    - _Color: {r: 1, g: 0.56406695, b: 0.514151, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _Outline: {r: 1, g: 0, b: 0, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

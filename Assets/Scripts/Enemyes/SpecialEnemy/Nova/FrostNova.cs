@@ -94,9 +94,9 @@ public class FrostNova : Enemy
             GameManager.instance.UM.BossShaft.gameObject.SetActive(true);
             GameManager.instance.ES.SetCurrentSpawnPos();
 
-            GameManager.instance.ES.ExternalSpawnCall(20, -1, 8);
-            GameManager.instance.ES.ExternalSpawnCall(21, -1, 10);
-            GameManager.instance.ES.ExternalSpawnCall(22, -1, 12);
+            //GameManager.instance.ES.ExternalSpawnCall(20, -1, 8);
+            //GameManager.instance.ES.ExternalSpawnCall(21, -1, 10);
+            //GameManager.instance.ES.ExternalSpawnCall(22, -1, 12);
 
             Particles[8].transform.SetParent(Camera.main.transform);
             Particles[8].transform.localPosition = Vector3.zero;

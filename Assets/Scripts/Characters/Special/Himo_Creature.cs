@@ -59,6 +59,8 @@ public class Himo_Creature : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(TenSub(tp == 0));
     }
+
+    WaitForSeconds wfs = new WaitForSeconds(0.2f);
     IEnumerator TenSub(bool tp)
     {
         main.MakeRT(transform.position);
@@ -86,7 +88,7 @@ public class Himo_Creature : MonoBehaviour
                 Ten[1].material.SetVector("_End", new Vector2(1, i * 0.1f));
                 Victim.material.SetVector("_Start", new Vector2(0, i * 0.1f));
                 Victim.material.SetVector("_End", new Vector2(1, i * 0.1f));
-                yield return GameManager.DotOneSec;
+                yield return wfs;
             }
         }
     }

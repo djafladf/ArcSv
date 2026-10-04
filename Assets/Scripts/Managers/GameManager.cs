@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using UnityEngine.InputSystem;
 using UnityEditor;
+using Unity.VisualScripting;
 [DefaultExecutionOrder(-5000)]
 public class GameManager : MonoBehaviour
 {
@@ -196,9 +197,9 @@ public class GameManager : MonoBehaviour
     }
 
     //[HideInInspector] 
-    public Player[] Players;
-    public GameObject[] Prefabs;
-    public PlayerSetting[] Scripts;
+    public List<Player> Players;
+    public List<GameObject> Prefabs;
+    public List<PlayerSetting> Scripts;
     public Dictionary<GameObject, int> ObjToInd;
 
     public PlayerSetting GetScript(GameObject refObj = null,int ind = -1)
@@ -209,20 +210,24 @@ public class GameManager : MonoBehaviour
     }
 
 
-    [HideInInspector] public GameObject[] Prefs;
+    [HideInInspector] public List<GameObject> Prefs;
     public List<int> CurPlayerID;
     public int PlayerInd = 0;
 
-    public void AddSummonInfo(GameObject obj,Player pl,bool IsPriority = false)
+    public void AddSummonInfo(GameObject obj, Player pl, bool IsPriority = false)
     {
-        obj.name = $"{Prefs.Length}";
-
-        var cnt = Prefs.ToList(); cnt.Add(obj);
-        Prefs = cnt.ToArray();
+        Prefs.Add(obj);
         UM.IsPriorityAttack.Add(IsPriority);
+        Players.Add(pl);
+        Scripts.Add(obj.GetComponent<PlayerSetting>());
+    }
 
-        var tmp = Players.ToList(); tmp.Add(player);
-        Players = tmp.ToArray();
+    public void AddSummonInfo(List<GameObject> obj,List<Player> pl,List<bool> IsPriority)
+    {
+        Prefs.AddRange(obj);
+        UM.IsPriorityAttack.AddRange(IsPriority);
+        Players.AddRange(pl);
+        foreach(var j in obj) Scripts.Add(j.GetComponent<PlayerSetting>());
     }
 
     public List<Sprite> LoadingSprites;
@@ -294,17 +299,17 @@ public class GameManager : MonoBehaviour
         int LL = BatchName.Length;
 
         // Get Operators
-        Players = new Player[LL];
-        Prefs = new GameObject[LL];
-        Scripts = new PlayerSetting[LL];
+        Players = new();
+        Prefs = new();
+        Scripts = new();
         ObjToInd = new Dictionary<GameObject, int>();
         for (int i = 0; i < LL; i++) 
         {
             var CurId = CurPlayerID[i];
-            Players[i] = ScriptableObject.Instantiate(Data.Infos[CurId].player); Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f); 
-            Prefs[i] = Instantiate(Prefabs[CurPlayerID[i]],DM.transform.parent);
+            Players.Add(ScriptableObject.Instantiate(Data.Infos[CurId].player)); Players[i].Id = i;  Players[i].CurReinforce = Mathf.FloorToInt(gameStatus.Exceed[CurId] *0.1f); 
+            Prefs.Add(Instantiate(Prefabs[CurPlayerID[i]],DM.transform.parent));
             ObjToInd[Prefs[i]] = i;
-            Scripts[i] = Prefs[i].GetComponent<PlayerSetting>();
+            Scripts.Add(Prefs[i].GetComponent<PlayerSetting>());
             Scripts[i].player = Players[i]; Scripts[i].ExternInit();
         }
         /*await AddressablesLoader.InitAssets(BatchName, "Operator_Pref", Prefs, DM.transform.parent);*/

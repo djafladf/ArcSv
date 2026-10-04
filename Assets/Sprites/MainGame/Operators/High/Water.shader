@@ -54,7 +54,6 @@ Pass
         float4 frag(v2f i) : SV_Target
         {   
             float dist = distance(float2(0.5, 0.5), i.uv);
-            float dist_sub = saturate(1 - 4*dist*dist);
             i.uv.y = i.uv.y +0.1;
 
             float2 waveUV = i.uv;
@@ -85,7 +84,8 @@ Pass
 
             color = lerp(lerp(color,waterCol,0.75),waterCol,step(color.a,0.5));
             
-            color.a = lerp(color.a * dist_sub,1,step(abs(dist-0.49),0.01));
+            color.a = lerp(0, 0.4 + 0.6 * saturate(1 - dist * dist * 4),step(dist,0.5));
+            color.a = lerp(color.a,1,step(abs(dist-0.49),0.01));
             return color;
         }
         ENDCG

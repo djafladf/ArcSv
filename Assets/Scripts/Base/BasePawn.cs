@@ -37,32 +37,12 @@ public class BasePawn : MonoBehaviour
     Vector3 CurDest;
     int CurDestGrid;
 
-    void FixedUpdate()
-    {
-        if(CurDir != Vector2.zero)
-        {
-            transform.Translate(CurDir*speed * Time.deltaTime * 10,Space.World);
-            if(Vector3.Magnitude(CurDest - transform.position) <= 5.5)
-            {
-                CurGrid = GameManager.instance._base.RoutesGrid[CurDestGrid];
-                if (Dest.Count > 0) SetNextDir();
-                else
-                {
-                    curRoom = GameManager.instance._base.Infos[WorkQue[0].x].routesid[1];
-                    WorkQue.Clear();
-                    CurDir = Vector2.zero; anim.SetBool("OnWalk", false); OnIdle = true;
-                    StartCoroutine(FindWork());
-                }
-            }
-        }
-    }
-
     void SetNextDir()
     {
         var s = Dest.Dequeue();
         
-        CurDestGrid = s; CurGrid = GameManager.instance._base.Vector2Grid(transform.position,false);
-        CurDest = GameManager.instance._base.GridToVector(GameManager.instance._base.RoutesGrid[s],false);
+        CurDestGrid = s; CurGrid = GameManager.instance._base.Vector2Grid(transform.position);
+        CurDest = GameManager.instance._base.Grid2Vector(GameManager.instance._base.RoutesGrid[s],false);
         print($"{CurGrid} -> {s} : {GameManager.instance._base.RoutesGrid[s]}");
         var tmp = GameManager.instance._base.RoutesGrid[s] - CurGrid;
         SubDir = new Vector2(tmp.x == 0 ? 0 : Mathf.Sign(tmp.x), tmp.y == 0 ? 0 : Mathf.Sign(tmp.y));

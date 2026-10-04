@@ -22122,18 +22122,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyTypes:
-  - {fileID: 1788775384281307603, guid: fac04da8f4aef134cb2cafd0eb5dcaa6, type: 3}
+  - {fileID: 1788775384281307603, guid: d6fc4551295665d40a93a4ea50304d5d, type: 3}
   BossSet: {fileID: 981838648}
-  PoolSize: 14000000
+  PoolSize: 01000000
   IsTest: 1
   CurActive: 0
   Stages:
   - spawninfo:
     - id: 0
       start: 0
-      end: 100
-      respawn: 5
-      IsBoss: 0
+      end: 0
+      respawn: 1
+      IsBoss: 1
       IsLast: 1
   StageInits: 0000000000000000
   IsPosFixed: 0

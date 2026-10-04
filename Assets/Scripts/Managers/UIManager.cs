@@ -469,7 +469,7 @@ public class UIManager : MonoBehaviour
                         }));
                         break;
                     case 3:
-                        Player sub = GameManager.instance.Players[UnityEngine.Random.Range(0,GameManager.instance.Players.Length)];
+                        Player sub = GameManager.instance.Players[UnityEngine.Random.Range(0,GameManager.instance.Players.Count)];
                         sub.HPRatio += 0.3f; sub.AttackRatio += 0.3f; StatChange?.Invoke(); cnt.description[0] += $"<size=75%>({sub.name})</size>";
                         break;
                     case 4:
@@ -607,7 +607,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void Init(int Count, List<ItemSub> Weapons, Player[] Players, GameObject[] Prefs, OperatorInfos[] Opers, int PlayerInd)
+    public void Init(int Count, List<ItemSub> Weapons, List<Player> Players, List<GameObject> Prefs, OperatorInfos[] Opers, int PlayerInd)
     {
         transform.GetComponent<CanvasScaler>().matchWidthOrHeight = GameManager.instance.RatType;
 

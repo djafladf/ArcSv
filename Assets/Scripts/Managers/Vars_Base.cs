@@ -10,17 +10,14 @@ public class InfraInfo
     // 0 : 건설 중, 1 : 통로, 2 : 
     public int type;
     public Vector2Int[] points;
-    public List<Vector2Int> doors;
-    public List<int> routesid;
     public Vector2Int midgrid;
+    public Vector2Int size;
     [JsonIgnore] public GameObject room;
     [JsonIgnore] public BaseInfra script;
 
     public InfraInfo()
     {
-        points = new Vector2Int[4];
-        doors = new List<Vector2Int>();
-        routesid = new List<int>();
+        points = new Vector2Int[2];
     }
 }
 

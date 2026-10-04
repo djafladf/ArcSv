@@ -7,7 +7,7 @@ public class TileMapSub : MonoBehaviour
 {
     [SerializeField] Shader TileMapShad;
     [SerializeField] Texture2D TileSprite;
-    [SerializeField] int TileSize;
+    [SerializeField] float TileSize;
     [SerializeField] Vector2 SideMargin;
 
     RectTransform rect;
@@ -17,6 +17,7 @@ public class TileMapSub : MonoBehaviour
         rect = GetComponent<RectTransform>();
         mat = new Material(TileMapShad);
         GetComponent<Image>().material = mat;
+        TileSize = 80f / 3f;
         mat.SetVector("_TileSize",new Vector4(TileSize,TileSize,0,0));
         mat.SetTexture("_Atlas", TileSprite);
         OnRectTransformDimensionsChange();

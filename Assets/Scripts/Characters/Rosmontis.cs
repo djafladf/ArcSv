@@ -104,7 +104,7 @@ public class Rosmontis : PlayerSetting
 
     void OnUnit1()
     {
-        for (int i = 0; i < GameManager.instance.Players.Length - 1; i++)
+        for (int i = 0; i < GameManager.instance.Players.Count - 1; i++)
         {
             GameManager.instance.Players[i + 1].MyBatch.AllowFollow(0);
             GameManager.instance.Players[i + 1].MyBatch.AllowMove(0);
@@ -113,7 +113,7 @@ public class Rosmontis : PlayerSetting
 
     void OnUnit2()
     {
-        for (int i = 0; i < GameManager.instance.Players.Length - 1; i++)
+        for (int i = 0; i < GameManager.instance.Players.Count - 1; i++)
         {
             GameManager.instance.Players[i + 1].MyBatch.AllowFollow(1);
             GameManager.instance.Players[i + 1].MyBatch.AllowMove(1);
@@ -122,7 +122,7 @@ public class Rosmontis : PlayerSetting
 
     void OnUnit3()
     {
-        for (int i = 0; i < GameManager.instance.Players.Length - 1; i++)
+        for (int i = 0; i < GameManager.instance.Players.Count - 1; i++)
         {
             GameManager.instance.Players[i + 1].MyBatch.AllowFollow(2);
             GameManager.instance.Players[i + 1].MyBatch.AllowMove(2);
